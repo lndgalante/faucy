@@ -3,7 +3,6 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
 export const SEO = ({ description, lang, meta, title }) => {
-  console.log('SEO -> meta', meta)
   const { site } = useStaticQuery(
     graphql`
       query {
