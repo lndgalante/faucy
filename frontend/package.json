@@ -1,0 +1,42 @@
+{
+  "name": "faucy-frontend",
+  "private": true,
+  "description": "Faucy",
+  "version": "0.1.0",
+  "author": "Leonardo Galante <lndgalante@gmail.com>",
+  "dependencies": {
+    "@chakra-ui/core": "^0.7.0",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "@openzeppelin/network": "^0.4.2",
+    "emotion-theming": "^10.0.27",
+    "gatsby": "^2.20.12",
+    "gatsby-plugin-chakra-ui": "^0.1.4",
+    "gatsby-plugin-manifest": "^2.3.3",
+    "gatsby-plugin-offline": "^3.1.2",
+    "gatsby-plugin-react-helmet": "^3.2.1",
+    "gatsby-source-filesystem": "^2.2.2",
+    "lodash.capitalize": "^4.2.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^5.2.1",
+    "react-icons": "^3.9.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.3"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  }
+}
