@@ -1,6 +1,5 @@
-const puppeteer = require('puppeteer-core');
-const chromium = require('chrome-aws-lambda');
-const { isAddress } = require('ethereum-address');
+import chromium from 'chrome-aws-lambda';
+import { isAddress } from 'ethereum-address';
 
 // Constants
 const ROPSTEN_FAUCET_URL = 'https://faucet.ropsten.be/';
