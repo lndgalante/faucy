@@ -2,7 +2,7 @@ const chromium = require('chrome-aws-lambda');
 const { isAddress } = require('ethereum-address');
 
 // Constants
-const ROPSTEN_FAUCET_URL = 'https://faucet.ropsten.be';
+const ROPSTEN_FAUCET_URL = 'https://faucet.ropsten.be/';
 const INPUT_ADDRESS_SELECTOR = 'input';
 const BUTTON_SEND_SELECTOR = 'button';
 const RESPONSE_MESSAGE_SELECTOR = '.message-body';
