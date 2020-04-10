@@ -39,7 +39,8 @@ async function getRopstenEth({ address }) {
   // Close browser
   await browser.close();
 
-  const hasError = statusMessage.inclsudes('greylist');
+  // Check for errors in status message
+  const hasError = statusMessage.includes('greylist');
 
   return {
     statusCode: hasError ? 403 : 200,
