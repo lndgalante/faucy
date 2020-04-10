@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const chromium = require('chrome-aws-lambda');
 const { isAddress } = require('ethereum-address');
 
@@ -8,6 +9,7 @@ const BUTTON_SEND_SELECTOR = 'button';
 const RESPONSE_MESSAGE_SELECTOR = '.message-body';
 
 async function getRopstenEth({ address }) {
+  console.log('getRopstenEth -> address', address);
   // Launch a new browser
   const browser = await chromium.puppeteer.launch({
     args: chromium.args,
@@ -45,8 +47,14 @@ async function getRopstenEth({ address }) {
   };
 }
 
-exports.handler = async ({ body }) => {
-  const { address } = JSON.parse(body);
+const handler = async (event) => {
+  // Only allow POST
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
+
+  // Get address from event body encoded as a queryString
+  const { address } = querystring.parse(event.body);
 
   // Check address
   if (!address) {
@@ -63,3 +71,7 @@ exports.handler = async ({ body }) => {
 
   return result;
 };
+
+handler({ body: JSON.stringify({ address: 'asd' }) });
+
+// exports.handler = handler;
