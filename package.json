@@ -1,7 +1,7 @@
 {
-  "name": "faucy-backend",
+  "name": "faucy",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "ropsten.js",
   "license": "MIT",
   "dependencies": {
     "chrome-aws-lambda": "^2.1.1",
