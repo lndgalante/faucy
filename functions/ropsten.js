@@ -48,7 +48,7 @@ async function getRopstenEth({ address }) {
   };
 }
 
-const handler = async (event) => {
+exports.handler = async (event) => {
   // Only allow POST
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -72,7 +72,3 @@ const handler = async (event) => {
 
   return result;
 };
-
-handler({ body: JSON.stringify({ address: 'asd' }) });
-
-// exports.handler = handler;
