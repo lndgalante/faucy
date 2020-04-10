@@ -9,10 +9,6 @@
     "puppeteer-core": "^2.1.1"
   },
   "devDependencies": {
-    "puppeteer": "^2.1.1",
-    "netlify-lambda": "^1.6.3"
-  },
-  "scripts": {
-    "build:server": "netlify-lambda build functions"
+    "puppeteer": "^2.1.1"
   }
 }

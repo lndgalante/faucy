@@ -9,13 +9,13 @@ const BUTTON_SEND_SELECTOR = 'button';
 const RESPONSE_MESSAGE_SELECTOR = '.message-body';
 
 async function getRopstenEth({ address }) {
-  console.log('getRopstenEth -> address', address);
   // Launch a new browser
+  const executablePath = await chromium.executablePath;
   const browser = await chromium.puppeteer.launch({
+    executablePath,
     args: chromium.args,
     headless: chromium.headless,
     defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
   });
   const page = await browser.newPage();
 
@@ -49,7 +49,7 @@ async function getRopstenEth({ address }) {
 }
 
 exports.handler = async (event) => {
-  // Only allow POST
+  // Allow only POST method
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }

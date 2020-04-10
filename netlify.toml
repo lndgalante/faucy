@@ -1,4 +1,0 @@
-[build]
-  command = "npm run build:server"
-  publish = "public"
-  functions = "dist/server"
