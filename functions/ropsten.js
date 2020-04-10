@@ -1,5 +1,5 @@
-import chromium from 'chrome-aws-lambda';
-import { isAddress } from 'ethereum-address';
+const chromium = require('chrome-aws-lambda');
+const { isAddress } = require('ethereum-address');
 
 // Constants
 const ROPSTEN_FAUCET_URL = 'https://faucet.ropsten.be/';
