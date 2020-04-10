@@ -7,6 +7,15 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
 // Twit setup
 
+const twitOptions = {
+  consumer_key: '',
+  consumer_secret: '',
+  access_token: '',
+  access_token_secret: '',
+  timeout_ms: ms('1m'),
+  strictSSL: true,
+};
+
 const T = new Twit(twitOptions);
 
 const tweet = (message) => T.post('statuses/update', { status: message });
