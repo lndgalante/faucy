@@ -1,2 +1,2 @@
 [build]
-  functions = "./backend/ropsten"
+  functions = "./backend"
