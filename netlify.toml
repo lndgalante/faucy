@@ -1,2 +1,3 @@
 [build]
-  functions = "./backend"
+  publish = "public/"
+  functions = "functions/"

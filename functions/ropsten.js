@@ -1,3 +1,4 @@
+const puppeteer = require('puppeteer-core');
 const chromium = require('chrome-aws-lambda');
 const { isAddress } = require('ethereum-address');
 
