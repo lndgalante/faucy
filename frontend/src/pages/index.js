@@ -14,14 +14,16 @@ import {
   FormControl,
   RadioButtonGroup,
 } from '@chakra-ui/core'
+import wretch from 'wretch'
 import capitalize from 'lodash.capitalize'
+import { isAddress } from 'ethereum-address'
 import { FaEthereum } from 'react-icons/fa'
 
 // Components
 import { SEO } from '../ui/components/Seo'
 import { Radio } from '../ui/components/Radio'
 
-// Constants
+// Constants - Networks
 const networks = [
   {
     value: 'ropsten',
@@ -53,6 +55,13 @@ const networks = [
   },
 ]
 
+// Constants - Environment Variables
+const { GATSBY_FAUCY_API_URL } = process.env
+
+// Helpers
+const faucyApi = wretch().url(GATSBY_FAUCY_API_URL)
+const sendAddressToRopstenService = (address) => faucyApi.url('/ropsten').post({ address }).json()
+
 const HomePage = () => {
   // React hooks - Network
   const [network, setNetwork] = useState(null)
@@ -79,6 +88,30 @@ const HomePage = () => {
     [toast],
   )
 
+  const displayLoadingMessage = (message) => {
+    return toast({
+      position: 'top',
+      status: 'info',
+      description: message,
+    })
+  }
+
+  const displaySuccessMessage = (message) => {
+    return toast({
+      position: 'top',
+      status: 'success',
+      description: message,
+    })
+  }
+
+  const displayErrorMessage = (message) => {
+    return toast({
+      position: 'top',
+      status: 'error',
+      description: message,
+    })
+  }
+
   // Handlers
   const handleNetworkChange = (network) => setNetwork(network)
 
@@ -86,16 +119,26 @@ const HomePage = () => {
 
   const handleAddressChange = ({ target: { value } }) => setAddress(value)
 
-  const handleEthClick = () => {
-    const { isAddress } = injected.lib.utils
-    const isAddressValid = isAddress(address)
+  const handleEthClick = async () => {
+    const isInvalidAddress = !isAddress(address)
 
-    setIsValidAddress(!isAddressValid)
-    if (!isAddressValid) return displayMessage('Address error', `${address} is not valid.`, 'error')
+    setIsValidAddress(isInvalidAddress)
+    if (isInvalidAddress) return displayErrorMessage(`Address ${address} is not valid.`)
 
-    displayMessage(`Eths being sent`, `We've sent ${eth} ethers 🚀`, 'success')
-    setTimeout(() => {}, 1000)
+    try {
+      displayLoadingMessage(`We're getting ${eth} ethers for you! We'll trigger a small so`)
+      const data = await sendAddressToRopstenService(address)
+      displaySuccessMessage(data.message)
+    } catch (error) {
+      const { message } = JSON.parse(error.message)
+      displayErrorMessage(message)
+    }
   }
+
+  // Constants
+  const networkName = injected?.networkName
+  const requestAuth = injected?.requestAuth
+  const connected = injected?.connected
 
   // Effect - Update available eth and selected eth when network changes
   useEffect(() => {
@@ -107,7 +150,7 @@ const HomePage = () => {
     const { availableEths, link } = foundNetwork
     setAvailableEths(availableEths)
 
-    setEth(availableEths[0])
+    setEth(String(availableEths[0]))
     setFaucetLink(link)
   }, [network, displayMessage])
 
@@ -115,20 +158,20 @@ const HomePage = () => {
   useEffect(() => {
     if (!injected || !injected.networkName) return
     setNetwork(injected.networkName.toLowerCase())
-  }, [injected, injected.networkName])
+  }, [injected, networkName])
 
   // Effect - Ask permission to the user provider
   useEffect(() => {
     if (!injected || !injected.requestAuth) return
     injected.requestAuth()
-  }, [injected, injected.requestAuth])
+  }, [injected, requestAuth])
 
   // Effect - Update address from user provider
   useEffect(() => {
     if (!injected || !injected.connected) return
     const [account] = injected.accounts
     setAddress(account)
-  }, [injected, injected.connected, injected.accounts])
+  }, [injected, connected])
 
   return (
     <Box w="100%" height="100vh" bg="gray.50" p={4} d="flex" justifyContent="center" alignItems="center">
@@ -239,7 +282,11 @@ const HomePage = () => {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Text>Buy me a coffee</Text>
+        <Text>
+          <Link href={'https://www.xivis.com/'} isExternal>
+            Made by Xivis
+          </Link>
+        </Text>
         <Text>
           {faucetLink ? (
             <Link href={faucetLink} isExternal>

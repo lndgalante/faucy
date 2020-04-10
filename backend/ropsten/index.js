@@ -48,8 +48,8 @@ async function getRopstenEth({ address }) {
   const hasError = statusMessage.includes('greylist');
 
   return {
-    message: statusMessage,
     statusCode: hasError ? 403 : 200,
+    message: hasError ? statusMessage.split('Y').join('. Y') : statusMessage,
   };
 }
 

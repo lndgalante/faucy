@@ -10,21 +10,23 @@
     "@emotion/styled": "^10.0.27",
     "@openzeppelin/network": "^0.4.2",
     "emotion-theming": "^10.0.27",
-    "gatsby": "^2.20.12",
+    "ethereum-address": "^0.0.4",
+    "gatsby": "^2.20.17",
     "gatsby-plugin-chakra-ui": "^0.1.4",
     "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-offline": "^3.1.2",
-    "gatsby-plugin-react-helmet": "^3.2.1",
+    "gatsby-plugin-react-helmet": "^3.2.2",
     "gatsby-source-filesystem": "^2.2.2",
     "lodash.capitalize": "^4.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^5.2.1",
-    "react-icons": "^3.9.0"
+    "react-helmet": "^6.0.0",
+    "react-icons": "^3.9.0",
+    "wretch": "^1.7.1"
   },
   "devDependencies": {
-    "prettier": "^2.0.3"
+    "prettier": "^2.0.4"
   },
   "keywords": [
     "gatsby"

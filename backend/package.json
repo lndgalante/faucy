@@ -5,9 +5,12 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ethereum-address": "^0.0.4",
     "express": "^4.17.1",
+    "express-rate-limit": "^5.1.1",
+    "helmet": "^3.22.0",
     "puppeteer": "^2.1.1"
   }
 }
