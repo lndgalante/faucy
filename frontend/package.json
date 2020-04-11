@@ -11,7 +11,7 @@
     "@openzeppelin/network": "^0.4.2",
     "emotion-theming": "^10.0.27",
     "ethereum-address": "^0.0.4",
-    "gatsby": "^2.20.17",
+    "gatsby": "^2.20.18",
     "gatsby-plugin-chakra-ui": "^0.1.4",
     "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-offline": "^3.1.2",

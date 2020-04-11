@@ -35,14 +35,14 @@ const networks = [
   {
     value: 'kovan',
     label: 'Kovan',
-    disabled: false,
+    disabled: true,
     availableEths: [1],
     link: 'https://faucet.kovan.network/',
   },
   {
     value: 'rinkeby',
     label: 'Rinkeby',
-    disabled: false,
+    disabled: true,
     availableEths: [3, 7.5, 18.75],
     link: 'https://faucet.rinkeby.io/',
   },
@@ -74,6 +74,9 @@ const HomePage = () => {
   // React hooks - Address
   const [address, setAddress] = useState('')
   const [isValidAddress, setIsValidAddress] = useState(false)
+
+  // React hooks - Async
+  const [isLoading, setIsLoading] = useState(false)
 
   // Web3 hooks
   const injected = useWeb3Injected()
@@ -126,12 +129,16 @@ const HomePage = () => {
     if (isInvalidAddress) return displayErrorMessage(`Address ${address} is not valid.`)
 
     try {
-      displayLoadingMessage(`We're getting ${eth} ethers for you! We'll trigger a small so`)
+      setIsLoading(true)
+      displayLoadingMessage(`We're getting ${eth} ethers in ${network} for you!`)
+
       const data = await sendAddressToRopstenService(address)
       displaySuccessMessage(data.message)
     } catch (error) {
       const { message } = JSON.parse(error.message)
       displayErrorMessage(message)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -181,7 +188,7 @@ const HomePage = () => {
         <Grid columnGap={6} templateColumns={['auto', 'auto', 'minmax(auto, 432px) auto']}>
           <FormControl>
             <FormLabel color="gray.700" mb={1}>
-              Choose your network:
+              Choose network:
             </FormLabel>
 
             <RadioButtonGroup
@@ -255,6 +262,8 @@ const HomePage = () => {
               Ready?
             </FormLabel>
 
+            {/* Use prop isloading trigger state after async call  */}
+
             <Button
               width="100%"
               d="flex"
@@ -262,6 +271,7 @@ const HomePage = () => {
               bg="gray.600"
               color="white"
               isDisabled={!network}
+              isLoading={isLoading}
               _hover={{ boxShadow: 'sm' }}
               _active={{ boxShadow: 'md' }}
               onClick={handleEthClick}

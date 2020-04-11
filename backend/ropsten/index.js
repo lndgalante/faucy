@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const capitalize = require('lodash.capitalize');
 
 // Constants - Environment variables
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
@@ -40,16 +41,18 @@ async function getRopstenEth({ address }) {
     (selector) => document.querySelector(selector).textContent,
     RESPONSE_MESSAGE_SELECTOR,
   );
+  const capitalizedMessage = capitalize(statusMessage);
 
   // Close browser
   await browser.close();
 
   // Check for errors in status message
   const hasError = statusMessage.includes('greylist');
+  const parsedMessage = hasError ? capitalizedMessage.split('gy').join('g. Y') : capitalizedMessage;
 
   return {
+    message: parsedMessage,
     statusCode: hasError ? 403 : 200,
-    message: hasError ? statusMessage.split('Y').join('. Y') : statusMessage,
   };
 }
 
