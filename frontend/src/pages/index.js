@@ -18,8 +18,10 @@ import { Radio } from '../ui/components/Radio'
 // Components
 import { Footer } from '../components/Footer'
 
+// Hooks
+import { useToast } from '../hooks/useToast'
+
 // Utils
-import { useToast } from '../utils/hooks'
 import { services } from '../utils/services'
 import { NETWORKS } from '../utils/constants'
 
