@@ -1,5 +1,3 @@
-const capitalize = require('lodash.capitalize');
-
 // Utils - Puppeteer
 const { getBrowser } = require('../utils/puppeteer');
 
@@ -24,6 +22,9 @@ async function getGoerliEth({ address }) {
   // Type user address
   await page.focus(INPUT_ADDRESS_SELECTOR);
   await page.keyboard.type(address);
+
+  // Solve reCAPTCHAs
+  await page.solveRecaptchas();
 
   // Trigger eth request
   await page.click(BUTTON_SEND_SELECTOR);

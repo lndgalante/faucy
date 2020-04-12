@@ -1,66 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
+import useSound from 'use-sound'
+import { FaEthereum } from 'react-icons/fa'
 import { useWeb3Injected } from '@openzeppelin/network/react'
-import {
-  Box,
-  Text,
-  Grid,
-  Link,
-  Input,
-  Select,
-  Button,
-  useToast,
-  FormLabel,
-  SimpleGrid,
-  FormControl,
-  RadioButtonGroup,
-} from '@chakra-ui/core'
-import wretch from 'wretch'
+
+import { Box, Grid, Input, Select, Button, FormLabel, SimpleGrid, FormControl, RadioButtonGroup } from '@chakra-ui/core'
 import capitalize from 'lodash.capitalize'
 import { isAddress } from 'ethereum-address'
-import { FaEthereum } from 'react-icons/fa'
 
-// Components
+// Assets
+import errorSound from '../assets/sounds/error.wav'
+import successSound from '../assets/sounds/success.wav'
+
+// UI Components
 import { SEO } from '../ui/components/Seo'
 import { Radio } from '../ui/components/Radio'
 
-// Constants - Networks
-const networks = [
-  {
-    value: 'ropsten',
-    label: 'Ropsten',
-    disabled: false,
-    availableEths: [1],
-    link: 'https://faucet.ropsten.be',
-  },
-  {
-    value: 'kovan',
-    label: 'Kovan',
-    disabled: true,
-    availableEths: [1],
-    link: 'https://faucet.kovan.network/',
-  },
-  {
-    value: 'rinkeby',
-    label: 'Rinkeby',
-    disabled: true,
-    availableEths: [3, 7.5, 18.75],
-    link: 'https://faucet.rinkeby.io/',
-  },
-  {
-    value: 'goerli',
-    label: 'Goerli',
-    disabled: false,
-    availableEths: [1, 2.5, 6.25],
-    link: 'https://faucet.goerli.mudit.blog/',
-  },
-]
+// Components
+import { Footer } from '../components/Footer'
 
-// Constants - Environment Variables
-const { GATSBY_FAUCY_API_URL } = process.env
-
-// Helpers
-const faucyApi = wretch().url(GATSBY_FAUCY_API_URL)
-const sendAddressToRopstenService = (address) => faucyApi.url('/ropsten').post({ address }).json()
+// Utils
+import { useToast } from '../utils/hooks'
+import { services } from '../utils/services'
+import { NETWORKS } from '../utils/constants'
 
 const HomePage = () => {
   // React hooks - Network
@@ -77,43 +38,17 @@ const HomePage = () => {
 
   // React hooks - Async
   const [isLoading, setIsLoading] = useState(false)
+  const [serviceDuration, setServiceDuration] = useState(null)
 
   // Web3 hooks
   const injected = useWeb3Injected()
 
   // Chakra hooks
-  const toast = useToast()
+  const { displayLoadingMessage, displaySuccessMessage, displayErrorMessage } = useToast()
 
-  const displayMessage = useCallback(
-    (title, description, status) => {
-      toast({ title, status, description, duration: 3000, isClosable: true, position: 'top-right' })
-    },
-    [toast],
-  )
-
-  const displayLoadingMessage = (message) => {
-    return toast({
-      position: 'top',
-      status: 'info',
-      description: message,
-    })
-  }
-
-  const displaySuccessMessage = (message) => {
-    return toast({
-      position: 'top',
-      status: 'success',
-      description: message,
-    })
-  }
-
-  const displayErrorMessage = (message) => {
-    return toast({
-      position: 'top',
-      status: 'error',
-      description: message,
-    })
-  }
+  // Sound hooks
+  const [playErrorSound] = useSound(errorSound)
+  const [playSuccessSound] = useSound(successSound)
 
   // Handlers
   const handleNetworkChange = (network) => setNetwork(network)
@@ -130,19 +65,24 @@ const HomePage = () => {
 
     try {
       setIsLoading(true)
-      displayLoadingMessage(`We're getting ${eth} ethers in ${network} for you!`)
+      displayLoadingMessage(`This may take about ${serviceDuration} so we'll trigger a sound notification 🔊`)
 
-      const data = await sendAddressToRopstenService(address)
+      const networkService = services[network]
+      const data = await networkService(address)
+
+      playSuccessSound({})
       displaySuccessMessage(data.message)
     } catch (error) {
       const { message } = JSON.parse(error.message)
+
+      playErrorSound({})
       displayErrorMessage(message)
     } finally {
       setIsLoading(false)
     }
   }
 
-  // Constants
+  // Effect - Dependencies constants
   const networkName = injected?.networkName
   const requestAuth = injected?.requestAuth
   const connected = injected?.connected
@@ -151,15 +91,16 @@ const HomePage = () => {
   useEffect(() => {
     if (!network) return
 
-    const foundNetwork = networks.find(({ value }) => value === network)
-    if (!foundNetwork) return displayMessage('Network warning', `${capitalize(network)} is not supported.`, 'warning')
+    const foundNetwork = NETWORKS.find(({ value }) => value === network)
+    if (!foundNetwork) return displayErrorMessage(`${capitalize(network)} is not supported.`)
 
-    const { availableEths, link } = foundNetwork
+    const { availableEths, link, serviceDuration } = foundNetwork
     setAvailableEths(availableEths)
+    setServiceDuration(serviceDuration)
 
     setEth(String(availableEths[0]))
     setFaucetLink(link)
-  }, [network, displayMessage])
+  }, [network, displayErrorMessage])
 
   // Effect - Update network from user provider
   useEffect(() => {
@@ -188,7 +129,7 @@ const HomePage = () => {
         <Grid columnGap={6} templateColumns={['auto', 'auto', 'minmax(auto, 432px) auto']}>
           <FormControl>
             <FormLabel color="gray.700" mb={1}>
-              Choose network:
+              Choose your network:
             </FormLabel>
 
             <RadioButtonGroup
@@ -200,7 +141,7 @@ const HomePage = () => {
               value={network}
               onChange={handleNetworkChange}
             >
-              {networks.map(({ value, label, disabled }) => (
+              {NETWORKS.map(({ value, label, disabled }) => (
                 <Radio
                   flex="1"
                   key={value}
@@ -217,7 +158,7 @@ const HomePage = () => {
 
           <FormControl mt={[2, 2, 0, 0]} isDisabled={!network}>
             <FormLabel htmlFor="eth" color="gray.700" mb={1}>
-              Choose eth quantity:
+              Choose total eth:
             </FormLabel>
             <Select
               id="eth"
@@ -262,8 +203,6 @@ const HomePage = () => {
               Ready?
             </FormLabel>
 
-            {/* Use prop isloading trigger state after async call  */}
-
             <Button
               width="100%"
               d="flex"
@@ -282,29 +221,7 @@ const HomePage = () => {
         </Grid>
       </SimpleGrid>
 
-      <Box
-        position="absolute"
-        width="100%"
-        maxWidth={['367.25px', '367.25px', '665.2px']}
-        bottom={2}
-        px={[4, 4, 0, 0]}
-        d="flex"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Text>
-          <Link href={'https://www.xivis.com/'} isExternal>
-            Made by Xivis
-          </Link>
-        </Text>
-        <Text>
-          {faucetLink ? (
-            <Link href={faucetLink} isExternal>
-              Support faucet
-            </Link>
-          ) : null}
-        </Text>
-      </Box>
+      <Footer faucetLink={faucetLink} />
     </Box>
   )
 }

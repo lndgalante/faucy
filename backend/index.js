@@ -32,8 +32,6 @@ app.post('/goerli', async (req, res) => {
 
   try {
     const { statusCode, message } = await getGoerliEth({ address });
-    console.log('message', message);
-    console.log('statusCode', statusCode);
     return res.status(statusCode).send({ message });
   } catch (error) {
     return res.status(500).send({ error });
