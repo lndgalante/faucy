@@ -1,24 +1,15 @@
-const puppeteer = require('puppeteer');
 const capitalize = require('lodash.capitalize');
 
-// Constants - Environment variables
-const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-const BROWSERLESS_API_TOKEN = process.env.BROWSERLESS_API_TOKEN;
+// Utils - Puppeteer
+const { getBrowser } = require('../utils/puppeteer');
 
-// Puppeteer - Helpers
-const getBrowser = () => {
-  const browserWSEndpoint = `wss://chrome.browserless.io?token=${BROWSERLESS_API_TOKEN}`;
-  return IS_PRODUCTION ? puppeteer.connect({ browserWSEndpoint }) : puppeteer.launch({ headless: false });
-};
-
-// Puppeteer - Get eth
 async function getRopstenEth({ address }) {
   // Constants - Urls
   const ROPSTEN_FAUCET_URL = 'https://faucet.ropsten.be';
 
   // Constants - DOM Selectors
-  const INPUT_ADDRESS_SELECTOR = 'input';
   const BUTTON_SEND_SELECTOR = 'button';
+  const INPUT_ADDRESS_SELECTOR = 'input';
   const RESPONSE_MESSAGE_SELECTOR = '.message-body';
 
   // Launch a new browser
