@@ -8,11 +8,15 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ethereum-address": "^0.0.4",
+    "ethjs-unit": "^0.1.6",
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.1",
     "helmet": "^3.22.0",
     "lodash.capitalize": "^4.2.1",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.0",
     "puppeteer-extra": "^3.1.9",
-    "puppeteer-extra-plugin-recaptcha": "^3.1.10"
+    "puppeteer-extra-plugin-recaptcha": "^3.1.10",
+    "wretch": "^1.7.1"
   }
 }

@@ -10,7 +10,7 @@ export const NETWORKS = [
   {
     value: 'kovan',
     label: 'Kovan',
-    disabled: true,
+    disabled: false,
     availableEths: [1],
     link: 'https://faucet.kovan.network',
     serviceDuration: 0,
@@ -18,7 +18,7 @@ export const NETWORKS = [
   {
     value: 'rinkeby',
     label: 'Rinkeby',
-    disabled: true,
+    disabled: false,
     availableEths: [3, 7.5, 18.75],
     link: 'https://faucet.rinkeby.io',
     serviceDuration: 0,
