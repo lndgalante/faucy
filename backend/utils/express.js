@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
 
 // Custom Middlewares
-const { userAddress } = require('./middlewares');
+const { userAddress } = require('../middlewares/address');
 
 function setupExpressApp() {
   const app = express();

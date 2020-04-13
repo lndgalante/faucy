@@ -1,5 +1,5 @@
-// Utils - Puppeteer
-const { getBrowser } = require('../utils/puppeteer');
+// Utils
+const { getBrowser } = require('../../utils/puppeteer');
 
 async function getGoerliEth({ address }) {
   // Constants - Urls
