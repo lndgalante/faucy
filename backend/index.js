@@ -15,8 +15,8 @@ const PORT = process.env.PORT || 8080;
 const app = setupExpressApp();
 
 // Express - Endpoints
-app.post('/ropsten', goerliController);
-app.post('/goerli', ropstenController);
+app.post('/goerli', goerliController);
+app.post('/ropsten', ropstenController);
 
 // Express - Listen
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
