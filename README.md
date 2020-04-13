@@ -8,6 +8,7 @@ Todo:
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Split logic into custom hooks / constate
 - [ ] (Frontend) Add E2E tests for each network
+- [ ] (Frontend/Backend) Send txHash as metadata and listen to it
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
