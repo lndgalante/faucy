@@ -7,14 +7,14 @@ export function useToast() {
   // Effect - Update toast styles
   useEffect(() => {
     const toastManager = document.querySelector('.Toaster__manager-top')
-    if (toastManager) toastManager.style.maxWidth = '642px'
+    if (toastManager) Object.assign(toastManager.style, { maxWidth: '642px' })
   }, [])
 
-  const displayLoadingMessage = (message) => {
+  const displayInfoMessage = (message) => {
     return toast({
       status: 'info',
       position: 'top',
-      duration: 7000,
+      duration: 4000,
       description: message,
     })
   }
@@ -37,5 +37,5 @@ export function useToast() {
     })
   }
 
-  return { displayLoadingMessage, displaySuccessMessage, displayErrorMessage }
+  return { displayInfoMessage, displaySuccessMessage, displayErrorMessage }
 }
