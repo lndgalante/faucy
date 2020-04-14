@@ -8,6 +8,7 @@ Todo:
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Split logic into custom hooks / constate
 - [ ] (Frontend) Add E2E tests for each network
+- [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [ ] (Frontend/Backend) Send txHash as metadata and listen to it
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Sentry error logger
