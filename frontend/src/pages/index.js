@@ -46,7 +46,7 @@ const HomePage = () => {
   const injected = useWeb3Injected()
 
   // Chakra hooks
-  const { displayLoadingMessage, displaySuccessMessage, displayErrorMessage } = useToast()
+  const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
 
   // Sound hooks
   const [playErrorSound] = useSound(errorSound)
@@ -67,7 +67,7 @@ const HomePage = () => {
 
     try {
       setIsLoading(true)
-      displayLoadingMessage(`This may take about ${serviceDuration} so we'll trigger a sound notification 🔊`)
+      displayInfoMessage(`This may take about ${serviceDuration} so we'll trigger a sound notification.`)
 
       const networkService = services[network]
       const data = await networkService(address)
@@ -83,11 +83,6 @@ const HomePage = () => {
       setIsLoading(false)
     }
   }
-
-  // Effect - Dependencies constants
-  const networkName = injected?.networkName
-  const requestAuth = injected?.requestAuth
-  const connected = injected?.connected
 
   // Effect - Update available eth and selected eth when network changes
   useEffect(() => {
@@ -107,21 +102,25 @@ const HomePage = () => {
   // Effect - Update network from user provider
   useEffect(() => {
     if (!injected || !injected.networkName) return
-    setNetwork(injected.networkName.toLowerCase())
-  }, [injected, networkName])
+
+    const providerNetwork = injected.networkName.toLowerCase()
+    const allowedNetworks = NETWORKS.filter(({ disabled }) => !disabled).map(({ value }) => value)
+
+    if (allowedNetworks.includes(providerNetwork)) setNetwork(providerNetwork)
+  }, [injected, injected?.networkName])
 
   // Effect - Ask permission to the user provider
   useEffect(() => {
     if (!injected || !injected.requestAuth) return
     injected.requestAuth()
-  }, [injected, requestAuth])
+  }, [injected, injected?.requestAuth])
 
   // Effect - Update address from user provider
   useEffect(() => {
     if (!injected || !injected.connected) return
     const [account] = injected.accounts
     setAddress(account)
-  }, [injected, connected])
+  }, [injected, injected?.connected])
 
   return (
     <Box w="100%" height="100vh" bg="gray.50" p={4} d="flex" justifyContent="center" alignItems="center">
@@ -131,7 +130,7 @@ const HomePage = () => {
         <Grid columnGap={6} templateColumns={['auto', 'auto', 'minmax(auto, 432px) auto']}>
           <FormControl>
             <FormLabel color="gray.700" mb={1}>
-              Choose your network:
+              Choose network
             </FormLabel>
 
             <RadioButtonGroup
@@ -160,7 +159,7 @@ const HomePage = () => {
 
           <FormControl mt={[2, 2, 0, 0]} isDisabled={!network}>
             <FormLabel htmlFor="eth" color="gray.700" mb={1}>
-              Choose total eth:
+              Choose ethers
             </FormLabel>
             <Select
               id="eth"
@@ -187,7 +186,7 @@ const HomePage = () => {
         <Grid columnGap={6} mt={2} templateColumns={['auto', 'auto', 'minmax(auto, 432px) auto']}>
           <FormControl isDisabled={!eth}>
             <FormLabel htmlFor="eth" color="gray.700" mb={1}>
-              Insert your address:
+              Insert address
             </FormLabel>
 
             <Input
@@ -195,22 +194,21 @@ const HomePage = () => {
               value={address}
               isInvalid={isValidAddress}
               onChange={handleAddressChange}
+              _hover={{ boxShadow: 'sm' }}
               aria-label="Insert your address"
               placeholder="0x0000000000000000000000000000000000000000"
             />
           </FormControl>
 
-          <FormControl mt={[2, 2, 0, 0]} isDisabled={!address}>
-            <FormLabel htmlFor="eth" color="gray.700" mb={1}>
-              Ready?
-            </FormLabel>
-
+          <FormControl mt={[2, 2, 2, 2]} isDisabled={!address}>
             <Button
+              mt={6}
               width="100%"
               d="flex"
               size="md"
-              bg="gray.600"
+              bg="gray.700"
               color="white"
+              loadingText="Getting ethers"
               isDisabled={!network}
               isLoading={isLoading}
               _hover={{ boxShadow: 'sm' }}
