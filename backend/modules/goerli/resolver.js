@@ -26,6 +26,8 @@ async function getGoerliEth({ address }) {
   // Solve reCAPTCHAs
   await page.solveRecaptchas();
 
+  // TODO: Get captcha id and trigger POST
+
   // Trigger eth request
   await page.click(BUTTON_SEND_SELECTOR);
 
