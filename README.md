@@ -16,6 +16,7 @@ Todo:
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
 - [ ] (Backend) Trigger POST to Goerli url
+- [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
