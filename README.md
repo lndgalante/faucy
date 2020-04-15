@@ -12,6 +12,7 @@ Todo:
 - [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [ ] (Frontend/Backend) Send txHash as metadata and listen to it
 - [ ] (Frontend/Backend) Add TypeScript support
+- [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
