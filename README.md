@@ -14,6 +14,7 @@ Todo:
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
+- [ ] (Frontend/Backend) Add script to run both projects in development mode
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
 - [ ] (Backend) Trigger POST to Goerli url
