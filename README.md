@@ -19,7 +19,7 @@ Todo:
 - [ ] (Backend) Trigger POST to Goerli url
 - [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Backend) Wrap response data into body object
-- [ ] (Backend) Add development script
+- [x] (Backend) Add development script
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
