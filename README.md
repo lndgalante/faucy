@@ -40,13 +40,13 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
 - Frontend
 
-  - [GatsbyJS](https://www.gatsbyjs.org/)
-  - [Chakra UI](https://chakra-ui.com/)
+  - [GatsbyJS](https://www.gatsbyjs.org)
+  - [Chakra UI](https://chakra-ui.com)
   - [OZ Network.js](https://docs.openzeppelin.com/network-js/0.2/api)
 
 * Backend
-  - [Express](https://expressjs.com/)
-  - [Puppeteer](https://pptr.dev/)
+  - [Express](https://expressjs.com)
+  - [Puppeteer](https://pptr.dev)
   - [Puppeteer Extra](https://github.com/berstend/puppeteer-extra)
 
 - Shared
@@ -54,16 +54,18 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
   - [Ethereum Address](https://www.npmjs.com/package/ethereum-address)
 
 * Services
-  - [Fleek](https://fleek.co/)
-  - [Heroku](https://www.heroku.com/)
-  - [2Captcha](https://2captcha.com/)
-  - [Browserless](https://www.browserless.io/)
+  - [Fleek](https://fleek.co)
+  - [Heroku](https://www.heroku.com)
+  - [2Captcha](https://2captcha.com)
+  - [Browserless](https://www.browserless.io)
 
 ## Links
 
 - [Ethereum Development with Go - Faucets](https://goethereumbook.org/faucets/)
 
 - [HedgeTrade - What is an Ethereum Faucet?](https://hedgetrade.com/what-is-ethereum-faucet/)
+
+- [Bitfalls - What Is an Ethereum Testnet and How Is It Used?](https://bitfalls.com/2018/05/31/what-is-an-ethereum-testnet-and-how-is-it-used/)
 
 ## Contributors
 
