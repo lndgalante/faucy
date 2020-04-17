@@ -1,8 +1,8 @@
-# Faucy
+## Faucy
 
-Faas - Faucet as a service - Get eth easily!
+Get ethers from any testnet easily!
 
-# Development
+## Development
 
 1. Install all dependencies
 
@@ -28,7 +28,40 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 > yarn dev:all
 ```
 
-# Todo:
+## Stack
+
+- Frontend
+
+  - [GatsbyJS](https://www.gatsbyjs.org/)
+  - [Chakra UI](https://chakra-ui.com/)
+  - [OZ Network.js](https://docs.openzeppelin.com/network-js/0.2/api)
+
+* Backend
+  - [Express](https://expressjs.com/)
+  - [Puppeteer](https://pptr.dev/)
+  - [Puppeteer Extra](https://github.com/berstend/puppeteer-extra)
+
+- Shared
+  - [Wretch](https://github.com/elbywan/wretch)
+  - [Ethereum Address](https://www.npmjs.com/package/ethereum-address)
+
+* Services
+  - [Fleek](https://fleek.co/)
+  - [Heroku](https://www.heroku.com/)
+  - [2Captcha](https://2captcha.com/)
+  - [Browserless](https://www.browserless.io/)
+
+## Links
+
+- [Ethereum Development with Go - Faucets](https://goethereumbook.org/faucets/)
+
+- [HedgeTrade - What is an Ethereum Faucet?](https://hedgetrade.com/what-is-ethereum-faucet/)
+
+## Contributors
+
+TBD
+
+## Todo:
 
 - [ ] (Frontend) Lighthouse Audits
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
@@ -40,6 +73,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
+- [ ] (Frontend/Backend) Add Docker to run entire project
 - [ ] (Backend) Add support for Rinkeby
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
@@ -47,10 +81,9 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
-- [ ] (Docs) Add costs for services like Browserless, 2Captcha
-- [ ] (Frontend/Backend) Add Docker to run entire project
+- [ ] (Marketing) Release/Feedback to/from friend companies
 
-# Done:
+## Done:
 
 - [x] (Frontend) Display etherscan link
 - [x] (Backend) Wrap response data into body object
@@ -60,7 +93,4 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - [x] (Backend) Add support for Kovan
 - [x] (Backend) Add support for Goerli
 - [x] (Frontend/Backend) Add script to run both projects in development mode
-
-# Links
-
-- [Ethereum Development with Go - Faucets](https://goethereumbook.org/faucets/)
+- [x] (Docs) Add frontend/backend/services stack
