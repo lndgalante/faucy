@@ -67,6 +67,7 @@ const HomePage = () => {
 
       playSuccessSound({})
       displaySuccessMessage(body.message)
+      console.info(`Etherscan link: ${faucetNetwork.createEtherscanLink(body.txHash)}`)
     } catch (error) {
       const { body } = JSON.parse(error.message)
 

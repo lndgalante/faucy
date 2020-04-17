@@ -7,6 +7,7 @@ export const NETWORKS = [
     availableEths: [1],
     link: 'https://faucet.ropsten.be',
     serviceDuration: '30 seconds',
+    createEtherscanLink: (txHash) => `https://ropsten.etherscan.io/tx/${txHash}`,
   },
   {
     value: 'kovan',
@@ -16,6 +17,7 @@ export const NETWORKS = [
     availableEths: [1],
     link: 'https://faucet.kovan.network',
     serviceDuration: 0,
+    createEtherscanLink: (txHash) => `https://kovan.etherscan.io/tx/${txHash}`,
   },
   {
     value: 'rinkeby',
@@ -25,6 +27,7 @@ export const NETWORKS = [
     availableEths: [3, 7.5, 18.75],
     link: 'https://faucet.rinkeby.io',
     serviceDuration: 0,
+    createEtherscanLink: (txHash) => `https://rinkeby.etherscan.io/tx/${txHash}`,
   },
   {
     value: 'goerli',
@@ -34,5 +37,6 @@ export const NETWORKS = [
     availableEths: [0.05],
     link: 'https://goerli-faucet.slock.it',
     serviceDuration: '2 minutes',
+    createEtherscanLink: (txHash) => `https://goerli.etherscan.io/tx/${txHash}`,
   },
 ]
