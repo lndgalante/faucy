@@ -1,8 +1,34 @@
-# faucy
+# Faucy
 
 Faas - Faucet as a service - Get eth easily!
 
-Todo:
+# Development
+
+1. Install all dependencies
+
+```bash
+> yarn install:all:deps
+```
+
+2. Run ngrok command
+
+```bash
+ngrok http 3000
+```
+
+3. Copy HTTPS url from ngrok to Gatsby environment variable
+
+```bash
+GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
+```
+
+4. Run both projects in parallel
+
+```bash
+> yarn dev:all
+```
+
+# Todo:
 
 - [ ] (Frontend) Lighthouse Audits
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
@@ -14,7 +40,7 @@ Todo:
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
-- [ ] (Frontend/Backend) Add script to run both projects in development mode
+- [x] (Frontend/Backend) Add script to run both projects in development mode
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
 - [ ] (Backend) Trigger POST to Goerli url
