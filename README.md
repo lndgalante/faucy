@@ -55,3 +55,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - [x] (Backend) Wrap response data into body object
 - [x] (Backend) Add development script
 - [x] (Backend) Trigger POST to Goerli url
+
+# Links
+
+- [Ethereum Development with Go - Faucets](https://goethereumbook.org/faucets/)
