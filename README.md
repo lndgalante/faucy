@@ -81,6 +81,7 @@ TBD
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Support for No Provider / Fix useEffect warnings
 - [ ] (Frontend) Add React Hook Form and Yup validations
+- [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [ ] (Frontend/Backend) Add email input to send notification through email
 - [ ] (Frontend/Backend) Add TypeScript support
