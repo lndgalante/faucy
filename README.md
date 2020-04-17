@@ -1,6 +1,10 @@
 <h1 align="center">Faucy</h1>
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
+<img src="https://i.ibb.co/GRHKGqv/Captura-de-Pantalla-2020-04-17-a-la-s-01-35-49.png">
+
+---
+
 <div align="center">
   <img src="https://img.shields.io/github/issues/cine-estrenos/estrenos-web?style=for-the-badge">
   <img src="https://img.shields.io/github/issues-pr/cine-estrenos/estrenos-web?style=for-the-badge">
