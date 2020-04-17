@@ -1,6 +1,10 @@
-## Faucy
+<h1 align="center">Faucy</h1>
+<p align="center">⛏ Get ethers from any testnet easily!</p>
 
-Get ethers from any testnet easily!
+<div align="center">
+  <img src="https://img.shields.io/github/issues/cine-estrenos/estrenos-web?style=for-the-badge">
+  <img src="https://img.shields.io/github/issues-pr/cine-estrenos/estrenos-web?style=for-the-badge">
+</div>
 
 ## Development
 
@@ -69,7 +73,6 @@ TBD
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Support for No Provider / Fix useEffect warnings
 - [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
-- [ ] (Frontend/Backend) Send txHash as metadata and listen to it
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
