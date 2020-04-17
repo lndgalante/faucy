@@ -94,6 +94,9 @@ TBD
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
 - [ ] (Marketing) Release/Feedback to/from friend companies
+- [ ] (Docs) Add supported browsers table section
+- [ ] (Docs) Add how to contribute section
+- [ ] (Docs) Add license section
 
 ## Done:
 
