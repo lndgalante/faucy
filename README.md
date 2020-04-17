@@ -80,6 +80,7 @@ TBD
 - [ ] (Frontend) Remove ethers selector to avoid one more form step
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Support for No Provider / Fix useEffect warnings
+- [ ] (Frontend) Add React Hook Form and Yup validations
 - [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [ ] (Frontend/Backend) Add email input to send notification through email
 - [ ] (Frontend/Backend) Add TypeScript support
