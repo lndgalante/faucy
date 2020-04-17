@@ -2,6 +2,7 @@ export const NETWORKS = [
   {
     value: 'ropsten',
     label: 'Ropsten',
+    ethName: 'Eth',
     disabled: false,
     availableEths: [1],
     link: 'https://faucet.ropsten.be',
@@ -10,6 +11,7 @@ export const NETWORKS = [
   {
     value: 'kovan',
     label: 'Kovan',
+    ethName: 'KEth',
     disabled: true,
     availableEths: [1],
     link: 'https://faucet.kovan.network',
@@ -18,6 +20,7 @@ export const NETWORKS = [
   {
     value: 'rinkeby',
     label: 'Rinkeby',
+    ethName: 'Eth',
     disabled: true,
     availableEths: [3, 7.5, 18.75],
     link: 'https://faucet.rinkeby.io',
@@ -26,6 +29,7 @@ export const NETWORKS = [
   {
     value: 'goerli',
     label: 'Goerli',
+    ethName: 'GöEth',
     disabled: false,
     availableEths: [0.05],
     link: 'https://goerli-faucet.slock.it',

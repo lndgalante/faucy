@@ -28,11 +28,10 @@ import { NETWORKS } from '../utils/constants'
 const HomePage = () => {
   // React hooks - Network
   const [network, setNetwork] = useState(null)
-  const [faucetLink, setFaucetLink] = useState(null)
+  const [faucetNetwork, setFaucetNetwork] = useState(null)
 
   // React hooks - Eth
   const [eth, setEth] = useState('')
-  const [availableEths, setAvailableEths] = useState([])
 
   // React hooks - Address
   const [address, setAddress] = useState('')
@@ -40,34 +39,28 @@ const HomePage = () => {
 
   // React hooks - Async
   const [isLoading, setIsLoading] = useState(false)
-  const [serviceDuration, setServiceDuration] = useState(null)
 
-  // Web3 hooks
+  // Web3 hooks - Chakra hooks
   const injected = useWeb3Injected()
-
-  // Chakra hooks
   const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
 
   // Sound hooks
   const [playErrorSound] = useSound(errorSound)
   const [playSuccessSound] = useSound(successSound)
 
-  // Handlers
+  // Handlers - Form
   const handleNetworkChange = (network) => setNetwork(network)
-
   const handleEthChange = ({ target: { value } }) => setEth(value)
-
   const handleAddressChange = ({ target: { value } }) => setAddress(value)
 
-  const handleEthClick = async () => {
+  // Handlers - Submit
+  const handleEthSubmit = async () => {
     const isInvalidAddress = !isAddress(address)
-
-    setIsValidAddress(isInvalidAddress)
-    if (isInvalidAddress) return displayErrorMessage(`Address ${address} is not valid.`)
+    if (isInvalidAddress) return setIsValidAddress(isInvalidAddress)
 
     try {
       setIsLoading(true)
-      displayInfoMessage(`This may take about ${serviceDuration} so we'll trigger a sound notification.`)
+      displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`)
 
       const networkService = services[network]
       const { body } = await networkService(address)
@@ -89,14 +82,7 @@ const HomePage = () => {
     if (!network) return
 
     const foundNetwork = NETWORKS.find(({ value }) => value === network)
-    if (!foundNetwork) return displayErrorMessage(`${capitalize(network)} is not supported.`)
-
-    const { availableEths, link, serviceDuration } = foundNetwork
-    setAvailableEths(availableEths)
-    setServiceDuration(serviceDuration)
-
-    setEth(String(availableEths[0]))
-    setFaucetLink(link)
+    if (foundNetwork) setFaucetNetwork(foundNetwork)
   }, [network, displayErrorMessage])
 
   // Effect - Update network from user provider
@@ -171,20 +157,19 @@ const HomePage = () => {
               _hover={{ boxShadow: 'sm' }}
               _active={{ boxShadow: 'md' }}
               value={eth}
-              placeholder={availableEths ? null : 'Gave me 1 eth!'}
+              placeholder={faucetNetwork ? null : 'Gave me 1 eth!'}
             >
-              {availableEths &&
-                availableEths.map((availableEth) => (
-                  <option key={availableEth} value={availableEth}>
-                    {availableEth} ether{availableEth === 1 ? '' : 's'}
-                  </option>
-                ))}
+              {faucetNetwork?.availableEths.map((availableEth) => (
+                <option key={availableEth} value={availableEth}>
+                  {availableEth} {faucetNetwork.ethName}
+                </option>
+              ))}
             </Select>
           </FormControl>
         </Grid>
 
         <Grid columnGap={6} mt={2} templateColumns={['auto', 'auto', 'minmax(auto, 432px) auto']}>
-          <FormControl isDisabled={!eth}>
+          <FormControl isDisabled={!faucetNetwork?.availableEths}>
             <FormLabel htmlFor="eth" color="gray.700" mb={1}>
               Insert address
             </FormLabel>
@@ -216,7 +201,7 @@ const HomePage = () => {
               isLoading={isLoading}
               _hover={{ boxShadow: 'sm' }}
               _active={{ boxShadow: 'md' }}
-              onClick={handleEthClick}
+              onClick={handleEthSubmit}
             >
               Send ethers
             </Button>
@@ -224,7 +209,7 @@ const HomePage = () => {
         </Grid>
       </SimpleGrid>
 
-      <Footer faucetLink={faucetLink} />
+      <Footer faucetLink={faucetNetwork?.faucetLink} />
     </Box>
   )
 }
