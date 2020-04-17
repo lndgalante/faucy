@@ -84,6 +84,8 @@ TBD
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
 - [ ] (Frontend/Backend) Add Docker to run entire project
+- [ ] (Frontend/Backend) Add status page for each network service
+- [ ] (Frontend/Backend) Save each request using GunDB. And display a table with: Address | Network | Quantity | Status
 - [ ] (Backend) Add support for Rinkeby
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
