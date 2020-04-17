@@ -200,9 +200,12 @@ const HomePage = () => {
             />
           </FormControl>
 
-          <FormControl mt={[2, 2, 2, 2]} isDisabled={!address}>
+          <FormControl isDisabled={!address}>
+            <FormLabel htmlFor="eth" color="gray.700" mb={1}>
+              Ready?
+            </FormLabel>
+
             <Button
-              mt={6}
               width="100%"
               d="flex"
               size="md"
@@ -215,7 +218,7 @@ const HomePage = () => {
               _active={{ boxShadow: 'md' }}
               onClick={handleEthClick}
             >
-              Send eth
+              Send ethers
             </Button>
           </FormControl>
         </Grid>
