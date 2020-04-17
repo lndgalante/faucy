@@ -110,7 +110,7 @@ const HomePage = () => {
 
   return (
     <Box w="100%" height="100vh" bg="gray.50" p={4} d="flex" justifyContent="center" alignItems="center">
-      <SEO title={`${network ? `Connected on ${capitalize(network)}` : ''}`} />
+      <SEO title={`${network ? `Connected to ${capitalize(network)}` : ''}`} />
 
       <SimpleGrid>
         <Grid columnGap={6} templateColumns={['auto', 'auto', 'minmax(auto, 432px) auto']}>
