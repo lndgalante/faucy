@@ -40,15 +40,18 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
-- [x] (Frontend/Backend) Add script to run both projects in development mode
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) New proxy for Ropsten service on each request
-- [ ] (Backend) Trigger POST to Goerli url
 - [ ] (Backend) Improve CORS setup for prod and dev url
-- [ ] (Backend) Wrap response data into body object
-- [x] (Backend) Add development script
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
 - [ ] (Docs) Add costs for services like Browserless, 2Captcha
 - [ ] (Frontend/Backend) Add Docker to run entire project
+
+# Done:
+
+- [x] (Frontend/Backend) Add script to run both projects in development mode
+- [x] (Backend) Wrap response data into body object
+- [x] (Backend) Add development script
+- [x] (Backend) Trigger POST to Goerli url
