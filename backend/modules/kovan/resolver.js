@@ -36,12 +36,13 @@ async function getKovanEth({ address }) {
   // Wait until message is received
   await page.waitForFunction(`document.querySelector('${FAUCET_OUTPUT_SELECTOR}').textContent.length > 1`);
 
-  // Get status message
+  // Get output text
   const [description, rawMessage] = await page.evaluate(
     (selector) => document.querySelector(selector).innerText.split('\n').filter(Boolean),
     FAUCET_OUTPUT_SELECTOR,
   );
 
+  // Get status code and parse message
   const statusCode = description.match(/\d+/g);
   const message = statusCode !== 200 ? parseMessage(rawMessage) : rawMessage;
 
