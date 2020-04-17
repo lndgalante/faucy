@@ -77,6 +77,7 @@ TBD
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Split logic into custom hooks / constate
 - [ ] (Frontend) Add E2E tests for each network
+- [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Support for No Provider / Fix useEffect warnings
 - [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [ ] (Frontend/Backend) Add email input to send notification through email
