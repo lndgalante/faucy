@@ -1,8 +1,9 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "version": "1.0.0",
+  "name": "faucy-backend",
+  "description": "Faucy Backend",
+  "author": "Leonardo Galante <lndgalante@gmail.com>",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
