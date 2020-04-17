@@ -13,7 +13,7 @@ export const NETWORKS = [
     value: 'kovan',
     label: 'Kovan',
     ethName: 'KETH',
-    disabled: true,
+    disabled: false,
     availableEths: [1],
     link: 'https://faucet.kovan.network',
     serviceDuration: 0,

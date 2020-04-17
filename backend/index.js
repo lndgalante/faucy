@@ -5,6 +5,7 @@ require('dotenv').config();
 const { setupExpressApp } = require('./utils/express');
 
 // Controllers
+const { kovanController } = require('./modules/kovan/controller');
 const { goerliController } = require('./modules/goerli/controller');
 const { ropstenController } = require('./modules/ropsten/controller');
 
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 8080;
 const app = setupExpressApp();
 
 // Express - Endpoints
+app.post('/kovan', kovanController);
 app.post('/goerli', goerliController);
 app.post('/ropsten', ropstenController);
 
