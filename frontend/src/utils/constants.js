@@ -16,7 +16,7 @@ export const NETWORKS = [
     disabled: false,
     availableEths: [1],
     link: 'https://faucet.kovan.network',
-    serviceDuration: 0,
+    serviceDuration: '1 minute',
     createEtherscanLink: (txHash) => `https://kovan.etherscan.io/tx/${txHash}`,
   },
   {
