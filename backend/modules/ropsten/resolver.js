@@ -15,7 +15,7 @@ async function getRopstenEth({ address }) {
       body: {
         txHash,
         userAddress,
-        message: `You will receive ${unit.fromWei(amount, 'ether')} ethers to your account.`,
+        message: `You will receive ${unit.fromWei(amount, 'ether')} ethers in your account.`,
       },
     };
   } catch (error) {
@@ -24,9 +24,7 @@ async function getRopstenEth({ address }) {
 
     return {
       statusCode: status,
-      body: {
-        message: `${capitalize(message)}. You are greylisted duration is for ${ms(duration)}.`,
-      },
+      body: { message: `${capitalize(message)}. You are greylisted duration is for ${ms(duration)}.` },
     };
   }
 }
