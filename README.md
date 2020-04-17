@@ -77,6 +77,7 @@ TBD
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Support for No Provider / Fix useEffect warnings
 - [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
+- [ ] (Frontend/Backend) Add email input to send notification through email
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
