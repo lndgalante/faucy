@@ -43,7 +43,7 @@ async function getGoerliEth({ address }) {
   const hasError = status.toLowerCase().includes('error');
 
   return {
-    message,
+    body: { message },
     statusCode: hasError ? 403 : 200,
   };
 }

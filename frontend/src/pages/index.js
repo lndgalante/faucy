@@ -70,15 +70,15 @@ const HomePage = () => {
       displayInfoMessage(`This may take about ${serviceDuration} so we'll trigger a sound notification.`)
 
       const networkService = services[network]
-      const data = await networkService(address)
+      const { body } = await networkService(address)
 
       playSuccessSound({})
-      displaySuccessMessage(data.message)
+      displaySuccessMessage(body.message)
     } catch (error) {
-      const { message } = JSON.parse(error.message)
+      const { body } = JSON.parse(error.message)
 
       playErrorSound({})
-      displayErrorMessage(message)
+      displayErrorMessage(body.message)
     } finally {
       setIsLoading(false)
     }
