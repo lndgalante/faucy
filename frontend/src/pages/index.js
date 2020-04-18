@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { useWeb3Injected } from '@openzeppelin/network/react'
+import React, { useState } from 'react'
 
 import { Box, Grid, Input, Button, FormLabel, SimpleGrid, FormControl, RadioButtonGroup } from '@chakra-ui/core'
 import capitalize from 'lodash.capitalize'
@@ -15,6 +14,9 @@ import { Footer } from '../components/Footer'
 // Hooks
 import { useToast } from '../hooks/useToast'
 import { useSounds } from '../hooks/useSounds'
+import { useUserNetwork } from '../hooks/useUserNetwork'
+import { useUserAddress } from '../hooks/useUserAddress'
+import { useWeb3Provider } from '../hooks/useWeb3Provider'
 import { useFaucetNetwork } from '../hooks/useFaucetNetwork'
 
 // Utils
@@ -24,19 +26,19 @@ import { services } from '../utils/services'
 import { NETWORKS } from '../utils/constants'
 
 const HomePage = () => {
-  // React hooks - Network
-  const [network, setNetwork] = useState(null)
+  // React hooks
   const [isLoading, setIsLoading] = useState(false)
-
-  // React hooks - Address
-  const [address, setAddress] = useState('')
   const [isValidAddress, setIsValidAddress] = useState(false)
 
-  // Web3 hooks - Chakra hooks
-  const injected = useWeb3Injected()
+  // Web3 hooks
+  const web3Provider = useWeb3Provider()
+
+  // User hooks
+  const [userAddress, setUserAddress] = useUserAddress(web3Provider)
+  const [userNetwork, setUserNetwork] = useUserNetwork(web3Provider)
 
   // Faucet hooks
-  const faucetNetwork = useFaucetNetwork(network)
+  const faucetNetwork = useFaucetNetwork(userNetwork)
 
   // Sound hooks
   const { playErrorSound, playSuccessSound } = useSounds()
@@ -45,20 +47,20 @@ const HomePage = () => {
   const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
 
   // Handlers - Form
-  const handleNetworkChange = (network) => setNetwork(network)
-  const handleAddressChange = ({ target }) => setAddress(target.value)
+  const handleNetworkChange = (network) => setUserNetwork(network)
+  const handleAddressChange = ({ target }) => setUserAddress(target.value)
 
   // Handlers - Submit
   const handleEthSubmit = async () => {
-    const isInvalidAddress = !isAddress(address)
+    const isInvalidAddress = !isAddress(userAddress)
     if (isInvalidAddress) return setIsValidAddress(isInvalidAddress)
 
     try {
       setIsLoading(true)
       displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`)
 
-      const networkService = services[network]
-      const { body } = await networkService(address)
+      const networkService = services[userNetwork]
+      const { body } = await networkService(userAddress)
 
       playSuccessSound({})
       displaySuccessMessage(body.message)
@@ -73,29 +75,9 @@ const HomePage = () => {
     }
   }
 
-  // Effect - Ask permission to the user provider
-  useEffect(() => {
-    if (injected?.requestAuth) injected.requestAuth()
-  }, [injected, injected?.requestAuth])
-
-  // Effect - Update address from user provider
-  useEffect(() => {
-    if (injected?.connected && injected?.accounts?.length) setAddress(injected.accounts[0])
-  }, [injected, injected?.connected])
-
-  // Effect - Update network from user provider
-  useEffect(() => {
-    if (!injected || !injected.networkName) return
-
-    const providerNetwork = injected.networkName.toLowerCase()
-    const allowedNetworks = NETWORKS.filter(({ disabled }) => !disabled).map(({ value }) => value)
-
-    if (allowedNetworks.includes(providerNetwork)) setNetwork(providerNetwork)
-  }, [injected, injected?.networkName])
-
   return (
     <Box w="100%" height="100vh" bg="gray.50" p={4} d="flex" justifyContent="center" alignItems="center">
-      <SEO lang="en" title={`${network ? `Connected to ${capitalize(network)}` : ''}`} />
+      <SEO lang="en" title={`${userNetwork ? `Connected to ${capitalize(userNetwork)}` : ''}`} />
 
       <SimpleGrid maxWidth="610px" width="100%">
         <Grid columnGap={6} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
@@ -110,7 +92,7 @@ const HomePage = () => {
               flexWrap="wrap"
               alignItems="center"
               justifyContent="center"
-              value={network}
+              value={userNetwork}
               onChange={handleNetworkChange}
             >
               {NETWORKS.map(({ value, label, disabled }) => (
@@ -137,7 +119,7 @@ const HomePage = () => {
 
             <Input
               color="gray.700"
-              value={address}
+              value={userAddress}
               maxLength={42}
               isInvalid={isValidAddress}
               onChange={handleAddressChange}
@@ -147,7 +129,7 @@ const HomePage = () => {
             />
           </FormControl>
 
-          <FormControl isDisabled={!faucetNetwork || !address} mt={[3, 3, 0]}>
+          <FormControl isDisabled={!faucetNetwork || !userAddress} mt={[3, 3, 0]}>
             <FormLabel color="gray.700" mb={1}>
               Ready?
             </FormLabel>
@@ -159,12 +141,12 @@ const HomePage = () => {
               bg="gray.700"
               color="white"
               loadingText="Getting ethers"
-              isDisabled={!network}
+              isDisabled={!userNetwork}
               isLoading={isLoading}
               _hover={{ boxShadow: 'sm' }}
               _active={{ boxShadow: 'md' }}
               onClick={handleEthSubmit}
-              disabled={!faucetNetwork || !address}
+              disabled={!faucetNetwork || !userAddress}
             >
               Send ethers
             </Button>
