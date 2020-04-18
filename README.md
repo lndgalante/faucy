@@ -1,7 +1,7 @@
 <h1 align="center">Faucy</h1>
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
-<img src="https://i.ibb.co/BV9s16z/Captura-de-Pantalla-2020-04-18-a-la-s-05-46-56.png">
+<img src="https://i.ibb.co/Pj4mqFY/Captura-de-Pantalla-2020-04-18-a-la-s-14-26-13.png">
 
 ---
 
@@ -9,6 +9,13 @@
   <img src="https://img.shields.io/github/issues/cine-estrenos/estrenos-web?style=for-the-badge">
   <img src="https://img.shields.io/github/issues-pr/cine-estrenos/estrenos-web?style=for-the-badge">
 </div>
+
+## Features
+
+- 🔋PWA Support
+- 🦮Accessibilty First
+- 🌚Dark Mode Support
+- ⚡100/100 LightHouse Audits
 
 ## Development
 
@@ -40,8 +47,8 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
 - Frontend
 
-  - [GatsbyJS](https://www.gatsbyjs.org)
-  - [Chakra UI](https://chakra-ui.com)
+  - [Gatsby](https://www.gatsbyjs.org)
+  - [Chakra](https://chakra-ui.com)
   - [Ethers.js](https://github.com/ethers-io/ethers.js)
 
 * Backend
