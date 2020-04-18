@@ -1,7 +1,11 @@
 <h1 align="center">Faucy</h1>
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
-<img src="https://i.ibb.co/GRHKGqv/Captura-de-Pantalla-2020-04-17-a-la-s-01-35-49.png">
+<div align="center">
+  <img width="45%" src="https://i.ibb.co/M8Ns1FV/Captura-de-Pantalla-2020-04-18-a-la-s-04-03-18.png">
+
+  <img width="45%" src="https://i.ibb.co/L97yVbX/Captura-de-Pantalla-2020-04-18-a-la-s-04-03-03.png">
+</div>
 
 ---
 
@@ -42,7 +46,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
   - [GatsbyJS](https://www.gatsbyjs.org)
   - [Chakra UI](https://chakra-ui.com)
-  - [OZ Network.js](https://docs.openzeppelin.com/network-js/0.2/api)
+  - [Ethers.js](https://github.com/ethers-io/ethers.js)
 
 * Backend
   - [Express](https://expressjs.com)
