@@ -1,6 +1,17 @@
 import React, { useState } from 'react'
 
-import { Box, Grid, Input, Button, FormLabel, SimpleGrid, FormControl, RadioButtonGroup } from '@chakra-ui/core'
+import {
+  Box,
+  Grid,
+  Text,
+  Input,
+  Button,
+  FormLabel,
+  SimpleGrid,
+  FormControl,
+  RadioButtonGroup,
+  useColorMode,
+} from '@chakra-ui/core'
 import capitalize from 'lodash.capitalize'
 import { isAddress } from 'ethereum-address'
 
@@ -43,7 +54,8 @@ const HomePage = () => {
   // Sound hooks
   const { playErrorSound, playSuccessSound } = useSounds()
 
-  // Toast hooks
+  // Chakra hooks
+  const { colorMode, toggleColorMode } = useColorMode()
   const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
 
   // Handlers - Form
@@ -76,15 +88,17 @@ const HomePage = () => {
   }
 
   return (
-    <Box w="100%" height="100vh" bg="gray.50" p={4} d="flex" justifyContent="center" alignItems="center">
+    <Box w="100%" height="100vh" p={4} d="flex" justifyContent="center" alignItems="center">
       <SEO lang="en" title={`${userNetwork ? `Connected to ${capitalize(userNetwork)}` : ''}`} />
 
       <SimpleGrid maxWidth="610px" width="100%">
+        <Text as="h1" fontSize="4xl" fontWeight={800} pb={4} onClick={toggleColorMode}>
+          Faucy
+        </Text>
+
         <Grid columnGap={6} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
           <FormControl>
-            <FormLabel color="gray.700" mb={1}>
-              Choose your network:
-            </FormLabel>
+            <FormLabel mb={1}>Choose your network:</FormLabel>
 
             <RadioButtonGroup
               isInline
@@ -113,12 +127,11 @@ const HomePage = () => {
 
         <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
           <FormControl isDisabled={!faucetNetwork}>
-            <FormLabel htmlFor="eth" color="gray.700" mb={1}>
+            <FormLabel htmlFor="eth" mb={1}>
               Insert your address:
             </FormLabel>
 
             <Input
-              color="gray.700"
               value={userAddress}
               maxLength={42}
               isInvalid={isValidAddress}
@@ -130,16 +143,13 @@ const HomePage = () => {
           </FormControl>
 
           <FormControl isDisabled={!faucetNetwork || !userAddress} mt={[3, 3, 0]}>
-            <FormLabel color="gray.700" mb={1}>
-              Ready?
-            </FormLabel>
+            <FormLabel mb={1}>Ready?</FormLabel>
 
             <Button
               width="100%"
               d="flex"
               size="md"
-              bg="gray.700"
-              color="white"
+              variantColor="gray"
               loadingText="Getting ethers"
               isDisabled={!userNetwork}
               isLoading={isLoading}

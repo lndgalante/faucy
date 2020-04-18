@@ -8,11 +8,11 @@ export const Radio = React.forwardRef((props, ref) => {
     <Button
       ref={ref}
       {...rest}
-      bg={isChecked ? 'purple.500' : 'purple.300'}
-      variantColor="purple"
+      variantColor="teal"
       aria-checked={isChecked}
       role="radio"
       isDisabled={isDisabled}
+      variant={isChecked ? 'solid' : 'outline'}
     />
   )
 })

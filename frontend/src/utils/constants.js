@@ -23,7 +23,7 @@ export const NETWORKS = [
     value: 'rinkeby',
     label: 'Rinkeby',
     ethName: 'ETH',
-    disabled: true,
+    disabled: false,
     availableEths: [3, 7.5, 18.75],
     link: 'https://faucet.rinkeby.io',
     serviceDuration: 0,
