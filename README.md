@@ -75,11 +75,8 @@ TBD
 
 - [ ] (Frontend) Lighthouse Audits
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
-- [ ] (Frontend) Split logic into custom hooks / constate
 - [ ] (Frontend) Add E2E tests for each network
-- [ ] (Frontend) Remove ethers selector to avoid one more form step
 - [ ] (Frontend) Display output data on a div and not through toasts
-- [ ] (Frontend) Support for No Provider / Fix useEffect warnings
 - [ ] (Frontend) Add React Hook Form and Yup validations
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
@@ -91,7 +88,6 @@ TBD
 - [ ] (Frontend/Backend) Save each request using GunDB. And display a table with: Address | Network | Quantity | Status
 - [ ] (Backend) Add support for Rinkeby
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
-- [ ] (Backend) New proxy for Ropsten service on each request
 - [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
@@ -104,11 +100,15 @@ TBD
 ## Done:
 
 - [x] (Frontend) Display etherscan link
+- [x] (Frontend) Split logic into custom hooks / constate
+- [x] (Frontend) Support for No Provider / Fix useEffect warnings
+- [x] (Frontend) Remove ethers selector to avoid one more form step
 - [x] (Backend) Wrap response data into body object
 - [x] (Backend) Add development script
 - [x] (Backend) Trigger POST to Goerli url
 - [x] (Backend) Add support for Ropsten
 - [x] (Backend) Add support for Kovan
 - [x] (Backend) Add support for Goerli
+- [x] (Backend) New proxy for Ropsten service on each request
 - [x] (Frontend/Backend) Add script to run both projects in development mode
 - [x] (Docs) Add frontend/backend/services stack
