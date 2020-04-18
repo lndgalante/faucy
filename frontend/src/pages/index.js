@@ -1,17 +1,6 @@
 import React, { useState } from 'react'
 
-import {
-  Box,
-  Grid,
-  Text,
-  Input,
-  Button,
-  FormLabel,
-  SimpleGrid,
-  FormControl,
-  RadioButtonGroup,
-  useColorMode,
-} from '@chakra-ui/core'
+import { Box, Grid, Text, Input, Button, FormLabel, FormControl, RadioButtonGroup, useColorMode } from '@chakra-ui/core'
 import capitalize from 'lodash.capitalize'
 import { isAddress } from 'ethereum-address'
 
@@ -89,39 +78,37 @@ const HomePage = () => {
     <Box w="100%" height="100vh" p={4} d="flex" justifyContent="center" alignItems="center">
       <SEO lang="en" title={`${userNetwork ? `Connected to ${capitalize(userNetwork)}` : ''}`} />
 
-      <SimpleGrid maxWidth="610px" width="100%">
+      <Box maxWidth="610px" width="100%">
         <Text as="h1" fontSize="4xl" fontWeight={800} pb={4} onClick={toggleColorMode}>
           Faucy
         </Text>
 
-        <Grid columnGap={6} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
-          <FormControl>
-            <FormLabel mb={1}>Choose your network:</FormLabel>
+        <Box maxWidth={['auto', 'auto', '426px']}>
+          <FormLabel mb={1}>Choose your network:</FormLabel>
 
-            <RadioButtonGroup
-              isInline
-              d="flex"
-              flexWrap="wrap"
-              alignItems="center"
-              justifyContent="center"
-              value={userNetwork}
-              onChange={handleNetworkChange}
-            >
-              {NETWORKS.map(({ value, label, disabled }) => (
-                <Radio
-                  flex="1"
-                  key={value}
-                  value={value}
-                  isDisabled={disabled}
-                  _hover={{ boxShadow: 'sm' }}
-                  _active={{ boxShadow: 'md' }}
-                >
-                  {label}
-                </Radio>
-              ))}
-            </RadioButtonGroup>
-          </FormControl>
-        </Grid>
+          <RadioButtonGroup
+            isInline
+            d="flex"
+            flexWrap="wrap"
+            alignItems="center"
+            justifyContent="center"
+            value={userNetwork}
+            onChange={handleNetworkChange}
+          >
+            {NETWORKS.map(({ value, label, disabled }) => (
+              <Radio
+                flex="1"
+                key={value}
+                value={value}
+                isDisabled={disabled}
+                _hover={{ boxShadow: 'sm' }}
+                _active={{ boxShadow: 'md' }}
+              >
+                {label}
+              </Radio>
+            ))}
+          </RadioButtonGroup>
+        </Box>
 
         <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
           <FormControl isDisabled={!faucetNetwork}>
@@ -160,7 +147,7 @@ const HomePage = () => {
             </Button>
           </FormControl>
         </Grid>
-      </SimpleGrid>
+      </Box>
 
       <Footer faucetLink={faucetNetwork?.faucetLink} />
     </Box>
