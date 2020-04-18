@@ -41,9 +41,8 @@ async function getKovanEth({ address }) {
     (selector) => document.querySelector(selector).innerText.split('\n').filter(Boolean),
     FAUCET_OUTPUT_SELECTOR,
   );
-
   // Get status code and parse message
-  const statusCode = description.match(/\d+/g);
+  const [statusCode] = description.match(/\d+/g) || [];
   const message = statusCode === 200 ? `You will receive 0.1 ethers in your account.` : parseMessage(rawMessage);
 
   return {
