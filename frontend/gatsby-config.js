@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    author: `@faucy`,
     title: `Faucy`,
-    description: `Get fake eth easily!`,
+    author: `@xivis`,
+    description: `Get ethers from any testnet easily`,
   },
   plugins: [
     `gatsby-plugin-offline`,
@@ -19,11 +19,11 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `faucy`,
-        short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        short_name: `starter`,
         display: `minimal-ui`,
+        theme_color: `#663399`,
+        background_color: `#663399`,
         icon: `src/assets/images/favicon.png`,
       },
     },
