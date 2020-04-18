@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-
 import { Box, Grid, Text, Input, Button, FormLabel, FormControl, RadioButtonGroup, useColorMode } from '@chakra-ui/core'
+
 import capitalize from 'lodash.capitalize'
 import { isAddress } from 'ethereum-address'
 
@@ -18,15 +18,14 @@ import { useUserNetwork } from '../hooks/useUserNetwork'
 import { useUserAddress } from '../hooks/useUserAddress'
 import { useWeb3Provider } from '../hooks/useWeb3Provider'
 import { useFaucetNetwork } from '../hooks/useFaucetNetwork'
+import { useAnimatedCoins } from '../hooks/useAnimatedCoins'
 
 // Utils
 import { services } from '../utils/services'
-
-// Constants
 import { NETWORKS } from '../utils/constants'
 
 const HomePage = () => {
-  // React hooks
+  // React hooks - states
   const [isLoading, setIsLoading] = useState(false)
   const [isValidAddress, setIsValidAddress] = useState(false)
 
@@ -35,15 +34,18 @@ const HomePage = () => {
   const [userAddress, setUserAddress] = useUserAddress(web3Provider)
   const [userNetwork, setUserNetwork] = useUserNetwork(web3Provider)
 
+  // Chakra hooks
+  const { colorMode, toggleColorMode } = useColorMode()
+  const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
+
   // Faucet hooks
   const faucetNetwork = useFaucetNetwork(userNetwork)
 
   // Sound hooks
   const { playErrorSound, playSuccessSound } = useSounds()
 
-  // Chakra hooks
-  const { toggleColorMode } = useColorMode()
-  const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
+  // Animation hooks
+  const { buttonContainerRef, animationContainerRef } = useAnimatedCoins(colorMode, isLoading)
 
   // Handlers - Form
   const handleNetworkChange = (network) => setUserNetwork(network)
@@ -142,8 +144,10 @@ const HomePage = () => {
               _active={{ boxShadow: 'md' }}
               onClick={handleEthSubmit}
               disabled={!faucetNetwork || !userAddress}
+              ref={buttonContainerRef}
             >
-              Send ethers
+              {!isLoading && <Box d="inline" width="26px" ml={-2} mr={2} ref={animationContainerRef} />}
+              <Text>Send ethers</Text>
             </Button>
           </FormControl>
         </Grid>
