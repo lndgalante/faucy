@@ -77,7 +77,6 @@ TBD
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Display output data on a div and not through toasts
-- [ ] (Frontend) Add React Hook Form and Yup validations
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Husky Hooks + XO rules
@@ -103,6 +102,7 @@ TBD
 - [x] (Frontend) Support for No Provider / Fix useEffect warnings
 - [x] (Frontend) Remove ethers selector to avoid one more form step
 - [x] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
+- [x] (Frontend) Add React Hook Form and Yup validations
 - [x] (Backend) Wrap response data into body object
 - [x] (Backend) Add development script
 - [x] (Backend) Trigger POST to Goerli url
