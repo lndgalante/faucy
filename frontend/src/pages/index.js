@@ -69,9 +69,6 @@ const HomePage = () => {
 
   // Handlers
   const onSubmit = async ({ userAddress, userNetwork }) => {
-    console.log('onSubmit -> userAddress', userAddress)
-    console.log('onSubmit -> userNetwork', userNetwork)
-
     try {
       setIsLoading(true)
       displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`)
