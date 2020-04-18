@@ -166,7 +166,16 @@ const HomePage = () => {
                 disabled={!faucetNetwork || !userAddress}
                 ref={buttonContainerRef}
               >
-                {!isLoading && <Box d="inline" width="26px" ml={-2} mr={2} ref={animationContainerRef} />}
+                {!isLoading && (
+                  <Box
+                    d="inline"
+                    width="26px"
+                    ml={-2}
+                    mr={2}
+                    ref={animationContainerRef}
+                    className="lottie-container"
+                  />
+                )}
                 <Text>Send ethers</Text>
               </Button>
             </FormControl>

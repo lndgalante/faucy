@@ -27,6 +27,16 @@ const useAnimatedCoins = (colorMode, isLoading) => {
     buttonContainerElement.addEventListener('mouseenter', playForward)
     buttonContainerElement.addEventListener('mouseleave', playBackard)
 
+    const color = colorMode === 'light' ? 'rgb(26, 32, 44)' : 'rgba(255, 255, 255, 0.92)'
+    const coin = document.querySelector('.lottie-container svg')
+    if (coin) {
+      const svgPaths = [...coin.querySelectorAll('path')]
+      svgPaths.forEach((path) => {
+        if (path.hasAttribute('stroke')) path.setAttribute('stroke', color)
+        if (path.hasAttribute('fill')) path.setAttribute('fill', color)
+      })
+    }
+
     return () => {
       animation.destroy()
       buttonContainerElement.removeEventListener('mouseenter', playForward)
