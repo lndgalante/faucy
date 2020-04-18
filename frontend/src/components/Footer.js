@@ -7,7 +7,7 @@ export const Footer = ({ faucetLink }) => {
     <Box
       position="absolute"
       width="100%"
-      maxWidth={['367.25px', '367.25px', '665.2px']}
+      maxWidth={['367.25px', '367.25px', '610px']}
       bottom={2}
       px={[4, 4, 0, 0]}
       d="flex"
