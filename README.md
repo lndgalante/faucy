@@ -1,7 +1,7 @@
 <h1 align="center">Faucy</h1>
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
-<img src="https://i.ibb.co/M8Ns1FV/Captura-de-Pantalla-2020-04-18-a-la-s-04-03-18.png">
+<img src="https://i.ibb.co/BV9s16z/Captura-de-Pantalla-2020-04-18-a-la-s-05-46-56.png">
 
 ---
 
