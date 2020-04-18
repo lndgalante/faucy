@@ -43,8 +43,6 @@ const HomePage = () => {
 
   // Web3 hooks
   const web3Provider = useWeb3Provider()
-
-  // User hooks
   const [userAddress, setUserAddress] = useUserAddress(web3Provider)
   const [userNetwork, setUserNetwork] = useUserNetwork(web3Provider)
 
@@ -55,7 +53,7 @@ const HomePage = () => {
   const { playErrorSound, playSuccessSound } = useSounds()
 
   // Chakra hooks
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { toggleColorMode } = useColorMode()
   const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
 
   // Handlers - Form
