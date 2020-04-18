@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Link } from '@chakra-ui/core'
 import { FaGithub, FaHeart, FaExternalLinkSquareAlt } from 'react-icons/fa'
 
-export const Footer = ({ faucetLink }) => (
+export const Footer = ({ faucetLink, colorMode }) => (
   <Box
     position="absolute"
     width="100%"
@@ -12,6 +12,7 @@ export const Footer = ({ faucetLink }) => (
     d="flex"
     justifyContent="space-between"
     alignItems="center"
+    color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
   >
     <Link fontSize={'sm'} d="flex" alignItems="center" href={'https://www.xivis.com'} isExternal>
       Made by Xivis <Box ml={2} d="inline" as={FaHeart} size="14px" />
