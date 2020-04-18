@@ -8,7 +8,7 @@ const useUserAddress = (web3Provider) => {
     web3Provider.provider.enable().then((accounts) => accounts.length && setUserAddress(accounts[0]))
   }, [web3Provider])
 
-  return [userAddress, setUserAddress]
+  return userAddress
 }
 
 export { useUserAddress }

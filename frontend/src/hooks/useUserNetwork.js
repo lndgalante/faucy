@@ -15,7 +15,7 @@ const useUserNetwork = (web3Provider) => {
     })
   }, [web3Provider])
 
-  return [userNetwork, setUserNetwork]
+  return userNetwork
 }
 
 export { useUserNetwork }

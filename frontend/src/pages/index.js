@@ -1,8 +1,19 @@
 import React, { useState } from 'react'
-import { Box, Grid, Text, Input, Button, FormLabel, FormControl, RadioButtonGroup, useColorMode } from '@chakra-ui/core'
+import { useForm } from 'react-hook-form'
+import {
+  Box,
+  Grid,
+  Text,
+  Input,
+  Button,
+  FormLabel,
+  FormControl,
+  RadioButtonGroup,
+  FormErrorMessage,
+  useColorMode,
+} from '@chakra-ui/core'
 
 import capitalize from 'lodash.capitalize'
-import { isAddress } from 'ethereum-address'
 
 // UI Components
 import { SEO } from '../ui/components/Seo'
@@ -14,6 +25,7 @@ import { Footer } from '../components/Footer'
 // Hooks
 import { useToast } from '../hooks/useToast'
 import { useSounds } from '../hooks/useSounds'
+import { useUpdateValue } from '../hooks/useUpdateValue'
 import { useUserNetwork } from '../hooks/useUserNetwork'
 import { useUserAddress } from '../hooks/useUserAddress'
 import { useWeb3Provider } from '../hooks/useWeb3Provider'
@@ -23,38 +35,42 @@ import { useAnimatedCoins } from '../hooks/useAnimatedCoins'
 // Utils
 import { services } from '../utils/services'
 import { NETWORKS } from '../utils/constants'
+import { validateAddress } from '../utils/validators'
 
 const HomePage = () => {
-  // React hooks - states
+  // React hooks
   const [isLoading, setIsLoading] = useState(false)
-  const [isValidAddress, setIsValidAddress] = useState(false)
 
   // Web3 hooks
   const web3Provider = useWeb3Provider()
-  const [userAddress, setUserAddress] = useUserAddress(web3Provider)
-  const [userNetwork, setUserNetwork] = useUserNetwork(web3Provider)
+  const userAddress = useUserAddress(web3Provider)
+  const userNetwork = useUserNetwork(web3Provider)
+
+  // Form hooks
+  const { handleSubmit, register, errors, watch, setValue } = useForm()
+
+  // Update values
+  const { userNetwork: _userNetwork } = watch()
+  useUpdateValue({ name: 'userNetwork', value: userNetwork, register, setValue })
+  useUpdateValue({ name: 'userAddress', value: userAddress, register, setValue })
+
+  // Faucet hooks
+  const faucetNetwork = useFaucetNetwork(_userNetwork)
+
+  // Sound hooks
+  const { playErrorSound, playSuccessSound } = useSounds()
 
   // Chakra hooks
   const { colorMode, toggleColorMode } = useColorMode()
   const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast()
 
-  // Faucet hooks
-  const faucetNetwork = useFaucetNetwork(userNetwork)
-
-  // Sound hooks
-  const { playErrorSound, playSuccessSound } = useSounds()
-
   // Animation hooks
   const { buttonContainerRef, animationContainerRef } = useAnimatedCoins(colorMode, isLoading)
 
-  // Handlers - Form
-  const handleNetworkChange = (network) => setUserNetwork(network)
-  const handleAddressChange = ({ target }) => setUserAddress(target.value)
-
-  // Handlers - Submit
-  const handleEthSubmit = async () => {
-    const isInvalidAddress = !isAddress(userAddress)
-    if (isInvalidAddress) return setIsValidAddress(isInvalidAddress)
+  // Handlers
+  const onSubmit = async ({ userAddress, userNetwork }) => {
+    console.log('onSubmit -> userAddress', userAddress)
+    console.log('onSubmit -> userNetwork', userNetwork)
 
     try {
       setIsLoading(true)
@@ -68,7 +84,6 @@ const HomePage = () => {
       console.info(`Etherscan link: ${faucetNetwork.createEtherscanLink(body.txHash)}`)
     } catch (error) {
       const { body } = JSON.parse(error.message)
-
       playErrorSound({})
       displayErrorMessage(body.message)
     } finally {
@@ -85,75 +100,81 @@ const HomePage = () => {
           Faucy
         </Text>
 
-        <Box maxWidth={['auto', 'auto', '426px']}>
-          <FormLabel mb={1}>Choose your network:</FormLabel>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box maxWidth={['auto', 'auto', '426px']}>
+            <FormLabel mb={1}>Choose your network:</FormLabel>
 
-          <RadioButtonGroup
-            isInline
-            d="flex"
-            flexWrap="wrap"
-            alignItems="center"
-            justifyContent="center"
-            value={userNetwork}
-            onChange={handleNetworkChange}
-          >
-            {NETWORKS.map(({ value, label, disabled }) => (
-              <Radio
-                flex="1"
-                key={value}
-                value={value}
-                isDisabled={disabled}
+            <RadioButtonGroup
+              isInline
+              d="flex"
+              flexWrap="wrap"
+              alignItems="center"
+              justifyContent="center"
+              name="userNetwork"
+              value={_userNetwork}
+              onChange={(value) => setValue('userNetwork', value)}
+            >
+              {NETWORKS.map(({ value, label, disabled }) => (
+                <Radio
+                  flex="1"
+                  key={value}
+                  value={value}
+                  isDisabled={disabled}
+                  _hover={{ boxShadow: 'sm' }}
+                  _active={{ boxShadow: 'md' }}
+                >
+                  {label}
+                </Radio>
+              ))}
+            </RadioButtonGroup>
+          </Box>
+
+          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
+            <FormControl isDisabled={!faucetNetwork} isInvalid={errors.userAddress}>
+              <FormLabel htmlFor="userAddress" mb={1}>
+                Insert your address:
+              </FormLabel>
+
+              <Input
+                ref={register({ validate: validateAddress })}
+                maxLength={42}
+                name="userAddress"
+                isInvalid={Boolean(errors.userAddress)}
+                _hover={{ boxShadow: 'sm' }}
+                aria-label="Insert your address"
+                placeholder="0x0000000000000000000000000000000000000000"
+              />
+              <Box height="26px" d="flex" alignItems="center">
+                <FormErrorMessage>{errors.userAddress && errors.userAddress.message}</FormErrorMessage>
+              </Box>
+            </FormControl>
+
+            <FormControl isDisabled={!faucetNetwork || !userAddress} mt={[3, 3, 0]}>
+              <FormLabel mb={1}>Ready?</FormLabel>
+
+              <Button
+                width="100%"
+                d="flex"
+                size="md"
+                variantColor="gray"
+                loadingText="Getting ethers"
+                isDisabled={!userNetwork}
+                isLoading={isLoading}
                 _hover={{ boxShadow: 'sm' }}
                 _active={{ boxShadow: 'md' }}
+                type="submit"
+                disabled={!faucetNetwork || !userAddress}
+                ref={buttonContainerRef}
               >
-                {label}
-              </Radio>
-            ))}
-          </RadioButtonGroup>
-        </Box>
-
-        <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
-          <FormControl isDisabled={!faucetNetwork}>
-            <FormLabel htmlFor="eth" mb={1}>
-              Insert your address:
-            </FormLabel>
-
-            <Input
-              value={userAddress}
-              maxLength={42}
-              isInvalid={isValidAddress}
-              onChange={handleAddressChange}
-              _hover={{ boxShadow: 'sm' }}
-              aria-label="Insert your address"
-              placeholder="0x0000000000000000000000000000000000000000"
-            />
-          </FormControl>
-
-          <FormControl isDisabled={!faucetNetwork || !userAddress} mt={[3, 3, 0]}>
-            <FormLabel mb={1}>Ready?</FormLabel>
-
-            <Button
-              width="100%"
-              d="flex"
-              size="md"
-              variantColor="gray"
-              loadingText="Getting ethers"
-              isDisabled={!userNetwork}
-              isLoading={isLoading}
-              _hover={{ boxShadow: 'sm' }}
-              _active={{ boxShadow: 'md' }}
-              onClick={handleEthSubmit}
-              disabled={!faucetNetwork || !userAddress}
-              ref={buttonContainerRef}
-            >
-              {!isLoading && <Box d="inline" width="26px" ml={-2} mr={2} ref={animationContainerRef} />}
-              <Text>Send ethers</Text>
-            </Button>
-          </FormControl>
-        </Grid>
+                {!isLoading && <Box d="inline" width="26px" ml={-2} mr={2} ref={animationContainerRef} />}
+                <Text>Send ethers</Text>
+              </Button>
+            </FormControl>
+          </Grid>
+        </form>
       </Box>
 
-      <Footer faucetLink={faucetNetwork?.faucetLink} />
+      <Footer faucetLink={faucetNetwork?.faucetLink} colorMode={colorMode} />
     </Box>
   )
 }

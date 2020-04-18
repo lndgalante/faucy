@@ -11,7 +11,7 @@
     "emotion-theming": "^10.0.27",
     "ethereum-address": "^0.0.4",
     "ethers": "^4.0.46",
-    "gatsby": "^2.20.24",
+    "gatsby": "^2.20.25",
     "gatsby-plugin-chakra-ui": "^0.1.4",
     "gatsby-plugin-manifest": "^2.3.5",
     "gatsby-plugin-offline": "^3.1.4",
@@ -23,9 +23,11 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
+    "react-hook-form": "^5.4.2",
     "react-icons": "^3.9.0",
     "use-sound": "^1.0.1",
-    "wretch": "^1.7.2"
+    "wretch": "^1.7.2",
+    "yup": "^0.28.3"
   },
   "devDependencies": {
     "prettier": "^2.0.4"
