@@ -1,11 +1,6 @@
-const convert = require('convert-seconds');
-
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
-
-const parseMessage = (rawMessage) => {
-  return rawMessage.replace(' seconds.', '').replace(/\d+\.\d+/g, (seconds) => `${convert(seconds).hours} hours.`);
-};
+const { parseKovanMessage } = require('../../utils/strings');
 
 async function getKovanEth({ address }) {
   // Constants - Urls
@@ -43,7 +38,7 @@ async function getKovanEth({ address }) {
   );
   // Get status code and parse message
   const [statusCode] = description.match(/\d+/g) || [];
-  const message = statusCode === 200 ? `You will receive 0.1 ethers in your account.` : parseMessage(rawMessage);
+  const message = statusCode === 200 ? 'You will receive 0.1 ethers in your account.' : parseKovanMessage(rawMessage);
 
   return {
     statusCode,

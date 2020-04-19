@@ -25,7 +25,12 @@ async function getGoerliEth({ address }) {
 
   return {
     statusCode,
-    body: { title, extraMessage, txHash, message: `You will receive 0.05 ethers in your account.` },
+    body: {
+      title,
+      txHash,
+      extraMessage,
+      message: 'You will receive 0.05 ethers in your account.',
+    },
   };
 }
 

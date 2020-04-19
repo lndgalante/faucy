@@ -11,7 +11,7 @@ function userAddress(req, res, next) {
     return res.status(422).send({ message: 'Invalid address' });
   }
 
-  next();
+  return next();
 }
 
 module.exports = { userAddress };

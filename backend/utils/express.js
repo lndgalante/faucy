@@ -1,8 +1,5 @@
-// Express
-const express = require('express');
-
-// Utils
 const ms = require('ms');
+const express = require('express');
 
 // Middlewares
 const cors = require('cors');
