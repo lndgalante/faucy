@@ -31,4 +31,4 @@ export const NETWORKS = [
     link: 'https://goerli-faucet.slock.it',
     createEtherscanLink: (txHash) => `https://goerli.etherscan.io/tx/${txHash}`,
   },
-]
+];

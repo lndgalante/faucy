@@ -1,14 +1,14 @@
-import { useEffect } from 'react'
-import { useToast as useChakraToast } from '@chakra-ui/core'
+import { useEffect } from 'react';
+import { useToast as useChakraToast } from '@chakra-ui/core';
 
 export function useToast() {
-  const toast = useChakraToast()
+  const toast = useChakraToast();
 
   // Effect - Update toast styles
   useEffect(() => {
-    const toastManager = document.querySelector('.Toaster__manager-top')
-    if (toastManager) Object.assign(toastManager.style, { maxWidth: '642px' })
-  }, [])
+    const toastManager = document.querySelector('.Toaster__manager-top');
+    if (toastManager) Object.assign(toastManager.style, { maxWidth: '642px' });
+  }, []);
 
   const displayInfoMessage = (message) => {
     return toast({
@@ -16,8 +16,8 @@ export function useToast() {
       position: 'top',
       duration: 4000,
       description: message,
-    })
-  }
+    });
+  };
 
   const displaySuccessMessage = (message) => {
     return toast({
@@ -25,8 +25,8 @@ export function useToast() {
       duration: 7000,
       status: 'success',
       description: message,
-    })
-  }
+    });
+  };
 
   const displayErrorMessage = (message) => {
     return toast({
@@ -34,8 +34,8 @@ export function useToast() {
       position: 'top',
       duration: 7000,
       description: message,
-    })
-  }
+    });
+  };
 
-  return { displayInfoMessage, displaySuccessMessage, displayErrorMessage }
+  return { displayInfoMessage, displaySuccessMessage, displayErrorMessage };
 }

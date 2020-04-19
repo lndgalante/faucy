@@ -1,8 +1,8 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
 
-export const SEO = ({ lang, title }) => {
+export const SEO = ({ lang = 'en', title }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -15,15 +15,13 @@ export const SEO = ({ lang, title }) => {
         }
       }
     `,
-  )
+  );
 
-  const metaDescription = site.siteMetadata.description
+  const metaDescription = site.siteMetadata.description;
 
   return (
     <Helmet
       htmlAttributes={{ lang }}
-      title={title}
-      titleTemplate={`${site.siteMetadata.title} | %s`}
       meta={[
         {
           name: `description`,
@@ -58,6 +56,8 @@ export const SEO = ({ lang, title }) => {
           content: metaDescription,
         },
       ]}
+      title={title}
+      titleTemplate={`${site.siteMetadata.title} | %s`}
     />
-  )
-}
+  );
+};

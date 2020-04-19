@@ -1,14 +1,14 @@
-import useSound from 'use-sound'
+import useSound from 'use-sound';
 
 // Assets
-import errorSound from '../assets/sounds/error.wav'
-import successSound from '../assets/sounds/success.wav'
+import errorSound from '../assets/sounds/error.wav';
+import successSound from '../assets/sounds/success.wav';
 
 const useSounds = () => {
-  const [playErrorSound] = useSound(errorSound)
-  const [playSuccessSound] = useSound(successSound)
+  const [playErrorSound] = useSound(errorSound);
+  const [playSuccessSound] = useSound(successSound);
 
-  return { playErrorSound, playSuccessSound }
-}
+  return { playErrorSound, playSuccessSound };
+};
 
-export { useSounds }
+export { useSounds };

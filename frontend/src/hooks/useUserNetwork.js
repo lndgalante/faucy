@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 // Constants
-import { NETWORKS } from '../utils/constants'
+import { NETWORKS } from '../utils/constants';
 
 const useUserNetwork = (web3Provider) => {
-  const [userNetwork, setUserNetwork] = useState(null)
+  const [userNetwork, setUserNetwork] = useState(null);
 
   useEffect(() => {
-    if (!web3Provider) return
+    if (!web3Provider) return;
 
     web3Provider.getNetwork().then(({ name: providerNetwork }) => {
-      const allowedNetworks = NETWORKS.filter(({ disabled }) => !disabled).map(({ value }) => value)
-      if (allowedNetworks.includes(providerNetwork)) setUserNetwork(providerNetwork)
-    })
-  }, [web3Provider])
+      const allowedNetworks = NETWORKS.filter(({ disabled }) => !disabled).map(({ value }) => value);
+      if (allowedNetworks.includes(providerNetwork)) setUserNetwork(providerNetwork);
+    });
+  }, [web3Provider]);
 
-  return userNetwork
-}
+  return userNetwork;
+};
 
-export { useUserNetwork }
+export { useUserNetwork };

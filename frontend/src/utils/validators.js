@@ -1,17 +1,17 @@
-import { isAddress } from 'ethereum-address'
+import { isAddress } from 'ethereum-address';
 
 function validateAddress(value) {
-  let error
+  let error;
 
   if (!value) {
-    error = 'Address is required'
+    error = 'Address is required';
   }
 
   if (!isAddress(value)) {
-    error = 'Address is invalid'
+    error = 'Address is invalid';
   }
 
-  return error || true
+  return error || true;
 }
 
-export { validateAddress }
+export { validateAddress };

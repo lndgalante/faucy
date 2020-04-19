@@ -5,6 +5,7 @@ module.exports = {
     description: `Get ethers from any testnet easily`,
   },
   plugins: [
+    `gatsby-plugin-eslint`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-chakra-ui`,
     `gatsby-plugin-react-helmet`,

@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 // Constants
-import { NETWORKS } from '../utils/constants'
+import { NETWORKS } from '../utils/constants';
 
 const useFaucetNetwork = (network) => {
-  const [faucetNetwork, setFaucetNetwork] = useState(null)
+  const [faucetNetwork, setFaucetNetwork] = useState(null);
 
   // Effect - Update faucet network
   useEffect(() => {
-    if (!network) return
+    if (!network) return;
 
-    const foundNetwork = NETWORKS.find(({ value }) => value === network)
-    if (foundNetwork) setFaucetNetwork(foundNetwork)
-  }, [network])
+    const foundNetwork = NETWORKS.find(({ value }) => value === network);
+    if (foundNetwork) setFaucetNetwork(foundNetwork);
+  }, [network]);
 
-  return faucetNetwork
-}
+  return faucetNetwork;
+};
 
-export { useFaucetNetwork }
+export { useFaucetNetwork };
