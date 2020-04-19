@@ -80,20 +80,18 @@ TBD
 
 ## Todo:
 
-- [ ] (Frontend) Lighthouse Audits
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
+- [ ] (Backend) Add support for Rinkeby
+- [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
+- [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Frontend/Backend) Add TypeScript support
-- [ ] (Frontend/Backend) Add Husky Hooks + XO rules
 - [ ] (Frontend/Backend) Add Sentry error logger
 - [ ] (Frontend/Backend) Add Docker to run entire project
 - [ ] (Frontend/Backend) Add status page for each network service
 - [ ] (Frontend/Backend) Save each request using GunDB. And display a table with: Address | Network | Quantity | Status
-- [ ] (Backend) Add support for Rinkeby
-- [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
-- [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
@@ -104,6 +102,7 @@ TBD
 
 ## Done:
 
+- [x] (Frontend) Lighthouse Audits
 - [x] (Frontend) Display etherscan link
 - [x] (Frontend) Split logic into custom hooks / constate
 - [x] (Frontend) Support for No Provider / Fix useEffect warnings
@@ -117,5 +116,6 @@ TBD
 - [x] (Backend) Add support for Kovan
 - [x] (Backend) Add support for Goerli
 - [x] (Backend) New proxy for Ropsten service on each request
+- [x] (Frontend/Backend) Add ESLint rules
 - [x] (Frontend/Backend) Add script to run both projects in development mode
 - [x] (Docs) Add frontend/backend/services stack
