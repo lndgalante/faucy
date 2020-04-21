@@ -95,9 +95,10 @@ TBD
 - [ ] (Frontend/Backend) Add Docker to run entire project
 - [ ] (Frontend/Backend) Add status page for each network service
 - [ ] (Frontend/Backend) GunDB: Save each request on frontend, and send id in the body
+- [ ] (Frontend/Backend) GunDB: Display the latest ongoing [request](https://i.ibb.co/c1v6SzK/Captura-de-Pantalla-2020-04-21-a-la-s-17-56-42.png)
 - [ ] (Frontend/Backend) GunDB: Update request on the server when the operation it's finished
 - [ ] (Frontend/Backend) GunDB: Allow only one operation per network at a time
-- [ ] (Frontend/Backend) GunDB: Save successful operations to display stats afterwards
+- [ ] (Frontend/Backend) GunDB: Save successful operations to display [stats](https://i.ibb.co/HGZtYrH/Captura-de-Pantalla-2020-04-21-a-la-s-17-54-03.png) afterwards
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
