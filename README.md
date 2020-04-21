@@ -82,8 +82,10 @@ TBD
 
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Add E2E tests for each network
+- [ ] (Frontend) Replace react hook form to Formik
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
+- [ ] (Backend) Move over microservices with a GraphQL middleman
 - [ ] (Backend) Add support for Rinkeby
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) Improve CORS setup for prod and dev url
@@ -119,3 +121,9 @@ TBD
 - [x] (Frontend/Backend) Add ESLint rules
 - [x] (Frontend/Backend) Add script to run both projects in development mode
 - [x] (Docs) Add frontend/backend/services stack
+
+## Feedback:
+
+- Adaptation with Truffle suite
+- Generate API_KEY to use API directly
+- Display another Tokens that are in that testnet
