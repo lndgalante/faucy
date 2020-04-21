@@ -81,6 +81,7 @@ TBD
 ## Todo:
 
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
+- [ ] (Frontend) Update title to "faucy.eth"
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Replace react hook form to Formik
 - [ ] (Frontend) Display output data on a div and not through toasts
