@@ -32,3 +32,10 @@ export const NETWORKS = [
     createEtherscanLink: (txHash) => `https://goerli.etherscan.io/tx/${txHash}`,
   },
 ];
+
+export const NETWORK_IDS = {
+  3: 'ropsten',
+  4: 'rinkeby',
+  5: 'goerli',
+  42: 'kovan',
+};

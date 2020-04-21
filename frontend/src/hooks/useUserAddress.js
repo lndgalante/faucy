@@ -5,7 +5,14 @@ const useUserAddress = (web3Provider) => {
 
   useEffect(() => {
     if (!web3Provider) return;
-    web3Provider.provider.enable().then((accounts) => accounts.length && setUserAddress(accounts[0]));
+
+    function updateAddress(accounts) {
+      if (!accounts.length) return;
+      setUserAddress(accounts[0]);
+    }
+
+    web3Provider.provider.enable().then((accounts) => updateAddress(accounts));
+    web3Provider.provider.on('accountsChanged', (accounts) => updateAddress(accounts));
   }, [web3Provider]);
 
   return userAddress;
