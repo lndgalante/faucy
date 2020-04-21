@@ -97,6 +97,7 @@ TBD
 - [ ] (Frontend/Backend) GunDB: Save each request on frontend, and send id in the body
 - [ ] (Frontend/Backend) GunDB: Update request on the server when the operation it's finished
 - [ ] (Frontend/Backend) GunDB: Allow only one operation per network at a time
+- [ ] (Frontend/Backend) GunDB: Save successful operations to display stats afterwards
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
