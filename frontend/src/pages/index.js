@@ -115,7 +115,7 @@ const HomePage = () => {
                 <Radio
                   key={value}
                   _active={{ boxShadow: 'md' }}
-                  _hover={{ boxShadow: 'sm' }}
+                  _hover={{ borderStyle: 'dashed' }}
                   flex="1"
                   isDisabled={disabled}
                   value={value}
