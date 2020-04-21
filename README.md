@@ -85,15 +85,17 @@ TBD
 - [ ] (Frontend) Replace react hook form to Formik
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
-- [ ] (Backend) Move over microservices with a GraphQL middleman
 - [ ] (Backend) Add support for Rinkeby
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) Improve CORS setup for prod and dev url
+- [ ] (Backend) Move over microservices with a GraphQL middleman
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Sentry error logger
 - [ ] (Frontend/Backend) Add Docker to run entire project
 - [ ] (Frontend/Backend) Add status page for each network service
-- [ ] (Frontend/Backend) Save each request using GunDB. And display a table with: Address | Network | Quantity | Status
+- [ ] (Frontend/Backend) GunDB: Save each request on frontend, and send id in the body
+- [ ] (Frontend/Backend) GunDB: Update request on the server when the operation it's finished
+- [ ] (Frontend/Backend) GunDB: Allow only one operation per network at a time
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 - [ ] (Marketing) Add "Who is using it?" in GitHub
