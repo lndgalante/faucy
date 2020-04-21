@@ -4,13 +4,13 @@ import { ethers } from 'ethers';
 const isDOMavailable = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 
 const useWeb3Provider = () => {
-  const windowProvider = window?.ethereum || window?.web3;
-  const hasProvider = isDOMavailable && windowProvider;
-
-  const web3Provider = useMemo(() => (hasProvider ? new ethers.providers.Web3Provider(windowProvider) : null), [
-    hasProvider,
-    windowProvider,
-  ]);
+  const web3Provider = useMemo(
+    () =>
+      isDOMavailable && (window?.ethereum || window?.web3)
+        ? new ethers.providers.Web3Provider(window?.ethereum || window?.web3)
+        : null,
+    [],
+  );
 
   return web3Provider;
 };
