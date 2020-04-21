@@ -87,6 +87,7 @@ TBD
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Backend) Add support for Rinkeby
+- [ ] (Backend) Change faucet urls to environment variables
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Backend) Move over microservices with a GraphQL middleman
