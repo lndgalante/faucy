@@ -19,7 +19,7 @@ export const NETWORKS = [
     value: 'rinkeby',
     label: 'Rinkeby',
     disabled: false,
-    serviceDuration: 'X minute',
+    serviceDuration: '1 minute',
     link: 'https://faucet.rinkeby.io',
     createEtherscanLink: (txHash) => `https://rinkeby.etherscan.io/tx/${txHash}`,
   },

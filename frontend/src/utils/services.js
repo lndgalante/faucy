@@ -6,8 +6,11 @@ const { GATSBY_FAUCY_API_URL } = process.env;
 // Helpers
 const faucyApi = wretch().url(GATSBY_FAUCY_API_URL);
 
+const getEthFromNetwork = (network) => (address) => faucyApi.url(`/${network}`).post({ address }).json();
+
 export const services = {
-  kovan: (address) => faucyApi.url('/kovan').post({ address }).json(),
-  goerli: (address) => faucyApi.url('/goerli').post({ address }).json(),
-  ropsten: (address) => faucyApi.url('/ropsten').post({ address }).json(),
+  kovan: getEthFromNetwork('kovan'),
+  goerli: getEthFromNetwork('goerli'),
+  ropsten: getEthFromNetwork('ropsten'),
+  rinkeby: getEthFromNetwork('rinkeby'),
 };
