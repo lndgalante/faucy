@@ -81,12 +81,10 @@ TBD
 ## Todo:
 
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
-- [ ] (Frontend) Update title to "faucy.eth"
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Replace react hook form to Formik
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
-- [ ] (Backend) Add support for Rinkeby
 - [ ] (Backend) Change faucet urls to environment variables
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) Improve CORS setup for prod and dev url
@@ -112,11 +110,13 @@ TBD
 
 - [x] (Frontend) Lighthouse Audits
 - [x] (Frontend) Display etherscan link
+- [x] (Frontend) Update title to "faucy.eth"
 - [x] (Frontend) Split logic into custom hooks / constate
 - [x] (Frontend) Support for No Provider / Fix useEffect warnings
 - [x] (Frontend) Remove ethers selector to avoid one more form step
 - [x] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [x] (Frontend) Add React Hook Form and Yup validations
+- [x] (Backend) Add support for Rinkeby
 - [x] (Backend) Wrap response data into body object
 - [x] (Backend) Add development script
 - [x] (Backend) Trigger POST to Goerli url
