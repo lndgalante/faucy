@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Faucy`,
+    title: `Faucy.eth`,
     author: `@xivis`,
     description: `Get ethers from any testnet easily`,
   },
@@ -29,4 +29,4 @@ module.exports = {
       },
     },
   ],
-}
+};
