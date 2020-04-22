@@ -47,7 +47,6 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 ## Stack
 
 - Frontend
-
   - [Gatsby](https://www.gatsbyjs.org)
   - [Chakra](https://chakra-ui.com)
   - [Ethers.js](https://github.com/ethers-io/ethers.js)
