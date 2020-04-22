@@ -16,6 +16,7 @@
 - 🦮Accessibilty First
 - 🌚Dark Mode Support
 - ⚡100/100 LightHouse Audits
+- 🔗Address and Network synchronized with your Web3 Provider
 
 ## Development
 
