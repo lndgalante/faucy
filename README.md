@@ -16,6 +16,7 @@
 - 🦮Accessibilty First
 - 🌚Dark Mode Support
 - ⚡100/100 LightHouse Audits
+- 📦Deployed on secure and fast IPFS (using [Fleek](https://fleek.co))
 - 🔗Address and Network synchronized with your Web3 Provider
 
 ## Development
@@ -56,11 +57,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
   - [Puppeteer](https://pptr.dev)
   - [Puppeteer Extra](https://github.com/berstend/puppeteer-extra)
 
-- Shared
-  - [Wretch](https://github.com/elbywan/wretch)
-  - [Ethereum Address](https://www.npmjs.com/package/ethereum-address)
-
-* Services
+- Services
   - [Fleek](https://fleek.co)
   - [Heroku](https://www.heroku.com)
   - [2Captcha](https://2captcha.com)
