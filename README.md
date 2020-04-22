@@ -78,11 +78,17 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
 TBD
 
+## Roadmap:
+
+- May 2020 👉 Internal release
+- June 2020 👉 Official release
+
 ## Todo:
 
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Replace react hook form to Formik
+- [ ] (Frontend) Add feedback component on footer
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Backend) Change faucet urls to environment variables
