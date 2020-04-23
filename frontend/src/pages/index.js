@@ -93,13 +93,13 @@ const HomePage = () => {
     <Box alignItems="center" d="flex" height="100vh" justifyContent="center" p={4} w="100%">
       <SEO title={`${values.userNetwork ? `Connected to ${capitalize(values.userNetwork)}` : ''}`} />
 
-      <Box maxWidth="610px" width="100%">
+      <Box maxWidth="626px" width="100%">
         <Text as="h1" fontSize="4xl" fontWeight={800} pb={4} onClick={toggleColorMode}>
           Faucy
         </Text>
 
         <form onSubmit={handleSubmit}>
-          <Box maxWidth={['auto', 'auto', '426px']}>
+          <Box maxWidth={['auto', 'auto', '442px']}>
             <FormLabel mb={1}>Choose your network:</FormLabel>
 
             <RadioButtonGroup
@@ -127,7 +127,7 @@ const HomePage = () => {
             </RadioButtonGroup>
           </Box>
 
-          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 426px) auto']}>
+          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 442px) auto']}>
             <FormControl isDisabled={!faucetNetwork} isInvalid={errors.userAddress && touched.userAddress}>
               <FormLabel htmlFor="userAddress" mb={1}>
                 Insert your address:
