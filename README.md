@@ -6,8 +6,8 @@
 ---
 
 <div align="center">
-  <img src="https://img.shields.io/github/issues/cine-estrenos/estrenos-web?style=for-the-badge">
-  <img src="https://img.shields.io/github/issues-pr/cine-estrenos/estrenos-web?style=for-the-badge">
+  <img src="https://img.shields.io/github/issues/lndgalante/faucy?style=for-the-badge">
+  <img src="https://img.shields.io/github/issues-pr/lndgalante/faucy?style=for-the-badge">
 </div>
 
 ## Features
