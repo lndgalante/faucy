@@ -10,10 +10,11 @@
     "@emotion/styled": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "ethereum-address": "^0.0.4",
-    "ethers": "^4.0.46",
-    "gatsby": "^2.20.25",
+    "ethers": "^4.0.47",
+    "formik": "^2.1.4",
+    "gatsby": "^2.20.29",
     "gatsby-plugin-chakra-ui": "^0.1.4",
-    "gatsby-plugin-manifest": "^2.3.5",
+    "gatsby-plugin-manifest": "^2.3.6",
     "gatsby-plugin-offline": "^3.1.4",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-source-filesystem": "^2.2.4",
@@ -23,15 +24,15 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
-    "react-hook-form": "^5.5.0",
-    "react-icons": "^3.9.0",
+    "react-hook-form": "^5.5.3",
+    "react-icons": "^3.10.0",
     "use-sound": "^1.0.1",
     "wretch": "^1.7.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-loader": "^4.0.0",
     "eslint-plugin-cypress": "^2.10.3",
@@ -41,7 +42,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "gatsby-plugin-eslint": "^2.0.8",
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.5"
   },
   "scripts": {
     "build": "gatsby build",

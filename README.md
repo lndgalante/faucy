@@ -16,7 +16,7 @@
 - 🦮Accessibilty First
 - 🌚Dark Mode Support
 - ⚡100/100 LightHouse Audits
-- 📦Deployed on secure and fast IPFS (using [Fleek](https://fleek.co))
+- 📦Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
 - 🔗Address and Network synchronized with your Web3 Provider
 
 ## Development
@@ -84,8 +84,9 @@ TBD
 
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Add E2E tests for each network
-- [ ] (Frontend) Replace react hook form to Formik
 - [ ] (Frontend) Add feedback component on footer
+- [ ] (Frontend) Add will-change transform to radio buttons
+- [ ] (Frontend) Add timeout (serviceDuration + 30s) to POST call
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Backend) Change faucet urls to environment variables
@@ -114,6 +115,7 @@ TBD
 - [x] (Frontend) Lighthouse Audits
 - [x] (Frontend) Display etherscan link
 - [x] (Frontend) Update title to "faucy.eth"
+- [x] (Frontend) Replace react hook form to Formik
 - [x] (Frontend) Split logic into custom hooks / constate
 - [x] (Frontend) Support for No Provider / Fix useEffect warnings
 - [x] (Frontend) Remove ethers selector to avoid one more form step

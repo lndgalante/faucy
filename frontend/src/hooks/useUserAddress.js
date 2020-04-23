@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-const useUserAddress = (web3Provider) => {
-  const [userAddress, setUserAddress] = useState('');
-
+const useUserAddress = (web3Provider, setUserAddress) => {
   useEffect(() => {
     if (!web3Provider) return;
 
@@ -13,9 +11,7 @@ const useUserAddress = (web3Provider) => {
 
     web3Provider.provider.enable().then((accounts) => updateAddress(accounts));
     web3Provider.provider.on('accountsChanged', (accounts) => updateAddress(accounts));
-  }, [web3Provider]);
-
-  return userAddress;
+  }, [web3Provider, setUserAddress]);
 };
 
 export { useUserAddress };

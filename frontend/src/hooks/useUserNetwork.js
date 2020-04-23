@@ -1,11 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 // Constants
 import { NETWORKS, NETWORK_IDS } from '../utils/constants';
 
-const useUserNetwork = (web3Provider) => {
-  const [userNetwork, setUserNetwork] = useState(null);
-
+const useUserNetwork = (web3Provider, setUserNetwork) => {
   useEffect(() => {
     if (!web3Provider) return;
 
@@ -16,9 +14,7 @@ const useUserNetwork = (web3Provider) => {
 
     web3Provider.getNetwork().then(({ name: providerNetwork }) => updateNetwork(providerNetwork));
     web3Provider.provider.on('networkChanged', (networkId) => updateNetwork(NETWORK_IDS[networkId]));
-  }, [web3Provider]);
-
-  return userNetwork;
+  }, [web3Provider, setUserNetwork]);
 };
 
 export { useUserNetwork };
