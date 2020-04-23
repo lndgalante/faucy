@@ -1,5 +1,6 @@
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
+const { createSuccessMessage } = require('../../utils/strings');
 
 async function getRinkebyEth({ address }) {
   // Constants - Urls
@@ -61,7 +62,7 @@ async function getRinkebyEth({ address }) {
 
   return {
     statusCode: 200,
-    body: { txHash, message: 'You will receive 0.001 ethers in your account.' },
+    body: { txHash, message: createSuccessMessage('0.001') },
   };
 }
 

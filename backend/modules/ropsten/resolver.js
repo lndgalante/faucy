@@ -4,18 +4,20 @@ const capitalize = require('lodash.capitalize');
 
 // Utils
 const { wretch } = require('../../utils/fetch');
+const { createSuccessMessage } = require('../../utils/strings');
 
 async function getRopstenEth({ address }) {
   try {
     const response = await wretch(`https://faucet.ropsten.be/donate/${address}`).get().res();
     const { amount, txhash: txHash, address: userAddress } = await response.json();
+    const ethers = unit.fromWei(amount, 'ether');
 
     return {
       statusCode: 200,
       body: {
         txHash,
         userAddress,
-        message: `You will receive ${unit.fromWei(amount, 'ether')} ethers in your account.`,
+        message: createSuccessMessage(ethers),
       },
     };
   } catch (error) {
@@ -24,7 +26,7 @@ async function getRopstenEth({ address }) {
 
     return {
       statusCode: status,
-      body: { message: `${capitalize(message)}. You are greylisted duration is for ${ms(duration)}.` },
+      body: { message: `${capitalize(message)}. Your greylisted duration is for ${ms(duration)}.` },
     };
   }
 }

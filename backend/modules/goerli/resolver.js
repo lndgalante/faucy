@@ -1,6 +1,7 @@
 // Utils
 const { wretch } = require('../../utils/fetch');
 const { getBrowser } = require('../../utils/puppeteer');
+const { createSuccessMessage } = require('../../utils/strings');
 
 async function getGoerliEth({ address }) {
   // Constants - Urls
@@ -29,7 +30,7 @@ async function getGoerliEth({ address }) {
       title,
       txHash,
       extraMessage,
-      message: 'You will receive 0.05 ethers in your account.',
+      message: createSuccessMessage('0.05'),
     },
   };
 }

@@ -1,6 +1,6 @@
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
-const { parseKovanMessage } = require('../../utils/strings');
+const { parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
 
 async function getKovanEth({ address }) {
   // Constants - Urls
@@ -38,7 +38,7 @@ async function getKovanEth({ address }) {
   );
   // Get status code and parse message
   const [statusCode] = description.match(/\d+/g) || [];
-  const message = statusCode === 200 ? 'You will receive 0.1 ethers in your account.' : parseKovanMessage(rawMessage);
+  const message = statusCode === 200 ? createSuccessMessage('0.1') : parseKovanMessage(rawMessage);
 
   return {
     statusCode,
