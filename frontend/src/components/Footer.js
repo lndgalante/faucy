@@ -9,7 +9,7 @@ export const Footer = ({ faucetLink, colorMode }) => (
     color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
     d="flex"
     justifyContent="space-between"
-    maxWidth={['367.25px', '367.25px', '610px']}
+    maxWidth={['100%', '100%', '606px']}
     position="absolute"
     px={[4, 4, 0, 0]}
     width="100%"
