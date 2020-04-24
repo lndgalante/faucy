@@ -28,5 +28,9 @@ module.exports = {
         icon: `src/assets/images/favicon.png`,
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: { fonts: [{ family: `Inter`, variants: [`400`, `500`, `600`] }] },
+    },
   ],
 };
