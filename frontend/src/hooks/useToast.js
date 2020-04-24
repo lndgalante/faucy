@@ -7,7 +7,7 @@ export function useToast() {
   // Effect - Update toast styles
   useEffect(() => {
     const toastManager = document.querySelector('.Toaster__manager-top');
-    if (toastManager) Object.assign(toastManager.style, { maxWidth: '642px' });
+    if (toastManager) Object.assign(toastManager.style, { maxWidth: '606px' });
   }, []);
 
   const displayInfoMessage = (message) => {
