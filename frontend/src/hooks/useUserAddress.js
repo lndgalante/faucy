@@ -9,8 +9,8 @@ const useUserAddress = (web3Provider, setUserAddress) => {
       setUserAddress(accounts[0].slice(2));
     }
 
-    web3Provider.provider.enable().then((accounts) => updateAddress(accounts));
-    web3Provider.provider.on('accountsChanged', (accounts) => updateAddress(accounts));
+    web3Provider.provider.enable().then(updateAddress);
+    web3Provider.provider.on('accountsChanged', updateAddress);
   }, [web3Provider, setUserAddress]);
 };
 
