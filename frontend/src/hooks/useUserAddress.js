@@ -6,7 +6,7 @@ const useUserAddress = (web3Provider, setUserAddress) => {
 
     function updateAddress(accounts) {
       if (!accounts.length) return;
-      setUserAddress(accounts[0]);
+      setUserAddress(accounts[0].slice(2));
     }
 
     web3Provider.provider.enable().then((accounts) => updateAddress(accounts));

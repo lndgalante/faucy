@@ -8,7 +8,9 @@ import {
   Input,
   Button,
   FormLabel,
+  InputGroup,
   FormControl,
+  InputLeftAddon,
   RadioButtonGroup,
   FormErrorMessage,
   useColorMode,
@@ -61,7 +63,7 @@ const HomePage = () => {
 
       const notify = Notify({ dappId: GATSBY_BLOCKNATIVE_API_KEY, networkId: getNetworkId(userNetwork) });
       const networkService = getNetworkService(userNetwork);
-      const { body } = await networkService(userAddress);
+      const { body } = await networkService(`0x${userAddress}`);
 
       playSuccessSound({});
       displaySuccessMessage(body.message);
@@ -99,13 +101,13 @@ const HomePage = () => {
     <Box alignItems="center" d="flex" height="100vh" justifyContent="center" p={4} w="100%">
       <SEO title={`${values.userNetwork ? `Connected to ${capitalize(values.userNetwork)}` : ''}`} />
 
-      <Box maxWidth="626px" width="100%">
-        <Text as="h1" fontSize="4xl" fontWeight={800} pb={4} onClick={toggleColorMode}>
+      <Box maxWidth="606px" width="100%">
+        <Text as="h1" fontSize="4xl" fontWeight={600} pb={4} onClick={toggleColorMode}>
           Faucy
         </Text>
 
         <form onSubmit={handleSubmit}>
-          <Box maxWidth={['auto', 'auto', '442px']}>
+          <Box maxWidth={['auto', 'auto', '460px']}>
             <FormLabel mb={1}>Choose your network:</FormLabel>
 
             <RadioButtonGroup
@@ -122,10 +124,14 @@ const HomePage = () => {
                 <Radio
                   key={value}
                   _active={{ boxShadow: 'md' }}
-                  _hover={{ boxShadow: 'sm', transform: 'translateY(-1px)' }}
+                  _hover={{ transform: 'translate3d(0, -1px, 0)' }}
                   flex="1"
+                  fontSize={'sm'}
+                  fontWeight={600}
                   isDisabled={disabled}
+                  textTransform="uppercase"
                   value={value}
+                  willChange="transform"
                 >
                   {label}
                 </Radio>
@@ -133,22 +139,26 @@ const HomePage = () => {
             </RadioButtonGroup>
           </Box>
 
-          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 442px) auto']}>
+          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 460px) auto']}>
             <FormControl isDisabled={!faucetNetwork} isInvalid={errors.userAddress && touched.userAddress}>
               <FormLabel htmlFor="userAddress" mb={1}>
                 Insert your address:
               </FormLabel>
 
-              <Input
-                _hover={{ boxShadow: 'sm' }}
-                aria-label="Insert your address"
-                isInvalid={Boolean(errors.userAddress && touched.userAddress)}
-                maxLength={42}
-                name="userAddress"
-                placeholder="0x0000000000000000000000000000000000000000"
-                value={values.userAddress}
-                onChange={handleChange}
-              />
+              <InputGroup>
+                <InputLeftAddon children="0x" />
+                <Input
+                  aria-label="Insert your address"
+                  isInvalid={Boolean(errors.userAddress && touched.userAddress)}
+                  maxLength={40}
+                  name="userAddress"
+                  placeholder="0x0000000000000000000000000000000000000000"
+                  roundedLeft="0"
+                  value={values.userAddress}
+                  onChange={handleChange}
+                />
+              </InputGroup>
+
               <Box alignItems="center" d="flex" height="26px">
                 <FormErrorMessage>{touched.userAddress && errors.userAddress}</FormErrorMessage>
               </Box>
@@ -159,8 +169,6 @@ const HomePage = () => {
 
               <Button
                 ref={buttonContainerRef}
-                _active={{ boxShadow: 'md' }}
-                _hover={{ boxShadow: 'sm' }}
                 d="flex"
                 isDisabled={!values.userNetwork || !values.userAddress}
                 isLoading={isLoading}
@@ -180,7 +188,9 @@ const HomePage = () => {
                     width="26px"
                   />
                 )}
-                <Text>Send ethers</Text>
+                <Text fontSize={'sm'} fontWeight={600} letterSpacing={0.4} textTransform="uppercase">
+                  Submit
+                </Text>
               </Button>
             </FormControl>
           </Grid>
