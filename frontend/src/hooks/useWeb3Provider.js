@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { ethers } from 'ethers';
 
 const isDOMavailable = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
@@ -11,6 +11,12 @@ const useWeb3Provider = () => {
         : null,
     [],
   );
+
+  useEffect(() => {
+    if (isDOMavailable && window?.ethereum) {
+      window.ethereum.autoRefreshOnNetworkChange = false;
+    }
+  }, []);
 
   return web3Provider;
 };
