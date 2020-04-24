@@ -1,6 +1,6 @@
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
-const { createSuccessMessage } = require('../../utils/strings');
+const { addressRegex, createSuccessMessage } = require('../../utils/strings');
 
 async function getRinkebyEth({ address }) {
   // Constants - Urls
@@ -58,7 +58,7 @@ async function getRinkebyEth({ address }) {
   );
 
   // Get transaction hash
-  const [txHash] = textMessage.match(/0x+[A-F,a-f,0-9]{40}/g) || [];
+  const [txHash] = textMessage.match(addressRegex) || [];
 
   return {
     statusCode: 200,
