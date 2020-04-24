@@ -67,9 +67,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 ## Links
 
 - [Ethereum Development with Go - Faucets](https://goethereumbook.org/faucets/)
-
 - [HedgeTrade - What is an Ethereum Faucet?](https://hedgetrade.com/what-is-ethereum-faucet/)
-
 - [Bitfalls - What Is an Ethereum Testnet and How Is It Used?](https://bitfalls.com/2018/05/31/what-is-an-ethereum-testnet-and-how-is-it-used/)
 
 ## Contributors
