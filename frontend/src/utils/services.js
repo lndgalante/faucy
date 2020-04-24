@@ -1,6 +1,6 @@
 import wretch from 'wretch';
 
-// Constants - Environment Variables
+// Constants
 const { GATSBY_FAUCY_API_URL } = process.env;
 
 // Helpers
@@ -14,3 +14,5 @@ export const services = {
   ropsten: getEthFromNetwork('ropsten'),
   rinkeby: getEthFromNetwork('rinkeby'),
 };
+
+export const getNetworkService = (networkName) => services[networkName];

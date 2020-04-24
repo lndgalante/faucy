@@ -40,3 +40,14 @@ export const NETWORK_IDS = {
   5: 'goerli',
   42: 'kovan',
 };
+
+export const NETWORK_NAMES = {
+  main: 1,
+  ropsten: 3,
+  rinkeby: 4,
+  goerli: 5,
+  kovan: 42,
+};
+
+export const getNetworkName = (networkId) => NETWORK_IDS[networkId];
+export const getNetworkId = (networkName) => NETWORK_NAMES[networkName] || NETWORK_NAMES.main;
