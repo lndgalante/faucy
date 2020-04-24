@@ -34,6 +34,7 @@ export const NETWORKS = [
 ];
 
 export const NETWORK_IDS = {
+  1: 'main',
   3: 'ropsten',
   4: 'rinkeby',
   5: 'goerli',
