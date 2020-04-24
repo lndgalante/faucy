@@ -12,12 +12,13 @@
 
 ## Features
 
-- 🔋PWA Support
-- 🦮Accessibilty First
-- 🌚Dark Mode Support
-- ⚡100/100 LightHouse Audits
-- 📦Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
-- 🔗Address and Network synchronized with your Web3 Provider
+- 🔋 PWA Support
+- 🦮 Accessibilty First
+- 🌚 Dark Mode Support
+- ⚡ 100/100 LightHouse Audits
+- ⏰ Displays transaction status (using [Notify.js](https://docs.blocknative.com/notify))
+- 📦 Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
+- 🔗 Address and Network inputs in-sync with your Web3 Provider (using [Ethers.js](https://github.com/ethers-io/ethers.js))
 
 ## Development
 
@@ -117,6 +118,7 @@ TBD
 - [x] (Frontend) Update title to "faucy.eth"
 - [x] (Frontend) Replace react hook form to Formik
 - [x] (Frontend) Split logic into custom hooks / constate
+- [x] (Frontend) Add Transaction notification (bnc-notify)
 - [x] (Frontend) Support for No Provider / Fix useEffect warnings
 - [x] (Frontend) Remove ethers selector to avoid one more form step
 - [x] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
