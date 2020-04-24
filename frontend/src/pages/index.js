@@ -166,7 +166,7 @@ const HomePage = () => {
               </Box>
             </FormControl>
 
-            <FormControl isDisabled={!faucetNetwork || !values.userAddress} mt={[3, 3, 0]}>
+            <FormControl isDisabled={!faucetNetwork || !values.userAddress} mt={[2, 2, 0]}>
               <FormLabel mb={1}>Ready?</FormLabel>
 
               <Button
