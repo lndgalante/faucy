@@ -1,6 +1,6 @@
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
-const { parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
+const { addressRegexp, parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
 
 async function getKovanEth({ address }) {
   // Constants - Urls
@@ -10,6 +10,7 @@ async function getKovanEth({ address }) {
   const BUTTON_SEND_SELECTOR = 'button';
   const INPUT_ADDRESS_SELECTOR = 'input';
   const FAUCET_OUTPUT_SELECTOR = '#faucetOutput';
+  const ETHERSCAN_LINK_SELECTOR = '#faucetOutput a';
 
   // Launch a new browser
   const browser = await getBrowser();
@@ -36,13 +37,22 @@ async function getKovanEth({ address }) {
     (selector) => document.querySelector(selector).innerText.split('\n').filter(Boolean),
     FAUCET_OUTPUT_SELECTOR,
   );
-  // Get status code and parse message
+
+  const [txHash] = await page.evaluate((selector) => {
+    const anchor = document.querySelector(selector);
+    if (!anchor) return [];
+    return (anchor.getAttribute('href') || '').match(addressRegexp) || [];
+  }, ETHERSCAN_LINK_SELECTOR);
+
+  // Get status code
   const [statusCode] = description.match(/\d+/g) || [];
-  const message = statusCode === 200 ? createSuccessMessage('0.1') : parseKovanMessage(rawMessage);
+
+  // Parse message
+  const message = statusCode === '200' ? createSuccessMessage('0.1') : parseKovanMessage(rawMessage);
 
   return {
     statusCode,
-    body: { description, message },
+    body: { description, message, txHash },
   };
 }
 
