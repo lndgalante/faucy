@@ -84,7 +84,6 @@ TBD
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Add feedback component on footer
-- [ ] (Frontend) Add will-change transform to radio buttons
 - [ ] (Frontend) Add timeout (serviceDuration + 30s) to POST call
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
@@ -117,6 +116,7 @@ TBD
 - [x] (Frontend) Replace react hook form to Formik
 - [x] (Frontend) Split logic into custom hooks / constate
 - [x] (Frontend) Add Transaction notification (bnc-notify)
+- [x] (Frontend) Add will-change transform to radio buttons
 - [x] (Frontend) Support for No Provider / Fix useEffect warnings
 - [x] (Frontend) Remove ethers selector to avoid one more form step
 - [x] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
