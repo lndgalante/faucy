@@ -13,6 +13,7 @@ import {
   FormErrorMessage,
   useColorMode,
 } from '@chakra-ui/core';
+import Notify from 'bnc-notify';
 
 // UI Components
 import { SEO } from '../ui/components/Seo';
@@ -31,9 +32,12 @@ import { useFaucetNetwork } from '../hooks/useFaucetNetwork';
 import { useAnimatedCoins } from '../hooks/useAnimatedCoins';
 
 // Utils
-import { services } from '../utils/services';
-import { NETWORKS } from '../utils/constants';
+import { getNetworkService } from '../utils/services';
 import { validateAddress } from '../utils/validators';
+import { NETWORKS, getNetworkId } from '../utils/constants';
+
+// Constants
+const { GATSBY_BLOCKNATIVE_API_KEY } = process.env;
 
 const HomePage = () => {
   // React hooks
@@ -55,12 +59,14 @@ const HomePage = () => {
       setIsLoading(true);
       displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`);
 
-      const networkService = services[userNetwork];
+      const notify = Notify({ dappId: GATSBY_BLOCKNATIVE_API_KEY, networkId: getNetworkId(userNetwork) });
+      const networkService = getNetworkService(userNetwork);
       const { body } = await networkService(userAddress);
 
       playSuccessSound({});
       displaySuccessMessage(body.message);
-      console.info(`Etherscan link: ${faucetNetwork.createEtherscanLink(body.txHash)}`);
+      notify.hash(body.txHash);
+      // console.info(`Etherscan link: ${faucetNetwork.createEtherscanLink(body.txHash)}`);
     } catch (error) {
       const { body } = JSON.parse(error.message);
       playErrorSound({});
@@ -156,8 +162,7 @@ const HomePage = () => {
                 _active={{ boxShadow: 'md' }}
                 _hover={{ boxShadow: 'sm' }}
                 d="flex"
-                disabled={!faucetNetwork || !values.userAddress}
-                isDisabled={!values.userNetwork}
+                isDisabled={!values.userNetwork || !values.userAddress}
                 isLoading={isLoading}
                 loadingText="Getting ethers"
                 size="md"
