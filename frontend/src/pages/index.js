@@ -157,6 +157,7 @@ const HomePage = () => {
                   roundedLeft="0"
                   value={values.userAddress}
                   onChange={handleChange}
+                  _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
                 />
               </InputGroup>
 
