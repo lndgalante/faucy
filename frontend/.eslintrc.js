@@ -1,11 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    'react-app',
-    'plugin:prettier/recommended',
-    'plugin:cypress/recommended',
-    'prettier/react',
-  ],
+  extends: ['react-app', 'plugin:prettier/recommended', 'plugin:cypress/recommended', 'prettier/react'],
   plugins: ['cypress', 'react-hooks'],
   env: {
     'cypress/globals': true,
@@ -23,8 +18,7 @@ module.exports = {
           ['pages', './src/pages/'],
           ['utils', './src/utils/'],
           ['components', './src/components/'],
-          ['session', './src/session/'],
-          ['images', './src/images/'],
+          ['hooks', './src/hooks/'],
         ],
         extensions: ['.js'],
       },
@@ -66,4 +60,4 @@ module.exports = {
       },
     ],
   },
-}
+};
