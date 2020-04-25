@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Box, Link, Button, PseudoBox, Textarea, Text } from '@chakra-ui/core';
-import { FaGithub, FaHeart } from 'react-icons/fa';
+import { FaGithub, FaHeart, FaComment } from 'react-icons/fa';
 import useOnClickOutside from 'use-onclickoutside';
 
 const emojis = [
@@ -88,7 +88,7 @@ export const Footer = ({ colorMode }) => {
           variant="ghost"
           onClick={() => setIsFeedbackOpen(!isFeedbackOpen)}
         >
-          Feedback
+          Feedback <Box as={FaComment} d="inline" ml={2} size="14px" />
         </Button>
         <Box
           ref={ref}
