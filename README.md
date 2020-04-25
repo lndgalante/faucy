@@ -88,8 +88,8 @@ TBD
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
-- [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Backend) Move over microservices with a GraphQL middleman
+- [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Sentry error logger
 - [ ] (Frontend/Backend) Add Docker to run entire project
@@ -123,6 +123,7 @@ TBD
 - [x] (Frontend) Add React Hook Form and Yup validations
 - [x] (Backend) Add support for Rinkeby
 - [x] (Backend) Wrap response data into body object
+- [x] (Backend) Improve CORS setup for prod and dev url
 - [x] (Backend) Add development script
 - [x] (Backend) Trigger POST to Goerli url
 - [x] (Backend) Add support for Ropsten
