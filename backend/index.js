@@ -9,6 +9,7 @@ const { kovanController } = require('./modules/kovan/controller');
 const { goerliController } = require('./modules/goerli/controller');
 const { ropstenController } = require('./modules/ropsten/controller');
 const { rinkebyController } = require('./modules/rinkeby/controller');
+const { demoController } = require('./modules/demo/controller');
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -21,6 +22,7 @@ app.post('/kovan', kovanController);
 app.post('/goerli', goerliController);
 app.post('/ropsten', ropstenController);
 app.post('/rinkeby', rinkebyController);
+app.post('/demo', demoController);
 
 // Express - Listen
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
