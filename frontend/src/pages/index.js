@@ -101,13 +101,13 @@ const HomePage = () => {
     <Box alignItems="center" d="flex" height="100vh" justifyContent="center" p={4} w="100%">
       <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : ''}`} />
 
-      <Box maxWidth="606px" width="100%">
+      <Box maxWidth="612px" width="100%">
         <Text as="h1" fontSize="4xl" fontWeight={600} pb={4} onClick={toggleColorMode}>
           Faucy
         </Text>
 
         <form onSubmit={handleSubmit}>
-          <Box maxWidth={['auto', 'auto', '462px']}>
+          <Box maxWidth={['auto', 'auto', '466px']}>
             <FormLabel mb={1}>Choose your network:</FormLabel>
 
             <RadioButtonGroup
@@ -133,6 +133,7 @@ const HomePage = () => {
                   textTransform="uppercase"
                   value={value}
                   willChange="transform"
+                  _focus={{ boxShadow: 'none' }}
                 >
                   {label}
                 </Radio>
@@ -140,7 +141,7 @@ const HomePage = () => {
             </RadioButtonGroup>
           </Box>
 
-          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 462px) auto']}>
+          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 466px) auto']}>
             <FormControl isDisabled={!faucetNetwork} isInvalid={errors.userAddress && touched.userAddress}>
               <FormLabel htmlFor="userAddress" mb={1}>
                 Insert your address:
@@ -199,7 +200,7 @@ const HomePage = () => {
         </form>
       </Box>
 
-      <Footer colorMode={colorMode} faucetLink={faucetNetwork?.faucetLink} />
+      <Footer colorMode={colorMode} />
     </Box>
   );
 };
