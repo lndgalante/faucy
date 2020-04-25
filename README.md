@@ -13,7 +13,7 @@
 ## Features
 
 - 🔋 PWA Support
-- 🦮 Accessibilty First
+- 🦮 Accessibility First
 - 🌚 Dark Mode Support
 - ⚡ 100/100 LightHouse Audits
 - ⏰ Displays transaction status (using [Notify.js](https://docs.blocknative.com/notify))
@@ -122,6 +122,7 @@ TBD
 - [x] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [x] (Frontend) Add React Hook Form and Yup validations
 - [x] (Backend) Add support for Rinkeby
+- [x] (Backend) Add reusable network controller
 - [x] (Backend) Wrap response data into body object
 - [x] (Backend) Improve CORS setup for prod and dev url
 - [x] (Backend) Add development script
