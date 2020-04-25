@@ -87,7 +87,6 @@ TBD
 - [ ] (Frontend) Add timeout (serviceDuration + 30s) to POST call
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
-- [ ] (Backend) Change faucet urls to environment variables
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
 - [ ] (Backend) Improve CORS setup for prod and dev url
 - [ ] (Backend) Move over microservices with a GraphQL middleman
@@ -129,6 +128,7 @@ TBD
 - [x] (Backend) Add support for Ropsten
 - [x] (Backend) Add support for Kovan
 - [x] (Backend) Add support for Goerli
+- [x] (Backend) Change faucet urls to environment variables
 - [x] (Backend) New proxy for Ropsten service on each request
 - [x] (Frontend/Backend) Add ESLint rules
 - [x] (Frontend/Backend) Add script to run both projects in development mode
