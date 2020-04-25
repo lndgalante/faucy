@@ -140,4 +140,4 @@ TBD
 
 - Adaptation with Truffle suite
 - Generate API_KEY to use API directly
-- Display another Tokens that are in that testnet
+- Display other Tokens that are in that testnet
