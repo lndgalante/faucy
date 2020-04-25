@@ -15,7 +15,7 @@ function getCorsOptions() {
 
   const corsOptions = {
     origin(origin, callback) {
-      return whitelist.includes(origin) ? callback(null, true) : callback(new Error('Not allowed by CORS'));
+      whitelist.includes(origin) ? callback(null, true) : callback(new Error('Not allowed by CORS'));
     },
   };
 
@@ -25,7 +25,7 @@ function getCorsOptions() {
 function setupExpressApp() {
   const app = express();
 
-  app.use(cors(getCorsOptions()));
+  app.use(cors());
   app.use(helmet());
 
   app.use(bodyParser.json());
