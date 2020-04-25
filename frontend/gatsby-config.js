@@ -29,8 +29,8 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: { fonts: [{ family: `Inter`, variants: [`400`, `500`, `600`] }] },
+      resolve: `gatsby-plugin-google-fonts`,
+      options: { fonts: [`Inter\:400,500,600`], display: 'swap' },
     },
   ],
 };
