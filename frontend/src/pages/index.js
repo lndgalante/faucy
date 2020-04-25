@@ -124,6 +124,7 @@ const HomePage = () => {
                 <Radio
                   key={value}
                   _active={{ boxShadow: 'md' }}
+                  _focus={{ boxShadow: 'none' }}
                   _hover={{ transform: 'translate3d(0, -1px, 0)' }}
                   flex="1"
                   fontSize={'sm'}
@@ -133,7 +134,6 @@ const HomePage = () => {
                   textTransform="uppercase"
                   value={value}
                   willChange="transform"
-                  _focus={{ boxShadow: 'none' }}
                 >
                   {label}
                 </Radio>
@@ -150,6 +150,7 @@ const HomePage = () => {
               <InputGroup>
                 <InputLeftAddon children="0x" />
                 <Input
+                  _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
                   aria-label="Insert your address"
                   isInvalid={Boolean(errors.userAddress && touched.userAddress)}
                   maxLength={40}
@@ -158,7 +159,6 @@ const HomePage = () => {
                   roundedLeft="0"
                   value={values.userAddress}
                   onChange={handleChange}
-                  _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
                 />
               </InputGroup>
 

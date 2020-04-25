@@ -12,25 +12,25 @@ const emojis = [
 
 const Emoji = ({ colorMode, id, emoji, selected, onEmojiClick }) => (
   <PseudoBox
-    fontSize={'lg'}
-    willChange="transform"
-    transition="all .2s cubic-bezier(.5,-1,.5,2)"
+    _hover={{ transform: 'scale(1.08)' }}
+    alignItems="center"
+    borderColor={selected ? '#319795' : colorMode === 'light' ? 'gray.300' : 'gray.400'}
     borderRadius="50%"
     borderWidth="1px"
-    width="31px"
-    height="31px"
-    d="inline-flex"
-    justifyContent="center"
-    alignItems="center"
     cursor="pointer"
+    d="inline-flex"
+    fontSize={'lg'}
+    height="31px"
+    justifyContent="center"
     mr={2}
-    borderColor={selected ? '#319795' : colorMode === 'light' ? 'gray.300' : 'gray.400'}
-    transformOrigin="center center"
-    _hover={{ transform: 'scale(1.08)' }}
-    onClick={() => onEmojiClick(id)}
     transform={selected ? 'scale(1.08)' : ''}
+    transformOrigin="center center"
+    transition="all .2s cubic-bezier(.5,-1,.5,2)"
+    width="31px"
+    willChange="transform"
+    onClick={() => onEmojiClick(id)}
   >
-    <Box d="inline-block" width="18px" height="25px">
+    <Box d="inline-block" height="25px" width="18px">
       {emoji}
     </Box>
   </PseudoBox>
@@ -44,13 +44,13 @@ const EmojiPalette = ({ colorMode }) => {
     <Box flex="1">
       {emojis.map((emoji) => (
         <Emoji
-          colorMode={colorMode}
           key={emoji.id}
-          id={emoji.id}
+          colorMode={colorMode}
           emoji={emoji.value}
+          id={emoji.id}
           selected={selectedEmoji === emoji.id}
           onEmojiClick={handleEmojiClick}
-        ></Emoji>
+        />
       ))}
     </Box>
   );
@@ -82,40 +82,40 @@ export const Footer = ({ colorMode }) => {
       </Link>
       <Box position="relative">
         <Button
-          fontWeight={500}
-          fontSize="md"
+          _focus={{ boxShadow: 'none' }}
+          fontSize="sm"
+          fontWeight={400}
           variant="ghost"
           onClick={() => setIsFeedbackOpen(!isFeedbackOpen)}
-          _focus={{ boxShadow: 'none' }}
         >
           Feedback
         </Button>
         <Box
           ref={ref}
-          position="absolute"
-          bottom={'0'}
-          right={'0'}
-          width="339px"
-          d={isFeedbackOpen ? 'block' : 'none'}
+          bg={colorMode === 'light' ? 'white' : 'gray.700'}
           borderRadius="md"
+          bottom={'0'}
           boxShadow="xl"
+          d={isFeedbackOpen ? 'block' : 'none'}
           pb={1}
+          position="absolute"
           pt={2}
           px={2}
-          bg={colorMode === 'light' ? 'white' : 'gray.700'}
+          right={'0'}
+          width="339px"
         >
-          <Text mb={2} fontSize="sm" textTransform="uppercase">
+          <Text fontSize="sm" mb={2} textTransform="uppercase">
             Feedback
           </Text>
           <Textarea
+            _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
+            borderRadius="md"
             height="124px"
             placeholder="Your feedback..."
-            size="sm"
-            borderRadius="md"
             resize={'none'}
-            _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
+            size="sm"
           />
-          <Box d="flex" alignItems="center" px={1} py={3}>
+          <Box alignItems="center" d="flex" px={1} py={3}>
             <EmojiPalette colorMode={colorMode} />
             <Button size="sm" onClick={() => setIsFeedbackOpen(!isFeedbackOpen)}>
               Send
