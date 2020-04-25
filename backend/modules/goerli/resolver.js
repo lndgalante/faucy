@@ -8,7 +8,7 @@ const { GOERLI_FAUCET_URL } = process.env;
 
 async function getGoerliEth({ address }) {
   // Launch a new browser
-  const browser = await getBrowser();
+  const browser = getBrowser();
   const page = await browser.newPage();
 
   // Go to Faucet url

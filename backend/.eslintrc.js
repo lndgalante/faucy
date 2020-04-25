@@ -15,7 +15,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'object-curly-newline': 0,
-    'implicit-arrow-linebreak': 0
+    'implicit-arrow-linebreak': 0,
   },
   plugins: ['prettier'],
 };
