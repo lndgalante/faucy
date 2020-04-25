@@ -14,7 +14,7 @@ async function getRinkebyEth({ address }) {
   const FAUCET_SUCCESS_OUTPUT_SELECTOR = 'h3:nth-of-type(2)';
 
   // Launch a new browser
-  const browser = getBrowser();
+  const browser = await getBrowser();
   const page = await browser.newPage();
 
   // Go to Faucet url

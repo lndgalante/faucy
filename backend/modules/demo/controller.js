@@ -6,7 +6,7 @@ const demoController = async (req, res) => {
   console.log('hola');
 
   // Launch a new browser
-  const browser = getBrowser();
+  const browser = await getBrowser();
   const page = await browser.newPage();
 
   // Go to Faucet url

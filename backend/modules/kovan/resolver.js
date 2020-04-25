@@ -13,7 +13,7 @@ async function getKovanEth({ address }) {
   const ETHERSCAN_LINK_SELECTOR = '#faucetOutput a';
 
   // Launch a new browser
-  const browser = getBrowser();
+  const browser = await getBrowser();
   const page = await browser.newPage();
 
   // Go to Faucet url
