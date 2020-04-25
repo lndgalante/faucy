@@ -2,10 +2,10 @@
 const { getBrowser } = require('../../utils/puppeteer');
 const { addressRegexp, parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
 
-async function getKovanEth({ address }) {
-  // Constants - Urls
-  const KOVAN_FAUCET_URL = 'https://kovan.faucet.enjin.io';
+// Constants
+const { KOVAN_FAUCET_URL } = process.env;
 
+async function getKovanEth({ address }) {
   // Constants - DOM Selectors
   const BUTTON_SEND_SELECTOR = 'button';
   const INPUT_ADDRESS_SELECTOR = 'input';

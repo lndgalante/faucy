@@ -2,10 +2,10 @@
 const { getBrowser } = require('../../utils/puppeteer');
 const { addressRegex, createSuccessMessage } = require('../../utils/strings');
 
-async function getRinkebyEth({ address }) {
-  // Constants - Urls
-  const RINKEBY_FAUCET_URL = 'http://rinkeby-faucet.com';
+// Constants
+const { RINKEBY_FAUCET_URL } = process.env;
 
+async function getRinkebyEth({ address }) {
   // Constants - DOM Selectors
   const BUTTON_SEND_SELECTOR = 'button';
   const INPUT_ADDRESS_SELECTOR = 'input';

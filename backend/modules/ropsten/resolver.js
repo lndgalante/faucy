@@ -6,9 +6,12 @@ const capitalize = require('lodash.capitalize');
 const { wretch } = require('../../utils/fetch');
 const { createSuccessMessage } = require('../../utils/strings');
 
+// Constants
+const { ROPSTEN_FAUCET_URL } = process.env;
+
 async function getRopstenEth({ address }) {
   try {
-    const response = await wretch(`https://faucet.ropsten.be/donate/${address}`).get().res();
+    const response = await wretch(`${ROPSTEN_FAUCET_URL}/${address}`).get().res();
     const { amount, txhash: txHash, address: userAddress } = await response.json();
     const ethers = unit.fromWei(amount, 'ether');
 

@@ -3,10 +3,10 @@ const { wretch } = require('../../utils/fetch');
 const { getBrowser } = require('../../utils/puppeteer');
 const { createSuccessMessage } = require('../../utils/strings');
 
-async function getGoerliEth({ address }) {
-  // Constants - Urls
-  const GOERLI_FAUCET_URL = 'https://goerli-faucet.slock.it';
+// Constants
+const { GOERLI_FAUCET_URL } = process.env;
 
+async function getGoerliEth({ address }) {
   // Launch a new browser
   const browser = await getBrowser();
   const page = await browser.newPage();
