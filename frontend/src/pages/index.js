@@ -72,7 +72,7 @@ const HomePage = () => {
     } catch (error) {
       const { body } = JSON.parse(error.message);
       playErrorSound({});
-      displayErrorMessage(body.message);
+      displayErrorMessage(body ? body.message : `Ups! Something went wrong, please try again later...`);
     } finally {
       setIsLoading(false);
     }
@@ -175,7 +175,6 @@ const HomePage = () => {
                 d="flex"
                 isDisabled={!values.userNetwork || !values.userAddress}
                 isLoading={isLoading}
-                loadingText="Getting ethers"
                 size="md"
                 type="submit"
                 variantColor="gray"
