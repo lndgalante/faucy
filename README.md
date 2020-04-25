@@ -83,7 +83,7 @@ TBD
 
 - [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
 - [ ] (Frontend) Add E2E tests for each network
-- [ ] (Frontend) Add feedback component on footer
+- [ ] (Frontend) Connect feedback component to StaticKit
 - [ ] (Frontend) Add timeout (serviceDuration + 30s) to POST call
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
@@ -113,6 +113,7 @@ TBD
 - [x] (Frontend) Lighthouse Audits
 - [x] (Frontend) Display etherscan link
 - [x] (Frontend) Update title to "faucy.eth"
+- [x] (Frontend) Add feedback component on footer
 - [x] (Frontend) Replace react hook form to Formik
 - [x] (Frontend) Split logic into custom hooks / constate
 - [x] (Frontend) Add Transaction notification (bnc-notify)
