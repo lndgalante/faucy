@@ -88,7 +88,6 @@ TBD
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
 - [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
-- [ ] (Backend) Move over microservices with a GraphQL middleman
 - [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Sentry error logger
@@ -105,7 +104,6 @@ TBD
 - [ ] (Marketing) Release/Feedback to/from friend companies
 - [ ] (Docs) Add supported browsers table section
 - [ ] (Docs) Add how to contribute section
-- [ ] (Docs) Add license section
 
 ## Done:
 
@@ -122,6 +120,7 @@ TBD
 - [x] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
 - [x] (Frontend) Add React Hook Form and Yup validations
 - [x] (Backend) Add support for Rinkeby
+- [x] (Backend) Move over microservices in AWS
 - [x] (Backend) Add reusable network controller
 - [x] (Backend) Wrap response data into body object
 - [x] (Backend) Improve CORS setup for prod and dev url
@@ -135,9 +134,14 @@ TBD
 - [x] (Frontend/Backend) Add ESLint rules
 - [x] (Frontend/Backend) Add script to run both projects in development mode
 - [x] (Docs) Add frontend/backend/services stack
+- [x] (Docs) Add license section
 
 ## Feedback:
 
 - Adaptation with Truffle suite
 - Generate API_KEY to use API directly
 - Display other Tokens that are in that testnet
+
+### License
+
+MIT © **[`Xivis`](https://xivis.com)**
