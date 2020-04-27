@@ -85,9 +85,16 @@ const HomePage = () => {
     initialValues: { userNetwork: '', userAddress: '' },
   });
 
-  // Formik handlers
+  // Handlers - Formik
   const handleUserAddressChange = useCallback((value) => setFieldValue('userAddress', value), [setFieldValue]);
   const handleUserNetworkChange = useCallback((value) => setFieldValue('userNetwork', value), [setFieldValue]);
+
+  // Handlers - React
+  const handleAddressPaste = (event) => {
+    event.preventDefault();
+    const text = event.clipboardData.getData('Text');
+    handleUserAddressChange(text.toLowerCase().startsWith('0x') ? text.slice(2) : text);
+  };
 
   // Web3 hooks
   const web3Provider = useWeb3Provider();
@@ -159,6 +166,7 @@ const HomePage = () => {
                   roundedLeft="0"
                   value={values.userAddress}
                   onChange={handleChange}
+                  onPaste={handleAddressPaste}
                 />
               </InputGroup>
 
