@@ -82,14 +82,13 @@ TBD
 
 ## Todo:
 
-- [ ] (Frontend) Deploy to [Fleek](https://fleek.co)
+- [ ] (Backend) Add Proxy to Browserless
+- [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Connect feedback component to StaticKit
 - [ ] (Frontend) Add timeout (serviceDuration + 30s) to POST call
 - [ ] (Frontend) Display output data on a div and not through toasts
 - [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
-- [ ] (Backend) Deploy to [Heroku](https://www.heroku.com)
-- [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Sentry error logger
 - [ ] (Frontend/Backend) Add Docker to run entire project
@@ -101,41 +100,11 @@ TBD
 - [ ] (Frontend/Backend) GunDB: Save successful operations to display [stats](https://i.ibb.co/HGZtYrH/Captura-de-Pantalla-2020-04-21-a-la-s-17-54-03.png) afterwards
 - [ ] (Design) Review entire UI/UX with Emilia
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
+- [ ] (Marketing) Think about bussiness model
 - [ ] (Marketing) Add "Who is using it?" in GitHub
 - [ ] (Marketing) Release/Feedback to/from friend companies
 - [ ] (Docs) Add supported browsers table section
 - [ ] (Docs) Add how to contribute section
-
-## Done:
-
-- [x] (Frontend) Lighthouse Audits
-- [x] (Frontend) Display etherscan link
-- [x] (Frontend) Update title to "faucy.eth"
-- [x] (Frontend) Add feedback component on footer
-- [x] (Frontend) Replace react hook form to Formik
-- [x] (Frontend) Split logic into custom hooks / constate
-- [x] (Frontend) Add Transaction notification (bnc-notify)
-- [x] (Frontend) Add will-change transform to radio buttons
-- [x] (Frontend) Support for No Provider / Fix useEffect warnings
-- [x] (Frontend) Remove ethers selector to avoid one more form step
-- [x] (Frontend) Add lottie with [coins](https://icons8.com/animated-icons/coins) animations to Send Eth
-- [x] (Frontend) Add React Hook Form and Yup validations
-- [x] (Backend) Add support for Rinkeby
-- [x] (Backend) Move over microservices in AWS
-- [x] (Backend) Add reusable network controller
-- [x] (Backend) Wrap response data into body object
-- [x] (Backend) Improve CORS setup for prod and dev url
-- [x] (Backend) Add development script
-- [x] (Backend) Trigger POST to Goerli url
-- [x] (Backend) Add support for Ropsten
-- [x] (Backend) Add support for Kovan
-- [x] (Backend) Add support for Goerli
-- [x] (Backend) Change faucet urls to environment variables
-- [x] (Backend) New proxy for Ropsten service on each request
-- [x] (Frontend/Backend) Add ESLint rules
-- [x] (Frontend/Backend) Add script to run both projects in development mode
-- [x] (Docs) Add frontend/backend/services stack
-- [x] (Docs) Add license section
 
 ## Feedback:
 
