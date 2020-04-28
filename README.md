@@ -70,37 +70,46 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - May 2020 👉 Internal release
 - June 2020 👉 Official release
 
-## Todo:
+## Todo Alpha:
 
 - [ ] (Backend) Add Proxy to Browserless
+- [ ] (Frontend) Connect feedback component
+- [ ] (Frontend/Backend) Add Sentry error logger
+
+## Todo Beta:
+
 - [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Frontend) Add E2E tests for each network
-- [ ] (Frontend) Connect feedback component to StaticKit
-- [ ] (Frontend) Add timeout (serviceDuration + 30s) to POST call
-- [ ] (Frontend) Display output data on a div and not through toasts
-- [ ] (Frontend) Get ideas from [Aragon UI](https://ui.aragon.org/) components
+- [ ] (Frontend) Display output data avoiding toasts
+- [ ] (Marketing) Release/Feedback to/from friend companies
+
+## Todo RC:
+
 - [ ] (Frontend/Backend) Add TypeScript support
-- [ ] (Frontend/Backend) Add Sentry error logger
 - [ ] (Frontend/Backend) Add Docker to run entire project
-- [ ] (Frontend/Backend) Add status page for each network service
+- [ ] (Marketing) Eth weekly / DappHero docs / Twitter
+
+## Todo future features:
+
 - [ ] (Frontend/Backend) GunDB: Save each request on frontend, and send id in the body
 - [ ] (Frontend/Backend) GunDB: Display the latest ongoing [request](https://i.ibb.co/c1v6SzK/Captura-de-Pantalla-2020-04-21-a-la-s-17-56-42.png)
 - [ ] (Frontend/Backend) GunDB: Update request on the server when the operation it's finished
 - [ ] (Frontend/Backend) GunDB: Allow only one operation per network at a time
 - [ ] (Frontend/Backend) GunDB: Save successful operations to display [stats](https://i.ibb.co/HGZtYrH/Captura-de-Pantalla-2020-04-21-a-la-s-17-54-03.png) afterwards
-- [ ] (Design) Review entire UI/UX with Emilia
-- [ ] (Marketing) Eth weekly / DappHero docs / Twitter
-- [ ] (Marketing) Think about bussiness model
-- [ ] (Marketing) Add "Who is using it?" in GitHub
-- [ ] (Marketing) Release/Feedback to/from friend companies
-- [ ] (Docs) Add supported browsers table section
-- [ ] (Docs) Add how to contribute section
 
 ## Feedback:
 
 - Adaptation with Truffle suite
 - Generate API_KEY to use API directly
 - Display other Tokens that are in that testnet
+
+## Who is using it?
+
+TBD
+
+## How to Contribute
+
+TBD
 
 ## Contributors
 
