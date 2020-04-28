@@ -21,6 +21,7 @@
     "puppeteer": "^3.0.1",
     "puppeteer-extra": "^3.1.9",
     "puppeteer-extra-plugin-recaptcha": "^3.1.10",
+    "query-string": "^6.12.1",
     "wretch": "^1.7.2"
   },
   "devDependencies": {
