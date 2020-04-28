@@ -79,9 +79,10 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
 ## Todo Beta:
 
-- [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
+- [ ] (Frontend) Connect Chainbeat analytics
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Frontend) Display output data avoiding toasts
+- [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Marketing) Release/Feedback to/from friend companies
 
 ## Todo RC:
