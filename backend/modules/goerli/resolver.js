@@ -24,6 +24,9 @@ async function getGoerliEth({ address }) {
     .json();
   const { code: statusCode, title, message: extraMessage, txHash } = success;
 
+  // Close browser
+  browser.close();
+
   return {
     statusCode,
     body: {

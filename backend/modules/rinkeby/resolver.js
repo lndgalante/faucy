@@ -11,7 +11,6 @@ async function getRinkebyEth({ address }) {
   const INPUT_ADDRESS_SELECTOR = 'input';
   const FAUCET_ERROR_OUTPUT_SELECTOR = 'body';
   const FAUCET_MESSAGE_SELECTOR = 'p:last-of-type';
-  const FAUCET_SUCCESS_OUTPUT_SELECTOR = 'h3:nth-of-type(2)';
 
   // Launch a new browser
   const browser = await getBrowser();
@@ -39,17 +38,14 @@ async function getRinkebyEth({ address }) {
       FAUCET_ERROR_OUTPUT_SELECTOR,
     );
 
+    // Close browser
+    browser.close();
+
     return {
       statusCode: 401,
       body: { message: errorMessage },
     };
   }
-
-  // Get success message
-  const successMessage = await page.evaluate(
-    (selector) => document.querySelector(selector).textContent,
-    FAUCET_SUCCESS_OUTPUT_SELECTOR,
-  );
 
   // Get text message
   const textMessage = await page.evaluate(
@@ -59,6 +55,9 @@ async function getRinkebyEth({ address }) {
 
   // Get transaction hash
   const [txHash] = textMessage.match(addressRegex) || [];
+
+  // Close browser
+  browser.close();
 
   return {
     statusCode: 200,

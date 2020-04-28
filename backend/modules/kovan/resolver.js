@@ -50,6 +50,9 @@ async function getKovanEth({ address }) {
   // Parse message
   const message = statusCode === '200' ? createSuccessMessage('0.1') : parseKovanMessage(rawMessage);
 
+  // Close browser
+  browser.close();
+
   return {
     statusCode,
     body: { description, message, txHash },
