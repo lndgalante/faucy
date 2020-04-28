@@ -75,6 +75,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - [ ] (Backend) Add Proxy to Browserless
 - [ ] (Frontend) Connect feedback component
 - [ ] (Frontend/Backend) Add Sentry error logger
+- [ ] (Marketing) Internal Slack channel
 
 ## Todo Beta:
 
@@ -85,6 +86,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
 ## Todo RC:
 
+- [ ] (Frontend) Add dark mode to Notify.js toast
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Docker to run entire project
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
