@@ -75,7 +75,6 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - [ ] (Backend) Add Proxy to Browserless
 - [ ] (Frontend) Connect feedback component
 - [ ] (Frontend/Backend) Add Sentry error logger
-- [ ] (Marketing) Internal Slack channel
 
 ## Todo Beta:
 
