@@ -162,7 +162,7 @@ const HomePage = () => {
                   isInvalid={Boolean(errors.userAddress && touched.userAddress)}
                   maxLength={40}
                   name="userAddress"
-                  placeholder="0x0000000000000000000000000000000000000000"
+                  placeholder="0000000000000000000000000000000000000000"
                   roundedLeft="0"
                   value={values.userAddress}
                   onChange={handleChange}
