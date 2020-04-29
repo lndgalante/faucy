@@ -1,6 +1,6 @@
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
-const { addressRegexp, parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
+const { addressRegex, parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
 
 // Constants
 const { KOVAN_FAUCET_URL } = process.env;
@@ -41,7 +41,7 @@ async function getKovanEth({ address }) {
   const [txHash] = await page.evaluate((selector) => {
     const anchor = document.querySelector(selector);
     if (!anchor) return [];
-    return (anchor.getAttribute('href') || '').match(addressRegexp) || [];
+    return (anchor.getAttribute('href') || '').match(addressRegex) || [];
   }, ETHERSCAN_LINK_SELECTOR);
 
   // Get status code
