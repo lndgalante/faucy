@@ -8,11 +8,12 @@ const { createSuccessMessage } = require('../../utils/strings');
 
 // Constants
 const { ROPSTEN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
-const agent = new Luminator(PROXY_USERNAME, PROXY_PASSWORD);
 
 async function getRopstenEth({ address }) {
   try {
+    const agent = new Luminator(PROXY_USERNAME, PROXY_PASSWORD);
     const { data } = await agent.fetch({ method: 'get', url: `${ROPSTEN_FAUCET_URL}/${address}` });
+
     const { amount, txhash: txHash, address: userAddress } = data;
     const ethers = unit.fromWei(amount, 'ether');
 
