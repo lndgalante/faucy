@@ -13,13 +13,16 @@
 ## Features
 
 - 🔋 PWA Support
+- 🐙 100% Open Source
+- ⏰ Displays transaction status (using [Notify.js](https://docs.blocknative.com/notify))
+- 🔗 Address and Network in-sync with your Web3 Provider (using [Ethers.js](https://github.com/ethers-io/ethers.js))
+
+## Goodies
+
 - 🦮 Accessibility First
 - 🌚 Dark Mode Support
-- ⚡ 100/100 LightHouse Audits
-- ⏰ Displays transaction status (using [Notify.js](https://docs.blocknative.com/notify))
 - 📦 Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
 - ☁️ Fast and reliable microservices solution (using [AWS](https://aws.amazon.com))
-- 🔗 Address and Network inputs in-sync with your Web3 Provider (using [Ethers.js](https://github.com/ethers-io/ethers.js))
 
 ## Supported Networks
 
