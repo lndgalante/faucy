@@ -81,7 +81,6 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
 ## Todo Alpha:
 
-- [ ] (Backend) Add Proxy to Browserless
 - [ ] (Frontend) Connect feedback component
 
 ## Todo Beta:
