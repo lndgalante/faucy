@@ -1,3 +1,11 @@
+const dotenv = require('dotenv');
+
+// Dotenv
+dotenv.config();
+
+// Environment
+const { NODE_ENV, SENTRY_DSN } = process.env;
+
 module.exports = {
   siteMetadata: {
     title: `Faucy.eth`,
@@ -9,6 +17,13 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-chakra-ui`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-sentry`,
+      options: {
+        dsn: SENTRY_DSN,
+        environment: NODE_ENV,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
