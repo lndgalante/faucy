@@ -3,7 +3,7 @@ const { getBrowser } = require('../../utils/puppeteer');
 const { addressRegex, parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
 
 // Constants
-const { KOVAN_FAUCET_URL } = process.env;
+const { KOVAN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
 
 async function getKovanEth({ address }) {
   // Constants - DOM Selectors
@@ -15,6 +15,9 @@ async function getKovanEth({ address }) {
   // Launch a new browser
   const browser = await getBrowser();
   const page = await browser.newPage();
+
+  // Authenticate proxy
+  await page.authenticate({ username: PROXY_USERNAME, password: PROXY_PASSWORD });
 
   // Go to Faucet url
   await page.goto(KOVAN_FAUCET_URL);
@@ -38,11 +41,15 @@ async function getKovanEth({ address }) {
     FAUCET_OUTPUT_SELECTOR,
   );
 
-  const [txHash] = await page.evaluate((selector) => {
-    const anchor = document.querySelector(selector);
-    if (!anchor) return [];
-    return (anchor.getAttribute('href') || '').match(addressRegex) || [];
-  }, ETHERSCAN_LINK_SELECTOR);
+  const [txHash] = await page.evaluate(
+    (selector, addressRegex) => {
+      const anchor = document.querySelector(selector);
+      if (!anchor) return [];
+      return (anchor.getAttribute('href') || '').match(addressRegex) || [];
+    },
+    ETHERSCAN_LINK_SELECTOR,
+    addressRegex,
+  );
 
   // Get status code
   const [statusCode] = description.match(/\d+/g) || [];
