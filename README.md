@@ -25,10 +25,10 @@
 
 | Network | Avoid IP Block | Status |
 | ------- | -------------- | ------ |
-| Ropsten | ❌             | ✅     |
+| Ropsten | ✅             | ✅     |
 | Kovan   | ✅             | ✅     |
-| Rinkeby | ❌             | ❌     |
-| Goerli  | ❌             | ✅     |
+| Rinkeby | ✅             | ✅     |
+| Goerli  | ✅             | ✅     |
 
 ## Development
 
