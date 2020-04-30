@@ -109,9 +109,14 @@ const HomePage = () => {
       <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : ''}`} />
 
       <Box maxWidth="612px" width="100%">
-        <Text as="h1" fontSize="4xl" fontWeight={600} pb={4} onClick={toggleColorMode}>
-          Faucy
-        </Text>
+        <Box alignItems="baseline" d="flex" onClick={toggleColorMode}>
+          <Text as="h1" fontSize="4xl" fontWeight={600} pb={4}>
+            Faucy
+          </Text>
+          <Text as="h2" fontSize="md" fontWeight={400} ml={1}>
+            (alpha)
+          </Text>
+        </Box>
 
         <form onSubmit={handleSubmit}>
           <Box maxWidth={['auto', 'auto', '466px']}>
