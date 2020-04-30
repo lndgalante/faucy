@@ -21,6 +21,15 @@
 - ☁️ Fast and reliable microservices solution (using [AWS](https://aws.amazon.com))
 - 🔗 Address and Network inputs in-sync with your Web3 Provider (using [Ethers.js](https://github.com/ethers-io/ethers.js))
 
+## Supported Networks
+
+| Network | Avoid IP Block | Status |
+| ------- | -------------- | ------ |
+| Ropsten | ❌             | ✅     |
+| Kovan   | ✅             | ✅     |
+| Rinkeby | ❌             | ❌     |
+| Goerli  | ❌             | ✅     |
+
 ## Development
 
 1. Install all dependencies
