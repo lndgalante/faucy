@@ -3,7 +3,7 @@ const { getBrowser } = require('../../utils/puppeteer');
 const { addressRegex, createSuccessMessage } = require('../../utils/strings');
 
 // Constants
-const { RINKEBY_FAUCET_URL } = process.env;
+const { RINKEBY_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
 
 async function getRinkebyEth({ address }) {
   // Constants - DOM Selectors
@@ -15,6 +15,9 @@ async function getRinkebyEth({ address }) {
   // Launch a new browser
   const browser = await getBrowser();
   const page = await browser.newPage();
+
+  // Authenticate proxy
+  await page.authenticate({ username: PROXY_USERNAME, password: PROXY_PASSWORD });
 
   // Go to Faucet url
   await page.goto(RINKEBY_FAUCET_URL);

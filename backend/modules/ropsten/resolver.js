@@ -29,7 +29,11 @@ async function getRopstenEth({ address }) {
 
     return {
       statusCode: status,
-      body: { message: `${capitalize(message)}. Your greylisted duration is for ${ms(duration)}.` },
+      body: {
+        message: `${capitalize(message)}. Your greylisted duration is for ${ms(
+          duration,
+        )}. In the meanwhile you can use it with another account.`,
+      },
     };
   }
 }
