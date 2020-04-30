@@ -1,18 +1,19 @@
 const ms = require('ms');
 const unit = require('ethjs-unit');
 const capitalize = require('lodash.capitalize');
+const { Luminator } = require('@tictactrip/luminator');
 
 // Utils
-const { wretch } = require('../../utils/fetch');
 const { createSuccessMessage } = require('../../utils/strings');
 
 // Constants
-const { ROPSTEN_FAUCET_URL } = process.env;
+const { ROPSTEN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
+const agent = new Luminator(PROXY_USERNAME, PROXY_PASSWORD);
 
 async function getRopstenEth({ address }) {
   try {
-    const response = await wretch(`${ROPSTEN_FAUCET_URL}/${address}`).get().res();
-    const { amount, txhash: txHash, address: userAddress } = await response.json();
+    const { data } = await agent.fetch({ method: 'get', url: `${ROPSTEN_FAUCET_URL}/${address}` });
+    const { amount, txhash: txHash, address: userAddress } = data;
     const ethers = unit.fromWei(amount, 'ether');
 
     return {
