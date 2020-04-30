@@ -1,3 +1,5 @@
+const sentry = require('@sentry/node');
+
 // Utils
 const { setupExpressApp } = require('./utils/express');
 
@@ -10,10 +12,13 @@ const { rinkebyController } = require('./modules/rinkeby/controller');
 // Express - Setup
 const app = setupExpressApp();
 
-// Express - Endpoints
+// Express- Endpoints
 app.post('/kovan', kovanController);
 app.post('/goerli', goerliController);
 app.post('/ropsten', ropstenController);
 app.post('/rinkeby', rinkebyController);
+
+// Sentry
+app.use(sentry.Handlers.errorHandler());
 
 module.exports = { app };

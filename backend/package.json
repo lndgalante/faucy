@@ -9,6 +9,7 @@
     "aws-serverless-express": "^3.3.8",
     "body-parser": "^1.19.0",
     "convert-seconds": "^1.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ethereum-address": "^0.0.4",
     "ethjs-unit": "^0.1.6",
