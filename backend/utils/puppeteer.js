@@ -13,7 +13,7 @@ function getBrowser() {
   const browserlessQuery = queryString.stringify({ token: BROWSERLESS_API_TOKEN, '--proxy-server': PROXY_SERVER_URL });
   const browserWSEndpoint = `wss://chrome.browserless.io?${browserlessQuery}`;
 
-  return !IS_PRODUCTION
+  return IS_PRODUCTION
     ? puppeteer.connect({ browserWSEndpoint })
     : puppeteer.launch({ headless: false, args: [`--proxy-server=${PROXY_SERVER_URL}`] });
 }
