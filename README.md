@@ -14,7 +14,7 @@
 
 Are you tired of:
 
-- looking how to get ethers?
+- looking how to get ethers on testnets?
 - trying to understand how Faucets works?
 - looking on Faucets that are properly working?
 - looking on Faucets that doesn't block your IP by 24hs?
