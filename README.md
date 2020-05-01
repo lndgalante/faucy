@@ -35,7 +35,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 - 🌚 Dark Mode Support
 - ⚡️ 100/100 Lighthouse score
 - 📦 Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
-- ☁️ Fast and reliable microservices solution (using [AWS](https://aws.amazon.com))
+- ☁️ Scalable and reliable microservices solution (using [AWS](https://aws.amazon.com))
 
 ## Supported Networks
 
