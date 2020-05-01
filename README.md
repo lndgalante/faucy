@@ -16,22 +16,24 @@
 - 🐙 100% Open Source
 - ⏰ Displays transaction status (using [Notify.js](https://docs.blocknative.com/notify))
 - 🔗 Address and Network in-sync with your Web3 Provider (using [Ethers.js](https://github.com/ethers-io/ethers.js))
+- 🚰 No IP blockage, only by address for 24hs, so if you switch address you can request as much as you want!
 
 ## Goodies
 
 - 🦮 Accessibility First
 - 🌚 Dark Mode Support
+- ⚡️ 100/100 Lighthouse score
 - 📦 Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
 - ☁️ Fast and reliable microservices solution (using [AWS](https://aws.amazon.com))
 
 ## Supported Networks
 
-| Network | Avoid IP Block | Status |
-| ------- | -------------- | ------ |
-| Ropsten | ✅             | ✅     |
-| Kovan   | ✅             | ✅     |
-| Rinkeby | ✅             | ✅     |
-| Goerli  | ✅             | ✅     |
+| Network | Support | Status |
+| ------- | ------- | ------ |
+| Ropsten | 👍      | ✅     |
+| Kovan   | 👍      | ✅     |
+| Rinkeby | 👍      | ✅     |
+| Goerli  | 👍      | ✅     |
 
 ## Development
 
