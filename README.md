@@ -39,12 +39,12 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 
 ## Supported Networks
 
-| Network | Support | Status |
-| ------- | ------- | ------ |
-| Ropsten | 👍      | ✅     |
-| Kovan   | 👍      | ✅     |
-| Rinkeby | 👍      | ✅     |
-| Goerli  | 👍      | ✅     |
+| Network | Support | Status | Ethers |
+| ------- | ------- | ------ | ------ |
+| Ropsten | 👍      | ✅     | 1      |
+| Kovan   | 👍      | ✅     | 0.1    |
+| Rinkeby | 👍      | ✅     | 0.001  |
+| Goerli  | 👍      | 🔴     | 0.05   |
 
 ## Development
 
