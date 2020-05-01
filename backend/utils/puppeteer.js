@@ -9,13 +9,16 @@ const IS_PRODUCTION = NODE_ENV === 'production';
 // Puppeteer - Plugins
 puppeteer.use(RecaptchaPlugin({ provider: { id: '2captcha', token: TWO_CAPTCHA_API_TOKEN }, visualFeedback: true }));
 
-function getBrowser() {
-  const browserlessQuery = queryString.stringify({ token: BROWSERLESS_API_TOKEN, '--proxy-server': PROXY_SERVER_URL });
+function getBrowser(networkName) {
+  const networksNeedingProxies = ['kovan', 'rinkeby'];
+  const proxyServer = networksNeedingProxies.includes(networkName) ? PROXY_SERVER_URL : undefined;
+
+  const browserlessQuery = queryString.stringify({ token: BROWSERLESS_API_TOKEN, '--proxy-server': proxyServer });
   const browserWSEndpoint = `wss://chrome.browserless.io?${browserlessQuery}`;
 
   return IS_PRODUCTION
     ? puppeteer.connect({ browserWSEndpoint })
-    : puppeteer.launch({ headless: false, args: [`--proxy-server=${PROXY_SERVER_URL}`] });
+    : puppeteer.launch({ headless: false, args: [proxyServer ? `--proxy-server=${PROXY_SERVER_URL}` : ''] });
 }
 
 module.exports = { getBrowser };

@@ -4,15 +4,12 @@ const { getBrowser } = require('../../utils/puppeteer');
 const { createSuccessMessage } = require('../../utils/strings');
 
 // Constants
-const { GOERLI_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
+const { GOERLI_FAUCET_URL } = process.env;
 
 async function getGoerliEth({ address }) {
   // Launch a new browser
-  const browser = await getBrowser();
+  const browser = await getBrowser('goerli');
   const page = await browser.newPage();
-
-  // Authenticate proxy
-  await page.authenticate({ username: PROXY_USERNAME, password: PROXY_PASSWORD });
 
   // Go to Faucet url
   await page.goto(GOERLI_FAUCET_URL);
