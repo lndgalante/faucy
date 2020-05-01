@@ -10,6 +10,17 @@
   <img src="https://img.shields.io/github/issues-pr/lndgalante/faucy?style=for-the-badge">
 </div>
 
+## Intro
+
+Are you tired of:
+
+- looking how to get ethers?
+- trying to understand how Faucets works?
+- looking on Faucets that are properly working?
+- looking on Faucets that doesn't block your IP by 24hs?
+
+We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get ethers from any testnet.
+
 ## Features
 
 - 🔋 PWA Support
