@@ -1,6 +1,6 @@
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
-const { parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
+const { txHashRegex, parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
 
 // Constants
 const { KOVAN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
@@ -13,7 +13,7 @@ async function getKovanEth({ address }) {
   const ETHERSCAN_LINK_SELECTOR = '#faucetOutput a';
 
   // Launch a new browser
-  const browser = await getBrowser();
+  const browser = await getBrowser('kovan');
   const page = await browser.newPage();
 
   // Authenticate proxy
@@ -41,12 +41,14 @@ async function getKovanEth({ address }) {
     FAUCET_OUTPUT_SELECTOR,
   );
 
-  const txHash = await page.evaluate((selector) => {
+  // Get anchor link
+  const anchorLink = await page.evaluate((selector) => {
     const anchor = document.querySelector(selector);
-    const href = anchor ? anchor.getAttribute('href') : '';
-    const [result] = href.split('/').reverse();
-    return result;
+    return anchor ? anchor.getAttribute('href') : '';
   }, ETHERSCAN_LINK_SELECTOR);
+
+  // Get txHash
+  const [txHash] = anchorLink.match(txHashRegex) || [];
 
   // Get status code
   const [statusCode] = description.match(/\d+/g) || [];

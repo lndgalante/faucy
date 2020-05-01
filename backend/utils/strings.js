@@ -1,6 +1,6 @@
 const convert = require('convert-seconds');
 
-const addressRegex = /0x+[A-F,a-f,0-9]{40}/g;
+const txHashRegex = /0x+[A-F,a-f,0-9]{64}/g;
 
 const parseKovanMessage = (rawMessage) =>
   rawMessage
@@ -9,4 +9,4 @@ const parseKovanMessage = (rawMessage) =>
 
 const createSuccessMessage = (eth) => `You will receive ${eth} ethers into your account.`;
 
-module.exports = { addressRegex, parseKovanMessage, createSuccessMessage };
+module.exports = { txHashRegex, parseKovanMessage, createSuccessMessage };

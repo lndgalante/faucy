@@ -1,6 +1,6 @@
 // Utils
 const { getBrowser } = require('../../utils/puppeteer');
-const { addressRegex, createSuccessMessage } = require('../../utils/strings');
+const { txHashRegex, createSuccessMessage } = require('../../utils/strings');
 
 // Constants
 const { RINKEBY_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
@@ -13,7 +13,7 @@ async function getRinkebyEth({ address }) {
   const FAUCET_MESSAGE_SELECTOR = 'p:last-of-type';
 
   // Launch a new browser
-  const browser = await getBrowser();
+  const browser = await getBrowser('rinkeby');
   const page = await browser.newPage();
 
   // Authenticate proxy
@@ -57,7 +57,7 @@ async function getRinkebyEth({ address }) {
   );
 
   // Get transaction hash
-  const [txHash] = textMessage.match(addressRegex) || [];
+  const [txHash] = textMessage.match(txHashRegex) || [];
 
   // Close browser
   browser.close();
