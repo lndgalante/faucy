@@ -1,3 +1,5 @@
+const sentry = require('@sentry/node');
+
 // Utils
 const { wretch } = require('../../utils/fetch');
 const { getBrowser } = require('../../utils/puppeteer');
@@ -38,6 +40,7 @@ async function getGoerliEth({ address }) {
       },
     };
   } catch (error) {
+    sentry.captureException(error);
     console.log('getGoerliEth -> error', error);
   }
 }
