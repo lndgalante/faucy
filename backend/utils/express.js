@@ -1,5 +1,6 @@
 const ms = require('ms');
 const express = require('express');
+const timeout = require('connect-timeout');
 
 // Middlewares
 const cors = require('cors');
@@ -28,6 +29,9 @@ function setupExpressApp() {
   // Body Parser
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  // Request timeout
+  app.use(timeout(ms('3m'));
 
   // Rate limit
   app.use(rateLimit({ windowMs: ms('15m'), max: 100 }));
