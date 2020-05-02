@@ -127,6 +127,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 - Adaptation with Truffle suite
 - Generate API_KEY to use API directly
 - Display other Tokens that are in that testnet
+- Display user balance and animate it when ethers are received
 
 ## Who is using it?
 
