@@ -77,7 +77,7 @@ export const Footer = ({ colorMode }) => {
       <Link isExternal alignItems="center" d="flex" fontSize={'sm'} href={'https://www.xivis.com'}>
         Made by Xivis <Box as={FaHeart} d="inline" ml={2} size="14px" />
       </Link>
-      <Link isExternal alignItems="center" d="flex" fontSize={'sm'} href={'https://github.com/lndgalante/faucy'}>
+      <Link isExternal alignItems="center" d="flex" fontSize={'sm'} href={'https://github.com/xivis/faucy'}>
         GitHub <Box as={FaGithub} d="inline" ml={2} size="14px" />
       </Link>
       <Box position="relative">
