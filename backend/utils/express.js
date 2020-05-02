@@ -31,7 +31,7 @@ function setupExpressApp() {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   // Request timeout
-  app.use(timeout(ms('3m'));
+  app.use(timeout(ms('3m')));
 
   // Rate limit
   app.use(rateLimit({ windowMs: ms('15m'), max: 100 }));
