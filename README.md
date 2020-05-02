@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/github/issues-pr/lndgalante/faucy?style=for-the-badge">
 </div>
 
-## Intro
+## Introduction
 
 Are you tired of:
 
