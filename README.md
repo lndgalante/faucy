@@ -135,6 +135,8 @@ TBD
 
 ## How to Contribute
 
+We're using [Project Guidelines](https://github.com/elsewhencode/project-guidelines).
+
 TBD
 
 ## Contributors
