@@ -57,18 +57,24 @@ const HomePage = () => {
 
   // Get ethers from network
   const getEthers = async ({ userAddress, userNetwork }) => {
+    const notify = Notify({
+      darkMode: colorMode === 'dark',
+      dappId: GATSBY_BLOCKNATIVE_API_KEY,
+      networkId: getNetworkId(userNetwork),
+    });
+
     try {
       setIsLoading(true);
       displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`);
 
-      const notify = Notify({ dappId: GATSBY_BLOCKNATIVE_API_KEY, networkId: getNetworkId(userNetwork) });
       const networkService = getNetworkService(userNetwork);
       const { body } = await networkService(`0x${userAddress}`);
 
-      playSuccessSound({});
       displaySuccessMessage(body.message);
-      notify.hash(body.txHash);
-      // console.info(`Etherscan link: ${faucetNetwork.createEtherscanLink(body.txHash)}`);
+      const { emitter } = notify.hash(body.txHash);
+
+      emitter.on('txFailed', () => playErrorSound({}));
+      emitter.on('txConfirmed', () => playSuccessSound({}));
     } catch (error) {
       const { body } = JSON.parse(error.message);
       playErrorSound({});
@@ -85,11 +91,11 @@ const HomePage = () => {
     initialValues: { userNetwork: '', userAddress: '' },
   });
 
-  // Handlers - Formik
+  // Handlers - React
   const handleUserAddressChange = useCallback((value) => setFieldValue('userAddress', value), [setFieldValue]);
+
   const handleUserNetworkChange = useCallback((value) => setFieldValue('userNetwork', value), [setFieldValue]);
 
-  // Handlers - React
   const handleAddressPaste = (event) => {
     event.preventDefault();
     const text = event.clipboardData.getData('Text');
