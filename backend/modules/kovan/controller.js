@@ -1,10 +1,16 @@
-// Utils
-const { networkController } = require('../../utils/controllers');
-
 // Resolver
 const { getKovanEth } = require('./resolver');
 
 // Controller
-const kovanController = networkController(getKovanEth);
+const kovanController = async (req, res) => {
+  const { address } = req.body;
+
+  try {
+    const { statusCode, body } = await getKovanEth({ address });
+    return res.status(statusCode).send({ body });
+  } catch (error) {
+    return res.status(500).send({ error });
+  }
+};
 
 module.exports = { kovanController };
