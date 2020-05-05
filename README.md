@@ -27,7 +27,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 - 🐙 100% Open Source
 - ⏰ Displays transaction status (using [Notify.js](https://docs.blocknative.com/notify))
 - 🔗 Address and Network in-sync with your Web3 Provider (using [Ethers.js](https://github.com/ethers-io/ethers.js))
-- 🚰 No IP blockage, only by address for 24hs, so if you switch address you can request as much as you want
+- 🚰 No IP blockage, only by address for 24hs, switching addressess you can keep requesting eth
 
 ## Goodies
 
@@ -35,7 +35,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 - 🌚 Dark Mode Support
 - ⚡️ 100/100 Lighthouse score
 - 📦 Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
-- ☁️ Scalable and reliable microservices solution (using [AWS](https://aws.amazon.com))
+- ☁️ Reliablility in mind, having a secondary service per faucet
 
 ## Supported Networks
 
