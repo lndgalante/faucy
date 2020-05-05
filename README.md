@@ -104,6 +104,7 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 - [ ] (Frontend) Connect feedback component
 - [ ] (Frontend) Connect decentralized analytics
+- [ ] (Frontend) Fix Notify.js wording "your transaction..."
 
 ## Todo Beta:
 
