@@ -27,7 +27,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 - 🐙 100% Open Source
 - ⏰ Displays transaction status (using [Notify.js](https://docs.blocknative.com/notify))
 - 🔗 Address and Network in-sync with your Web3 Provider (using [Ethers.js](https://github.com/ethers-io/ethers.js))
-- 🚰 No IP blockage, only by address for 24hs, so if you switch address you can request as much as you want!
+- 🚰 No IP blockage, only by address for 24hs, so if you switch address you can request as much as you want
 
 ## Goodies
 
@@ -72,6 +72,11 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 > yarn dev:all
 ```
 
+## Design
+
+Take a look at our [Figma](https://www.figma.com/file/e2ki1kz4pSTsXX6KAuyuaI/Faucy_UI?node-id=0%3A1) implementation, comments and feedback are welcome.
+We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user-friendly blockchain experiences.
+
 ## Stack
 
 - Frontend
@@ -92,12 +97,13 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 
 ## Roadmap:
 
-- May 2020 👉 Internal release
-- June 2020 👉 Official release
+- [ ] May 2020 - Alpha release
+- [ ] June 2020 - Beta release
 
 ## Todo Alpha:
 
 - [ ] (Frontend) Connect feedback component
+- [ ] (Frontend) Connect decentralized analytics
 
 ## Todo Beta:
 
@@ -135,7 +141,7 @@ TBD
 
 ## How to Contribute
 
-We're using [Project Guidelines](https://github.com/elsewhencode/project-guidelines).
+Take a look at [Project Guidelines](https://github.com/elsewhencode/project-guidelines) in order to follow best practices.
 
 TBD
 
