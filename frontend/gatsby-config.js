@@ -8,7 +8,7 @@ const { NODE_ENV, SENTRY_DSN } = process.env;
 
 module.exports = {
   siteMetadata: {
-    title: `Faucy.eth`,
+    title: `Faucy`,
     author: `@xivis`,
     description: `Get ethers from any testnet easily`,
   },
