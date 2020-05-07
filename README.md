@@ -1,7 +1,7 @@
 <h1 align="center">Faucy</h1>
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
-<img src="https://i.ibb.co/2vdGfVk/Captura-de-Pantalla-2020-05-03-a-la-s-19-42-16.png">
+<img src="https://i.ibb.co/0YmgWrZ/Captura-de-Pantalla-2020-05-07-a-la-s-13-04-59.png">
 
 ---
 
@@ -104,7 +104,7 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 - [ ] (Frontend) Connect feedback component
 - [ ] (Frontend) Connect decentralized analytics
-- [ ] (Frontend) Fix Notify.js wording "your transaction..."
+- [ ] (Frontend) Connect to Etherscan API to update transactions
 
 ## Todo Beta:
 
