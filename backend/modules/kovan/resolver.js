@@ -10,7 +10,7 @@ async function getKovanEth({ address }) {
   const BUTTON_SEND_SELECTOR = 'button';
   const INPUT_ADDRESS_SELECTOR = 'input';
   const FAUCET_OUTPUT_SELECTOR = '#faucetOutput';
-  const ETHERSCAN_LINK_SELECTOR = '#faucetOutput a';
+  const ETHERSCAN_LINK_SELECTOR = '#faucetOutput a:last-of-type';
 
   // Launch a new browser
   const browser = await getBrowser('kovan');
