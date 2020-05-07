@@ -1,224 +1,29 @@
-import React, { useState, useCallback } from 'react';
-import { useFormik } from 'formik';
-import capitalize from 'lodash.capitalize';
-import {
-  Box,
-  Grid,
-  Text,
-  Input,
-  Button,
-  FormLabel,
-  InputGroup,
-  FormControl,
-  InputLeftAddon,
-  RadioButtonGroup,
-  FormErrorMessage,
-  useColorMode,
-} from '@chakra-ui/core';
-import Notify from 'bnc-notify';
+import React from 'react';
+import { Box, Text } from '@chakra-ui/core';
 
-// UI Components
-import { SEO } from '../ui/components/Seo';
-import { Radio } from '../ui/components/Radio';
+// Styles
+import '../assets/styles/global.css';
 
 // Components
+import { Nav } from '../components/Nav';
+import { Form } from '../components/Form';
 import { Footer } from '../components/Footer';
 
-// Hooks
-import { useToast } from '../hooks/useToast';
-import { useSounds } from '../hooks/useSounds';
-import { useUserNetwork } from '../hooks/useUserNetwork';
-import { useUserAddress } from '../hooks/useUserAddress';
-import { useWeb3Provider } from '../hooks/useWeb3Provider';
-import { useFaucetNetwork } from '../hooks/useFaucetNetwork';
-import { useAnimatedCoins } from '../hooks/useAnimatedCoins';
-
-// Utils
-import { getNetworkService } from '../utils/services';
-import { validateAddress } from '../utils/validators';
-import { NETWORKS, getNetworkId } from '../utils/constants';
-
-// Constants
-const { GATSBY_BLOCKNATIVE_API_KEY } = process.env;
-
 const HomePage = () => {
-  // React hooks
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Sound hooks
-  const { playErrorSound, playSuccessSound } = useSounds();
-
-  // Chakra hooks
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast();
-
-  // Animation hooks
-  const { buttonContainerRef, animationContainerRef } = useAnimatedCoins(colorMode, isLoading);
-
-  // Get ethers from network
-  const getEthers = async ({ userAddress, userNetwork }) => {
-    const notify = Notify({
-      darkMode: colorMode === 'dark',
-      dappId: GATSBY_BLOCKNATIVE_API_KEY,
-      networkId: getNetworkId(userNetwork),
-    });
-
-    try {
-      setIsLoading(true);
-      displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`);
-
-      const networkService = getNetworkService(userNetwork);
-      const { body } = await networkService(`0x${userAddress}`);
-
-      displaySuccessMessage(body.message);
-      const { emitter } = notify.hash(body.txHash);
-
-      emitter.on('txFailed', () => playErrorSound({}));
-      emitter.on('txConfirmed', () => playSuccessSound({}));
-    } catch (error) {
-      const { body } = JSON.parse(error.message);
-      playErrorSound({});
-      displayErrorMessage(body ? body.message : `Ups! Something went wrong, please try again later...`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Formik hooks
-  const { values, errors, touched, handleChange, setFieldValue, handleSubmit } = useFormik({
-    onSubmit: getEthers,
-    validate: validateAddress,
-    initialValues: { userNetwork: '', userAddress: '' },
-  });
-
-  // Handlers - React
-  const handleUserAddressChange = useCallback((value) => setFieldValue('userAddress', value), [setFieldValue]);
-
-  const handleUserNetworkChange = useCallback((value) => setFieldValue('userNetwork', value), [setFieldValue]);
-
-  const handleAddressPaste = (event) => {
-    event.preventDefault();
-    const text = event.clipboardData.getData('Text');
-    handleUserAddressChange(text.toLowerCase().startsWith('0x') ? text.slice(2) : text);
-  };
-
-  // Web3 hooks
-  const web3Provider = useWeb3Provider();
-  useUserAddress(web3Provider, handleUserAddressChange);
-  useUserNetwork(web3Provider, handleUserNetworkChange);
-
-  // Faucet hooks
-  const faucetNetwork = useFaucetNetwork(values.userNetwork);
-
   return (
-    <Box alignItems="center" d="flex" height="100vh" justifyContent="center" p={4} w="100%">
-      <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : ''}`} />
+    <Box minHeight="100vh" w="100%">
+      <Nav />
 
-      <Box maxWidth="612px" width="100%">
-        <Box alignItems="baseline" d="flex" onClick={toggleColorMode}>
-          <Text as="h1" fontSize="4xl" fontWeight={600} pb={4}>
-            Faucy
-          </Text>
-          <Text as="h2" fontSize="md" fontWeight={400} ml={1}>
-            (alpha)
+      <Box m="0 auto" maxWidth="612px" pt={32} width="100%">
+        <Box alignItems="baseline" d="flex" mb={8}>
+          <Text as="h2" fontSize="4xl" fontWeight={600}>
+            Welcome to Faucy!
           </Text>
         </Box>
-
-        <form onSubmit={handleSubmit}>
-          <Box maxWidth={['auto', 'auto', '466px']}>
-            <FormLabel mb={1}>Choose your network:</FormLabel>
-
-            <RadioButtonGroup
-              isInline
-              alignItems="center"
-              d="flex"
-              flexWrap="wrap"
-              justifyContent="center"
-              name="userNetwork"
-              value={values.userNetwork}
-              onChange={handleUserNetworkChange}
-            >
-              {NETWORKS.map(({ value, label, disabled }) => (
-                <Radio
-                  key={value}
-                  _active={{ boxShadow: 'md' }}
-                  _focus={{ boxShadow: 'none' }}
-                  _hover={{ transform: 'translate3d(0, -1px, 0)' }}
-                  flex="1"
-                  fontSize={'sm'}
-                  fontWeight={600}
-                  isDisabled={disabled}
-                  letterSpacing={0.4}
-                  textTransform="uppercase"
-                  value={value}
-                  willChange="transform"
-                >
-                  {label}
-                </Radio>
-              ))}
-            </RadioButtonGroup>
-          </Box>
-
-          <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 466px) auto']}>
-            <FormControl isDisabled={!faucetNetwork} isInvalid={errors.userAddress && touched.userAddress}>
-              <FormLabel htmlFor="userAddress" mb={1}>
-                Insert your address:
-              </FormLabel>
-
-              <InputGroup>
-                <InputLeftAddon children="0x" />
-                <Input
-                  _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
-                  aria-label="Insert your address"
-                  isInvalid={Boolean(errors.userAddress && touched.userAddress)}
-                  maxLength={40}
-                  name="userAddress"
-                  placeholder="0000000000000000000000000000000000000000"
-                  roundedLeft="0"
-                  value={values.userAddress}
-                  onChange={handleChange}
-                  onPaste={handleAddressPaste}
-                />
-              </InputGroup>
-
-              <Box alignItems="center" d="flex" height="26px">
-                <FormErrorMessage>{touched.userAddress && errors.userAddress}</FormErrorMessage>
-              </Box>
-            </FormControl>
-
-            <FormControl isDisabled={!faucetNetwork || !values.userAddress} mt={[2, 2, 0]}>
-              <FormLabel mb={1}>Ready?</FormLabel>
-
-              <Button
-                ref={buttonContainerRef}
-                d="flex"
-                isDisabled={!values.userNetwork || !values.userAddress}
-                isLoading={isLoading}
-                size="md"
-                type="submit"
-                variantColor="gray"
-                width="100%"
-              >
-                {!isLoading && (
-                  <Box
-                    ref={animationContainerRef}
-                    className="lottie-container"
-                    d="inline"
-                    ml={-2}
-                    mr={2}
-                    width="26px"
-                  />
-                )}
-                <Text fontSize={'sm'} fontWeight={600} letterSpacing={0.4} textTransform="uppercase">
-                  Submit
-                </Text>
-              </Button>
-            </FormControl>
-          </Grid>
-        </form>
+        <Form />
       </Box>
 
-      <Footer colorMode={colorMode} />
+      <Footer />
     </Box>
   );
 };

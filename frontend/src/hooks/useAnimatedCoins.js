@@ -5,7 +5,7 @@ import lottie from 'lottie-web';
 import blackCoins from '../assets/lottie/coins-black.json';
 import whiteCoins from '../assets/lottie/coins-white.json';
 
-const useAnimatedCoins = (colorMode, isLoading) => {
+const useAnimatedCoins = (colorMode) => {
   const buttonContainerRef = useRef(null);
   const animationContainerRef = useRef(null);
 
@@ -42,7 +42,7 @@ const useAnimatedCoins = (colorMode, isLoading) => {
       buttonContainerElement.removeEventListener('mouseenter', playForward);
       buttonContainerElement.removeEventListener('mouseleave', playBackard);
     };
-  }, [colorMode, isLoading, animationContainerRef, buttonContainerRef]);
+  }, [colorMode, animationContainerRef, buttonContainerRef]);
 
   return { buttonContainerRef, animationContainerRef };
 };
