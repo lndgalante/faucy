@@ -1,0 +1,7 @@
+[class^='bn-notify'] {
+  opacity: 0 !important;
+}
+
+[class^='bn-notify'] * {
+  opacity: 0 !important;
+}
