@@ -44,6 +44,12 @@ import { useWeb3Provider } from '../hooks/useWeb3Provider';
 import { useFaucetNetwork } from '../hooks/useFaucetNetwork';
 import { useAnimatedCoins } from '../hooks/useAnimatedCoins';
 
+// Constants
+const { GATSBY_BLOCKNATIVE_API_KEY } = process.env;
+
+// Helpers
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const shortAddress = (address) => `0x${address.slice(0, 4)}...${address.slice(-4)}`;
 
 const getVariant = (status) => {
@@ -51,9 +57,6 @@ const getVariant = (status) => {
   if (status === 'rejected') return 'red';
   if (status === 'resolved') return 'green';
 };
-
-// Constants
-const { GATSBY_BLOCKNATIVE_API_KEY } = process.env;
 
 export const Form = () => {
   // React hooks
@@ -105,13 +108,29 @@ export const Form = () => {
 
       const networkService = getNetworkService(userNetwork);
       const { body } = await networkService(`0x${userAddress}`);
-      const { emitter } = notify.hash(body.txHash);
 
       const link = faucetNetwork.createEtherscanLink(body.txHash);
       setRequests((prevRequests) => ({
         ...prevRequests,
         [id]: { ...prevRequests[id], link, message: 'Mining transaction', status: 'pending' },
       }));
+
+      // FIXME: Temporal fix for Kovan since it gets solved really quickly
+      if (userNetwork === 'kovan' || userNetwork === 'goerli') {
+        await delay(1000);
+
+        playSuccessSound({});
+        displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
+
+        setRequests((prevRequests) => ({
+          ...prevRequests,
+          [id]: { ...prevRequests[id], message: 'Mined transaction', status: 'resolved' },
+        }));
+
+        return;
+      }
+
+      const { emitter } = notify.hash(body.txHash);
 
       emitter.on('txFailed', () => {
         playErrorSound({});
@@ -121,11 +140,9 @@ export const Form = () => {
         }));
       });
 
-      emitter.on('txConfirmed', (data) => {
-        console.log('getEthers -> data', data);
+      emitter.on('txConfirmed', () => {
         playSuccessSound({});
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
-
         setRequests((prevRequests) => ({
           ...prevRequests,
           [id]: { ...prevRequests[id], message: 'Mined transaction', status: 'resolved' },
