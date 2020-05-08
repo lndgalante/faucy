@@ -127,6 +127,7 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 - [ ] (Frontend/Backend) GunDB: Update request on the server when the operation it's finished
 - [ ] (Frontend/Backend) GunDB: Allow only one operation per network at a time
 - [ ] (Frontend/Backend) GunDB: Save successful operations to display [stats](https://i.ibb.co/HGZtYrH/Captura-de-Pantalla-2020-04-21-a-la-s-17-54-03.png) afterwards
+- [ ] (Frontend/Backend/Blockchain) Save ethers automatically into an account then request from a SC
 
 ## Feedback:
 
