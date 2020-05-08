@@ -110,13 +110,12 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 - [ ] (Frontend) Connect Chainbeat analytics
 - [ ] (Frontend) Add E2E tests for each network
-- [ ] (Frontend) Display output data avoiding toasts
 - [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Marketing) Release/Feedback to/from friend companies
 
 ## Todo RC:
 
-- [ ] (Frontend) Add dark mode to Notify.js toast
+- [ ] (Frontend/Backend) Accept donations
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Docker to run entire project
 - [ ] (Marketing) Eth weekly / DappHero docs / Twitter
@@ -134,7 +133,6 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 - Adaptation with Truffle suite
 - Generate API_KEY to use API directly
 - Display other Tokens that are in that testnet
-- Display user balance and animate it when ethers are received
 
 ## Who is using it?
 
