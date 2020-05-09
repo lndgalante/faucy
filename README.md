@@ -97,12 +97,15 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 ## Roadmap:
 
-- [ ] May 2020 - Alpha release
 - [ ] June 2020 - Beta release
 
 ## Todo Alpha:
 
 - [ ] (Frontend) Connect feedback component
+- [ ] (Frontend) Remove `0x` from address input
+- [ ] (Frontend) Display overlay on hover to show "Show transaction on Etherscan" + icon
+- [ ] (Frontend) Bug: when I click a card displays an empty toast
+- [ ] (Frontend) Bug: emojis are unaligned on Ubuntu/Windows
 - [ ] (Frontend) Connect decentralized analytics
 - [ ] (Frontend) Connect to Etherscan API to update transactions
 
@@ -131,9 +134,9 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 ## Feedback:
 
-- Adaptation with Truffle suite
-- Generate API_KEY to use API directly
-- Display other Tokens that are in that testnet
+- [ ] Adaptation with Truffle suite
+- [ ] Generate API_KEY to use API directly
+- [ ] Display other Tokens that are in that testnet
 
 ## Who is using it?
 
