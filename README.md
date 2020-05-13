@@ -96,11 +96,7 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 - [HedgeTrade - What is an Ethereum Faucet?](https://hedgetrade.com/what-is-ethereum-faucet/)
 - [Bitfalls - What Is an Ethereum Testnet and How Is It Used?](https://bitfalls.com/2018/05/31/what-is-an-ethereum-testnet-and-how-is-it-used/)
 
-## Roadmap:
-
-- [ ] June 2020 - Beta release
-
-## Todo Alpha:
+## Todo Alpha
 
 - [ ] (Frontend) Connect feedback component
 - [ ] (Frontend) Display overlay on hover to show "Show transaction on Etherscan" + icon
@@ -109,21 +105,20 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 - [ ] (Frontend) Connect decentralized analytics
 - [ ] (Frontend) Connect to Etherscan API to update transactions
 
-## Todo Beta:
+## Todo Beta
 
 - [ ] (Frontend) Connect Chainbeat analytics
 - [ ] (Frontend) Add E2E tests for each network
 - [ ] (Backend) Move over to Rinkeby/Goerli auth faucet
 - [ ] (Marketing) Release/Feedback to/from friend companies
 
-## Todo RC:
+## Todo RC
 
-- [ ] (Frontend/Backend) Accept donations
+- [ ] (Marketing) Eth weekly / Twitter
 - [ ] (Frontend/Backend) Add TypeScript support
 - [ ] (Frontend/Backend) Add Docker to run entire project
-- [ ] (Marketing) Eth weekly / DappHero docs / Twitter
 
-## Todo future features:
+## Other ideas
 
 - [ ] (Frontend/Backend) GunDB: Save each request on frontend, and send id in the body
 - [ ] (Frontend/Backend) GunDB: Display the latest ongoing [request](https://i.ibb.co/c1v6SzK/Captura-de-Pantalla-2020-04-21-a-la-s-17-56-42.png)
@@ -132,13 +127,13 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 - [ ] (Frontend/Backend) GunDB: Save successful operations to display [stats](https://i.ibb.co/HGZtYrH/Captura-de-Pantalla-2020-04-21-a-la-s-17-54-03.png) afterwards
 - [ ] (Frontend/Backend/Blockchain) Save ethers automatically into an account then request from a SC
 
-## Feedback:
+## Feedback
 
 - [ ] Adaptation with Truffle suite
 - [ ] Generate API_KEY to use API directly
 - [ ] Display other Tokens that are in that testnet
 
-## Who is using it?
+## Who's using it?
 
 - [DappHero](https://www.dapphero.io)
 
@@ -146,7 +141,11 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 Take a look at [Project Guidelines](https://github.com/elsewhencode/project-guidelines) in order to follow best practices.
 
-### Contributors
+## Roadmap
+
+- [ ] June 2020 - Beta release
+
+## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -156,6 +155,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://leonardogalante.com"><img src="https://avatars3.githubusercontent.com/u/2475912?v=4" width="100px;" alt=""/><br /><sub><b>Leonardo Galante</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Code">💻</a> <a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Documentation">📖</a> <a href="#projectManagement-lndgalante" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://www.xivis.com"><img src="https://avatars0.githubusercontent.com/u/12477284?v=4" width="100px;" alt=""/><br /><sub><b>Ramiro Gonzalez</b></sub></a><br /><a href="#design-ragonzal" title="Design">🎨</a> <a href="#a11y-ragonzal" title="Accessibility">️️️️♿️</a></td>
   </tr>
 </table>
 

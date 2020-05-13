@@ -20,6 +20,16 @@
         "doc",
         "projectManagement"
       ]
+    },
+    {
+      "login": "ragonzal",
+      "name": "Ramiro Gonzalez",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/12477284?v=4",
+      "profile": "https://www.xivis.com",
+      "contributions": [
+        "design",
+        "a11y"
+      ]
     }
   ],
   "contributorsPerLine": 7
