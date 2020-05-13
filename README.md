@@ -102,7 +102,6 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 ## Todo Alpha:
 
 - [ ] (Frontend) Connect feedback component
-- [ ] (Frontend) Remove `0x` from address input
 - [ ] (Frontend) Display overlay on hover to show "Show transaction on Etherscan" + icon
 - [ ] (Frontend) Bug: when I click a card displays an empty toast
 - [ ] (Frontend) Bug: emojis are unaligned on Ubuntu/Windows
