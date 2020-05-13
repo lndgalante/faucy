@@ -62,7 +62,6 @@ export const Form = () => {
 
   // Storage hooks
   const [requests, setRequests] = useLocalStorage('requests', {});
-  console.log('Form -> requests', requests);
 
   // Sound hooks
   const { playErrorSound, playSuccessSound } = useSounds();
