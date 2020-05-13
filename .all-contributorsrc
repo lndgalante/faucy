@@ -1,0 +1,24 @@
+{
+  "projectName": "faucy",
+  "projectOwner": "Xivis",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "lndgalante",
+      "name": "Leonardo Galante",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2475912?v=4",
+      "profile": "https://leonardogalante.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
