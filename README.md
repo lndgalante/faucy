@@ -139,13 +139,11 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 ## Who is using it?
 
-TBD
+- [DappHero](https://www.dapphero.io)
 
 ## How to Contribute
 
 Take a look at [Project Guidelines](https://github.com/elsewhencode/project-guidelines) in order to follow best practices.
-
-TBD
 
 ## Contributors
 
