@@ -9,9 +9,7 @@ import {
   Button,
   FormLabel,
   PseudoBox,
-  InputGroup,
   FormControl,
-  InputLeftAddon,
   RadioButtonGroup,
   FormErrorMessage,
   useColorMode,
@@ -50,7 +48,7 @@ const { GATSBY_BLOCKNATIVE_API_KEY } = process.env;
 // Helpers
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const shortAddress = (address) => `0x${address.slice(0, 4)}...${address.slice(-4)}`;
+const shortAddress = (address) => `${address.slice(0, 6)}...${address.slice(-4)}`;
 
 const getVariant = (status) => {
   if (status === 'pending') return 'blue';
@@ -64,16 +62,22 @@ export const Form = () => {
 
   // Storage hooks
   const [requests, setRequests] = useLocalStorage('requests', {});
+  console.log('Form -> requests', requests);
 
   // Sound hooks
   const { playErrorSound, playSuccessSound } = useSounds();
 
   // Chakra hooks
   const { colorMode } = useColorMode();
-  const { displayInfoMessage, displaySuccessMessage, displayErrorMessage } = useToast();
+  const { displaySuccessMessage, displayErrorMessage } = useToast();
 
   // Animation hooks
   const { buttonContainerRef, animationContainerRef } = useAnimatedCoins(colorMode);
+
+  // Methods
+  const updateRequests = (data, id = '') => {
+    return setRequests((prevRequests) => ({ ...prevRequests, [id]: { ...(prevRequests[id] || {}), ...data } }));
+  };
 
   // Get ethers from network
   const getEthers = async ({ userAddress, userNetwork }) => {
@@ -86,17 +90,17 @@ export const Form = () => {
       networkId: getNetworkId(userNetwork),
     });
 
-    setRequests((prevRequests) => ({
-      ...prevRequests,
-      [id]: {
+    updateRequests(
+      {
         timestamp,
         userAddress,
         userNetwork,
+        status: 'pending',
         amount: faucetNetwork.amount,
         message: 'Requesting ethers',
-        status: 'pending',
       },
-    }));
+      id,
+    );
 
     const pendingRequests = Object.entries(requests)
       .map(([, request]) => request.status)
@@ -107,13 +111,10 @@ export const Form = () => {
       // displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`);
 
       const networkService = getNetworkService(userNetwork);
-      const { body } = await networkService(`0x${userAddress}`);
+      const { body } = await networkService(userAddress);
 
       const link = faucetNetwork.createEtherscanLink(body.txHash);
-      setRequests((prevRequests) => ({
-        ...prevRequests,
-        [id]: { ...prevRequests[id], link, message: 'Mining transaction', status: 'pending' },
-      }));
+      updateRequests({ link, message: 'Mining transaction', status: 'pending' }, id);
 
       // FIXME: Temporal fix for Kovan since it gets solved really quickly
       if (userNetwork === 'kovan' || userNetwork === 'goerli') {
@@ -122,31 +123,20 @@ export const Form = () => {
         playSuccessSound({});
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
 
-        setRequests((prevRequests) => ({
-          ...prevRequests,
-          [id]: { ...prevRequests[id], message: 'Mined transaction', status: 'resolved' },
-        }));
-
-        return;
+        return updateRequests({ message: 'Mined transaction', status: 'resolved' }, id);
       }
 
       const { emitter } = notify.hash(body.txHash);
 
       emitter.on('txFailed', () => {
         playErrorSound({});
-        setRequests((prevRequests) => ({
-          ...prevRequests,
-          [id]: { ...prevRequests[id], message: 'Transaction error', status: 'rejected' },
-        }));
+        updateRequests({ message: 'Transaction error', status: 'rejected' }, id);
       });
 
       emitter.on('txConfirmed', () => {
         playSuccessSound({});
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
-        setRequests((prevRequests) => ({
-          ...prevRequests,
-          [id]: { ...prevRequests[id], message: 'Mined transaction', status: 'resolved' },
-        }));
+        updateRequests({ message: 'Mined transaction', status: 'resolved' }, id);
       });
     } catch (error) {
       const { body } = JSON.parse(error.message);
@@ -154,11 +144,7 @@ export const Form = () => {
       playErrorSound({});
       // displayErrorMessage(body ? body.message : `Ups! Something went wrong, please try again later...`);
       const errorMessage = body ? body.message : `Ups! Something went wrong, please try again later...`;
-
-      setRequests((prevRequests) => ({
-        ...prevRequests,
-        [id]: { ...prevRequests[id], message: 'Requesting error', status: 'rejected', errorMessage },
-      }));
+      updateRequests({ message: 'Requesting error', status: 'rejected', errorMessage });
     } finally {
       setIsFormEnabled(true);
     }
@@ -174,12 +160,6 @@ export const Form = () => {
   // Handlers - React - Form
   const handleUserAddressChange = useCallback((value) => setFieldValue('userAddress', value), [setFieldValue]);
   const handleUserNetworkChange = useCallback((value) => setFieldValue('userNetwork', value), [setFieldValue]);
-
-  const handleAddressPaste = (event) => {
-    event.preventDefault();
-    const text = event.clipboardData.getData('Text');
-    handleUserAddressChange(text.toLowerCase().startsWith('0x') ? text.slice(2) : text);
-  };
 
   // Handlers - React - Form
   const handleClearLocalStorage = () => setRequests({});
@@ -237,21 +217,16 @@ export const Form = () => {
               Now, insert your address:
             </FormLabel>
 
-            <InputGroup>
-              <InputLeftAddon children="0x" />
-              <Input
-                _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
-                aria-label="Insert your address"
-                isInvalid={Boolean(errors.userAddress && touched.userAddress)}
-                maxLength={40}
-                name="userAddress"
-                placeholder="0000000000000000000000000000000000000000"
-                roundedLeft="0"
-                value={values.userAddress}
-                onChange={handleChange}
-                onPaste={handleAddressPaste}
-              />
-            </InputGroup>
+            <Input
+              _focus={{ borderColor: '#319795', boxShadow: '0 0 0 1px #319795' }}
+              aria-label="Insert your address"
+              isInvalid={Boolean(errors.userAddress && touched.userAddress)}
+              maxLength={42}
+              name="userAddress"
+              placeholder="0x0000000000000000000000000000000000000000"
+              value={values.userAddress}
+              onChange={handleChange}
+            />
 
             <Box alignItems="center" d="flex" height="26px">
               <FormErrorMessage>{touched.userAddress && errors.userAddress}</FormErrorMessage>
