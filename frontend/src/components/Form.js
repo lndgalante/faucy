@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import {
   Box,
+  Icon,
   Grid,
   Text,
   Input,
@@ -95,8 +96,10 @@ export const Form = () => {
         userAddress,
         userNetwork,
         status: 'pending',
+        icon: 'info-outline',
         amount: faucetNetwork.amount,
         message: 'Requesting ethers',
+        extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`,
       },
       id,
     );
@@ -107,8 +110,6 @@ export const Form = () => {
     if (pendingRequests.length + 1 >= 3) setIsFormEnabled(false);
 
     try {
-      // displayInfoMessage(`This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`);
-
       const networkService = getNetworkService(userNetwork);
       const { body } = await networkService(userAddress);
 
@@ -122,28 +123,51 @@ export const Form = () => {
         playSuccessSound({});
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
 
-        return updateRequests({ message: 'Mined transaction', status: 'resolved' }, id);
+        return updateRequests(
+          {
+            status: 'resolved',
+            icon: 'external-link',
+            message: 'Mined transaction',
+            extraMessage: 'Display information on Etherscan',
+          },
+          id,
+        );
       }
 
       const { emitter } = notify.hash(body.txHash);
 
       emitter.on('txFailed', () => {
         playErrorSound({});
-        updateRequests({ message: 'Transaction error', status: 'rejected' }, id);
+        updateRequests(
+          {
+            status: 'rejected',
+            icon: 'external-link',
+            message: 'Transaction error',
+            extraMessage: 'Transaction has failed',
+          },
+          id,
+        );
       });
 
       emitter.on('txConfirmed', () => {
         playSuccessSound({});
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
-        updateRequests({ message: 'Mined transaction', status: 'resolved' }, id);
+        updateRequests(
+          {
+            status: 'resolved',
+            icon: 'external-link',
+            message: 'Mined transaction',
+            extraMessage: 'Display information on Etherscan',
+          },
+          id,
+        );
       });
     } catch (error) {
       const { body } = JSON.parse(error.message);
+      const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later...`;
 
       playErrorSound({});
-      // displayErrorMessage(body ? body.message : `Ups! Something went wrong, please try again later...`);
-      const errorMessage = body ? body.message : `Ups! Something went wrong, please try again later...`;
-      updateRequests({ message: 'Requesting error', status: 'rejected', errorMessage });
+      updateRequests({ message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' }, id);
     } finally {
       setIsFormEnabled(true);
     }
@@ -296,21 +320,36 @@ export const Form = () => {
                   return (
                     <PseudoBox
                       key={id}
-                      _hover={{ boxShadow: 'lg', transform: 'translate3d(0, -1px, 0)' }}
                       bg={colorMode === 'light' ? 'white' : 'rgba(255, 255, 255, 0.1)'}
                       borderRadius={'md'}
                       boxShadow="md"
-                      cursor="pointer"
+                      className="card"
+                      cursor={values.link ? 'pointer' : 'auto'}
                       d="flex"
                       justifyContent="space-between"
                       mb={4}
+                      position={'relative'}
                       px={6}
                       py={4}
                       transition="all .2s ease"
-                      onClick={() =>
-                        values.link ? window.open(values.link) : displayErrorMessage(values.errorMessage)
-                      }
+                      {...(values.link ? { onClick: () => window.open(values.link) } : {})}
                     >
+                      <Box
+                        alignItems="center"
+                        bg={colorMode === 'light' ? 'white' : '#3d434c'}
+                        borderRadius="md"
+                        className="card-overlay"
+                        display="flex"
+                        height="100%"
+                        justifyContent="center"
+                        left="0"
+                        position="absolute"
+                        top="0"
+                        width="100%"
+                      >
+                        <Text>{values.extraMessage}</Text>
+                        <Icon ml={2} name={values.icon} />
+                      </Box>
                       <Box
                         borderRightColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
                         borderRightStyle={'solid'}

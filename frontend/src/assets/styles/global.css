@@ -5,3 +5,13 @@
 [class^='bn-notify'] * {
   opacity: 0 !important;
 }
+
+.card-overlay {
+  opacity: 0;
+  backdrop-filter: blur(4px);
+  transition: all 0.4s ease-in-out;
+}
+
+.card:hover .card-overlay {
+  opacity: 0.8;
+}
