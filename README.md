@@ -128,7 +128,6 @@ MIT © **[`Xivis`](https://xivis.com)**
 ## Todo Alpha
 
 - [ ] (Frontend) Connect feedback component
-- [ ] (Frontend) Display overlay on hover to show "Show transaction on Etherscan" + icon
 - [ ] (Frontend) Bug: when I click a card displays an empty toast
 - [ ] (Frontend) Bug: emojis are unaligned on Ubuntu/Windows
 - [ ] (Frontend) Connect decentralized analytics
