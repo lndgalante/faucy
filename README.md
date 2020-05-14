@@ -8,7 +8,6 @@
 <div align="center">
   <img src="https://img.shields.io/github/issues/xivis/faucy?style=for-the-badge">
   <img src="https://img.shields.io/github/issues-pr/xivis/faucy?style=for-the-badge">
-  <img src="https://img.shields.io/badge/all-contributors/xivis/faucy?style=for-the-badge">
 </div>
 
 ## Introduction
@@ -80,22 +79,52 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 
 ## Stack
 
-- Frontend
-  - [Gatsby](https://www.gatsbyjs.org)
-  - [Chakra](https://chakra-ui.com)
-  - [Ethers.js](https://github.com/ethers-io/ethers.js)
+| Frontend                                            | Backend                                                        | Services                                  |
+| --------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------- |
+| [Gatsby](https://www.gatsbyjs.org)                  | [Express](https://expressjs.com)                               | [Fleek](https://fleek.co)                 |
+| [Chakra](https://chakra-ui.com)                     | [Puppeteer](https://pptr.dev)                                  | [2Captcha](https://2captcha.com)          |
+| [Ethers.js](https://github.com/ethers-io/ethers.js) | [Puppeteer Extra](https://github.com/berstend/puppeteer-extra) | [Browserless](https://www.browserless.io) |
 
-* Backend
-  - [Express](https://expressjs.com)
-  - [Puppeteer](https://pptr.dev)
-  - [Puppeteer Extra](https://github.com/berstend/puppeteer-extra)
+## Who's using it?
 
-## Links
+- [DappHero](https://www.dapphero.io)
+
+## How to Contribute
+
+Take a look at [Project Guidelines](https://github.com/elsewhencode/project-guidelines) in order to follow best practices.
+
+## Contributors
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://leonardogalante.com"><img src="https://avatars3.githubusercontent.com/u/2475912?v=4" width="100px;" alt=""/><br /><sub><b>Leonardo Galante</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Code">💻</a> <a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Documentation">📖</a> <a href="#projectManagement-lndgalante" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://www.behance.net/emiliabagliani"><img src="https://media-exp1.licdn.com/dms/image/C4E03AQHGpJwQYpFQHQ/profile-displayphoto-shrink_400_400/0?e=1594857600&v=beta&t=ILsXvhGSqV-6U9E0kJQhy7MMmPtf9Yg2-GlbWPqsPMw" width="100px;" alt=""/><br /><sub><b>Emilia Bagliani</b></sub></a><br /><a href="#design-emiliabagliani" title="Design">🎨</a> <a href="#a11y-emiliabagliani" title="Accessibility">️️️️♿️</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Information
 
 - [Ethereum Development with Go - Faucets](https://goethereumbook.org/faucets/)
 - [HedgeTrade - What is an Ethereum Faucet?](https://hedgetrade.com/what-is-ethereum-faucet/)
 - [Bitfalls - What Is an Ethereum Testnet and How Is It Used?](https://bitfalls.com/2018/05/31/what-is-an-ethereum-testnet-and-how-is-it-used/)
 
+### License
+
+MIT © **[`Xivis`](https://xivis.com)**
+
+<!--
 ## Todo Alpha
 
 - [ ] (Frontend) Connect feedback component
@@ -132,39 +161,4 @@ We follow [Rimble Guides](https://rimble.consensys.design/guides) to create user
 - [ ] Adaptation with Truffle suite
 - [ ] Generate API_KEY to use API directly
 - [ ] Display other Tokens that are in that testnet
-
-## Who's using it?
-
-- [DappHero](https://www.dapphero.io)
-
-## How to Contribute
-
-Take a look at [Project Guidelines](https://github.com/elsewhencode/project-guidelines) in order to follow best practices.
-
-## Roadmap
-
-- [ ] June 2020 - Beta release
-
-## Contributors
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://leonardogalante.com"><img src="https://avatars3.githubusercontent.com/u/2475912?v=4" width="100px;" alt=""/><br /><sub><b>Leonardo Galante</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Code">💻</a> <a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Documentation">📖</a> <a href="#projectManagement-lndgalante" title="Project Management">📆</a></td>
-    <td align="center"><a href="https://www.xivis.com"><img src="https://avatars0.githubusercontent.com/u/12477284?v=4" width="100px;" alt=""/><br /><sub><b>Ramiro Gonzalez</b></sub></a><br /><a href="#design-ragonzal" title="Design">🎨</a> <a href="#a11y-ragonzal" title="Accessibility">️️️️♿️</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-### License
-
-MIT © **[`Xivis`](https://xivis.com)**
+ -->
