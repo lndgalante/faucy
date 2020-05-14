@@ -114,7 +114,16 @@ export const Form = () => {
       const { body } = await networkService(userAddress);
 
       const link = faucetNetwork.createEtherscanLink(body.txHash);
-      updateRequests({ link, message: 'Mining transaction', status: 'pending' }, id);
+      updateRequests(
+        {
+          link,
+          status: 'pending',
+          icon: 'external-link',
+          message: 'Mining transaction',
+          extraMessage: 'Display information on Etherscan',
+        },
+        id,
+      );
 
       // FIXME: Temporal fix for Kovan since it gets solved really quickly
       if (userNetwork === 'kovan' || userNetwork === 'goerli') {
