@@ -69,7 +69,7 @@ export const Form = () => {
 
   // Chakra hooks
   const { colorMode } = useColorMode();
-  const { displaySuccessMessage, displayErrorMessage } = useToast();
+  const { displaySuccessMessage } = useToast();
 
   // Animation hooks
   const { buttonContainerRef, animationContainerRef } = useAnimatedCoins(colorMode);
@@ -99,7 +99,7 @@ export const Form = () => {
         icon: 'info-outline',
         amount: faucetNetwork.amount,
         message: 'Requesting ethers',
-        extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification.`,
+        extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification`,
       },
       id,
     );
@@ -130,7 +130,7 @@ export const Form = () => {
         await delay(1000);
 
         playSuccessSound({});
-        displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
+        displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers`);
 
         return updateRequests(
           {
@@ -173,7 +173,7 @@ export const Form = () => {
       });
     } catch (error) {
       const { body } = JSON.parse(error.message);
-      const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later...`;
+      const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later`;
 
       playErrorSound({});
       updateRequests({ message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' }, id);
