@@ -51,13 +51,13 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 1. Install all dependencies
 
 ```bash
-> yarn install:all:deps
+> npm install && npm run install:all:deps
 ```
 
 2. Run ngrok command
 
 ```bash
-ngrok http 3000
+> ngrok http 3000
 ```
 
 3. Copy HTTPS url from ngrok to Gatsby environment variable
@@ -69,7 +69,7 @@ GATSBY_FAUCY_API_URL=https://a5ee9cd4.ngrok.io
 4. Run both projects in parallel
 
 ```bash
-> yarn dev:all
+> npm run dev:all
 ```
 
 ## Design
