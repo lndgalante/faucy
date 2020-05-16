@@ -7,10 +7,14 @@ const { RINKEBY_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
 
 async function getRinkebyEth({ address }) {
   // Constants - DOM Selectors
-  const BUTTON_SEND_SELECTOR = 'button';
-  const INPUT_ADDRESS_SELECTOR = 'input';
-  const FAUCET_ERROR_OUTPUT_SELECTOR = 'body';
-  const FAUCET_MESSAGE_SELECTOR = 'p:last-of-type';
+  const BUTTON_SEND_SELECTOR = 'input[value="Claim"]';
+  const INPUT_ADDRESS_SELECTOR = 'input[name=address]';
+  const AMOUNT_SELECTOR = 'input[name=amount]';
+  const ACCEPT_TERMS_SELECTOR = 'input[name=verify]';
+  const SELECT_FORM_SELECTOR = 'select[name=interested]';
+  const FAUCET_LOG_SELECTOR = '#log';
+
+  const ETHER_AMOUNT = '0.2'
 
   // Launch a new browser
   const browser = await getBrowser('rinkeby');
@@ -26,45 +30,54 @@ async function getRinkebyEth({ address }) {
   await page.focus(INPUT_ADDRESS_SELECTOR);
   await page.keyboard.type(address);
 
-  // Trigger eth request
+  // Type amount
+  await page.focus(AMOUNT_SELECTOR);
+  await page.keyboard.type(ETHER_AMOUNT);
+
+  // Select option
+  await page.select(SELECT_FORM_SELECTOR, 'OTHER')
+
+  // Check terms and conditions
+  await page.evaluate(
+    (selector) => document.querySelector(selector).click(),
+     ACCEPT_TERMS_SELECTOR
+  );
+
+  // Solve reCAPTCHAs
+  await page.solveRecaptchas();
+
+  // Check terms and conditions
   await page.click(BUTTON_SEND_SELECTOR);
 
-  // Wait for redirect
-  await page.waitFor(6000);
+  // Wait for the page to reload
+  await page.waitFor(6000)
 
-  // Handle error case
-  try {
-    await page.waitForSelector(FAUCET_MESSAGE_SELECTOR, { timeout: 2000 });
-  } catch {
-    const errorMessage = await page.evaluate(
-      (selector) => document.querySelector(selector).textContent,
-      FAUCET_ERROR_OUTPUT_SELECTOR,
-    );
-
-    // Close browser
-    browser.close();
-
-    return {
-      statusCode: 401,
-      body: { message: errorMessage },
-    };
-  }
+  // Wait for the log message while the page reloads
+  await page.waitForSelector(FAUCET_LOG_SELECTOR);
 
   // Get text message
   const textMessage = await page.evaluate(
     (selector) => document.querySelector(selector).textContent,
-    FAUCET_MESSAGE_SELECTOR,
+    FAUCET_LOG_SELECTOR,
   );
 
-  // Get transaction hash
+  // Try to get a  transaction hash
   const [txHash] = textMessage.match(txHashRegex) || [];
 
   // Close browser
   browser.close();
 
+  // If the message isn't a tx hash is an error
+  if (!txHash) {
+    return {
+      statusCode: 401,
+      body: { message: textMessage },
+    };
+  }
+
   return {
     statusCode: 200,
-    body: { txHash, message: createSuccessMessage('0.001') },
+    body: { txHash, message: createSuccessMessage(ETHER_AMOUNT) },
   };
 }
 
