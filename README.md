@@ -57,7 +57,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 2. Run ngrok command
 
 ```bash
-> ngrok http 3000
+> ngrok http 8080
 ```
 
 3. Copy HTTPS url from ngrok to Gatsby environment variable
@@ -132,6 +132,7 @@ MIT © **[`Xivis`](https://xivis.com)**
 - [ ] (Frontend) Bug: emojis are unaligned on Ubuntu/Windows
 - [ ] (Frontend) Connect decentralized analytics
 - [ ] (Frontend) Connect to Etherscan API to update transactions
+- [ ] (Frontend/Backend) Add Husky precommit/hooks
 
 ## Todo Beta
 
