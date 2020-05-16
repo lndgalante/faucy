@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const sentry = require('@sentry/node');
+const compress = require('compression');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
 
@@ -28,6 +29,9 @@ function setupExpressApp() {
   // Body Parser
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  // Gzip compression
+  app.use(compress());
 
   // Rate limit
   app.use(rateLimit({ windowMs: ms('15m'), max: 100 }));
