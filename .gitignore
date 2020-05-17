@@ -1,4 +1,12 @@
-node_modules
-yarn.lock
+# Environment variables
 .env
+
+# OS files
 .DS_Store
+
+# Node modules
+node_modules
+
+# Lock files
+yarn.lock
+package-lock.json

@@ -9,6 +9,7 @@ const ropstenController = async (req, res) => {
     const { statusCode, body } = await getRopstenEth({ address });
     return res.status(statusCode).send({ body });
   } catch (error) {
+    console.log('ropstenController -> error', error);
     return res.status(500).send({ error });
   }
 };
