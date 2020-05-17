@@ -1,8 +1,9 @@
 // Utils
+const { NETWORKS } = require('../../utils/networks');
 const { getBrowser } = require('../../utils/puppeteer');
-const { txHashRegex, parseKovanMessage, createSuccessMessage } = require('../../utils/strings');
+const { txHashRegex, getKovanHours, createSuccessMessage, createGreylistMessage } = require('../../utils/strings');
 
-// Constants
+// Constants - Environment variables
 const { KOVAN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
 
 async function getKovanEth({ address }) {
@@ -13,7 +14,7 @@ async function getKovanEth({ address }) {
   const ETHERSCAN_LINK_SELECTOR = '#faucetOutput a:last-of-type';
 
   // Launch a new browser
-  const browser = await getBrowser('kovan');
+  const browser = await getBrowser(NETWORKS.kovan);
   const page = await browser.newPage();
 
   // Authenticate proxy
@@ -47,6 +48,9 @@ async function getKovanEth({ address }) {
     return anchor ? anchor.getAttribute('href') : '';
   }, ETHERSCAN_LINK_SELECTOR);
 
+  // Close browser
+  browser.close();
+
   // Get txHash
   const [txHash] = anchorLink.match(txHashRegex) || [];
 
@@ -54,14 +58,19 @@ async function getKovanEth({ address }) {
   const [statusCode] = description.match(/\d+/g) || [];
 
   // Parse message
-  const message = statusCode === '200' ? createSuccessMessage('0.1') : parseKovanMessage(rawMessage);
+  if (statusCode === '200') {
+    const message = createSuccessMessage('0.1');
 
-  // Close browser
-  browser.close();
+    return {
+      statusCode,
+      body: { description, message, txHash },
+    };
+  }
 
+  const hours = getKovanHours(rawMessage);
   return {
-    statusCode,
-    body: { description, message, txHash },
+    statusCode: 401,
+    body: { message: createGreylistMessage(`${hours} hours`) },
   };
 }
 

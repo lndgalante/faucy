@@ -1,8 +1,9 @@
 // Utils
+const { NETWORKS } = require('../../utils/networks');
 const { getBrowser } = require('../../utils/puppeteer');
-const { txHashRegex, createSuccessMessage } = require('../../utils/strings');
+const { txHashRegex, createSuccessMessage, createGreylistMessage } = require('../../utils/strings');
 
-// Constants
+// Constants - Environment variables
 const { RINKEBY_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
 
 async function getRinkebyEth({ address }) {
@@ -14,10 +15,11 @@ async function getRinkebyEth({ address }) {
   const SELECT_FORM_SELECTOR = 'select[name=interested]';
   const FAUCET_LOG_SELECTOR = '#log';
 
-  const ETHER_AMOUNT = '0.2'
+  // Constants - Input values
+  const ETHER_AMOUNT = '0.2';
 
   // Launch a new browser
-  const browser = await getBrowser('rinkeby');
+  const browser = await getBrowser(NETWORKS.rinkeby);
   const page = await browser.newPage();
 
   // Authenticate proxy
@@ -35,13 +37,10 @@ async function getRinkebyEth({ address }) {
   await page.keyboard.type(ETHER_AMOUNT);
 
   // Select option
-  await page.select(SELECT_FORM_SELECTOR, 'OTHER')
+  await page.select(SELECT_FORM_SELECTOR, 'OTHER');
 
   // Check terms and conditions
-  await page.evaluate(
-    (selector) => document.querySelector(selector).click(),
-     ACCEPT_TERMS_SELECTOR
-  );
+  await page.evaluate((selector) => document.querySelector(selector).click(), ACCEPT_TERMS_SELECTOR);
 
   // Solve reCAPTCHAs
   await page.solveRecaptchas();
@@ -50,30 +49,30 @@ async function getRinkebyEth({ address }) {
   await page.click(BUTTON_SEND_SELECTOR);
 
   // Wait for the page to reload
-  await page.waitFor(6000)
+  await page.waitFor(2000);
 
   // Wait for the log message while the page reloads
   await page.waitForSelector(FAUCET_LOG_SELECTOR);
 
   // Get text message
   const textMessage = await page.evaluate(
-    (selector) => document.querySelector(selector).textContent,
+    (selector) => document.querySelector(selector).textContent.trim(),
     FAUCET_LOG_SELECTOR,
   );
-
-  // Try to get a  transaction hash
-  const [txHash] = textMessage.match(txHashRegex) || [];
 
   // Close browser
   browser.close();
 
-  // If the message isn't a tx hash is an error
-  if (!txHash) {
+  // Check for errors
+  if (textMessage.includes('Error')) {
     return {
       statusCode: 401,
-      body: { message: textMessage },
+      body: { message: createGreylistMessage('less than 24 hours') },
     };
   }
+
+  // Get transaction hash
+  const [txHash] = textMessage.match(txHashRegex) || [];
 
   return {
     statusCode: 200,
