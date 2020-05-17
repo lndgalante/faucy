@@ -39,7 +39,7 @@ export const Nav = () => {
         </Text>
 
         <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
-          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="16px" mb={2} mx={2} width="16px" />
+          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="12px" mb={2} mx={2} width="12px" />
         </Tooltip>
       </Box>
 
