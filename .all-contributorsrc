@@ -30,6 +30,15 @@
         "design",
         "a11y"
       ]
+    },
+    {
+      "login": "alavarello",
+      "name": "alavarello",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/19600590?v=4",
+      "profile": "https://github.com/alavarello",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
