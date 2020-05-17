@@ -1,6 +1,6 @@
 <h1 align="center">Faucy</h1>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
@@ -105,6 +105,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/alavarello"><img src="https://avatars2.githubusercontent.com/u/19600590?v=4" width="100px;" alt=""/><br /><sub><b>alavarello</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=alavarello" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/frandelgado"><img src="https://avatars2.githubusercontent.com/u/28745941?v=4" width="100px;" alt=""/><br /><sub><b>Francisco Delgado</b></sub></a><br /><a href="#projectManagement-frandelgado" title="Project Management">📆</a></td>
   </tr>
 </table>
 
