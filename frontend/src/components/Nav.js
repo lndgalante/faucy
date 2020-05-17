@@ -1,13 +1,25 @@
-import React from 'react';
-import { Box, Text, Link, IconButton, Grid, useColorMode } from '@chakra-ui/core';
+import React, { useState, useEffect } from 'react';
 import { FaGithub } from 'react-icons/fa';
+import { Box, Text, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
 
 // components
 import { Feedback } from './Feedback';
 
+// utils
+import { getHealthStatus } from '../utils/services';
+
 export const Nav = () => {
+  // React hooks
+  const [healthStatus, setHealthStatus] = useState({ message: 'Loading health status', color: 'gray.400' });
+
   // Chakra hooks
   const { colorMode, toggleColorMode } = useColorMode();
+
+  useEffect(() => {
+    getHealthStatus()
+      .then(() => setHealthStatus({ message: 'Up and running', color: 'green.400' }))
+      .catch(() => setHealthStatus({ message: 'Down and fixing', color: 'red.400' }));
+  }, []);
 
   return (
     <Box
@@ -25,9 +37,10 @@ export const Nav = () => {
         <Text as="h1" fontSize="2xl" fontWeight={500}>
           Faucy
         </Text>
-        <Text fontSize="sm" fontWeight={400} ml={1} opacity={0.7} pb={1}>
-          (alpha)
-        </Text>
+
+        <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
+          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="16px" mb={2} mx={2} width="16px" />
+        </Tooltip>
       </Box>
 
       <Grid gap={3} gridAutoFlow={'column'}>
