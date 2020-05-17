@@ -1,4 +1,7 @@
 <h1 align="center">Faucy</h1>
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
 <img src="https://i.ibb.co/0YmgWrZ/Captura-de-Pantalla-2020-05-07-a-la-s-13-04-59.png">
@@ -96,6 +99,18 @@ Take a look at [Project Guidelines](https://github.com/elsewhencode/project-guid
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/alavarello"><img src="https://avatars2.githubusercontent.com/u/19600590?v=4" width="100px;" alt=""/><br /><sub><b>alavarello</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=alavarello" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
