@@ -18,6 +18,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "frandelgado",
+      "name": "Francisco Delgado",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/28745941?v=4",
+      "profile": "https://github.com/frandelgado",
+      "contributions": [
+        "projectManagement"
+      ]
     }
   ],
   "contributorsPerLine": 7
