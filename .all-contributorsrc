@@ -11,24 +11,22 @@
   "commitConvention": "none",
   "contributors": [
     {
-      "login": "lndgalante",
-      "name": "Leonardo Galante",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/2475912?v=4",
-      "profile": "https://leonardogalante.com",
+      "login": "alavarello",
+      "name": "alavarello",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/19600590?v=4",
+      "profile": "https://github.com/alavarello",
       "contributions": [
-        "code",
-        "doc",
-        "projectManagement"
+        "code"
       ]
     },
     {
-      "login": "ragonzal",
-      "name": "Ramiro Gonzalez",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/12477284?v=4",
-      "profile": "https://www.xivis.com",
+      "login": "frandelgado",
+      "name": "Francisco Delgado",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/28745941?v=4",
+      "profile": "https://github.com/frandelgado",
       "contributions": [
-        "design",
-        "a11y"
+        "projectManagement",
+        "code"
       ]
     }
   ],

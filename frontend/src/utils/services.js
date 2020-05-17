@@ -16,3 +16,5 @@ export const services = {
 };
 
 export const getNetworkService = (networkName) => services[networkName];
+
+export const getHealthStatus = () => faucyApi.url(`/health`).get().json();
