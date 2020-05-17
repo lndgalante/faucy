@@ -99,18 +99,7 @@ Take a look at [Project Guidelines](https://github.com/elsewhencode/project-guid
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/alavarello"><img src="https://avatars2.githubusercontent.com/u/19600590?v=4" width="100px;" alt=""/><br /><sub><b>alavarello</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=alavarello" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/frandelgado"><img src="https://avatars2.githubusercontent.com/u/28745941?v=4" width="100px;" alt=""/><br /><sub><b>Francisco Delgado</b></sub></a><br /><a href="#projectManagement-frandelgado" title="Project Management">📆</a></td>
-  </tr>
-</table>
 
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -118,10 +107,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://leonardogalante.com"><img src="https://avatars3.githubusercontent.com/u/2475912?v=4" width="100px;" alt=""/><br /><sub><b>Leonardo Galante</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Code">💻</a> <a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Documentation">📖</a> <a href="#projectManagement-lndgalante" title="Project Management">📆</a></td>
-    <td align="center"><a href="https://www.xivis.com"><img src="https://avatars0.githubusercontent.com/u/12477284?v=4" width="100px;" alt=""/><br /><sub><b>Ramiro Gonzalez</b></sub></a><br /><a href="#design-ragonzal" title="Design">🎨</a> <a href="#a11y-ragonzal" title="Accessibility">️️️️♿️</a></td>
     <td align="center"><a href="https://github.com/alavarello"><img src="https://avatars2.githubusercontent.com/u/19600590?v=4" width="100px;" alt=""/><br /><sub><b>alavarello</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=alavarello" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/frandelgado"><img src="https://avatars2.githubusercontent.com/u/28745941?v=4" width="100px;" alt=""/><br /><sub><b>Francisco Delgado</b></sub></a><br /><a href="#projectManagement-frandelgado" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://github.com/frandelgado"><img src="https://avatars2.githubusercontent.com/u/28745941?v=4" width="100px;" alt=""/><br /><sub><b>Francisco Delgado</b></sub></a><br /><a href="#projectManagement-frandelgado" title="Project Management">📆</a> <a href="https://github.com/Xivis/faucy/commits?author=frandelgado" title="Code">💻</a></td>
   </tr>
 </table>
 
