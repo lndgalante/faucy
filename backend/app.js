@@ -12,11 +12,16 @@ const { rinkebyController } = require('./modules/rinkeby/controller');
 // Express - Setup
 const app = setupExpressApp();
 
-// Express- Endpoints
+// Express - Main endpoints
 app.post('/kovan', kovanController);
 app.post('/goerli', goerliController);
 app.post('/ropsten', ropstenController);
 app.post('/rinkeby', rinkebyController);
+
+// Express - Secondary endpoints
+app.get('/health', (req, res) => {
+  res.status(200).json({ statusCode: 200, body: { message: 'The service is running' } });
+});
 
 // Sentry
 app.use(sentry.Handlers.errorHandler());
