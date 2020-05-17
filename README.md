@@ -1,7 +1,5 @@
 <h1 align="center">Faucy</h1>
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
 <img src="https://i.ibb.co/0YmgWrZ/Captura-de-Pantalla-2020-05-07-a-la-s-13-04-59.png">
@@ -107,13 +105,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/alavarello"><img src="https://avatars2.githubusercontent.com/u/19600590?v=4" width="100px;" alt=""/><br /><sub><b>alavarello</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=alavarello" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/frandelgado"><img src="https://avatars2.githubusercontent.com/u/28745941?v=4" width="100px;" alt=""/><br /><sub><b>Francisco Delgado</b></sub></a><br /><a href="#projectManagement-frandelgado" title="Project Management">📆</a> <a href="https://github.com/Xivis/faucy/commits?author=frandelgado" title="Code">💻</a></td>
+    <td align="center"><a href="https://leonardogalante.com"><img src="https://avatars3.githubusercontent.com/u/2475912?v=4" width="100px;" alt=""/><br /><sub><b>Leonardo Galante</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Code">💻</a> <a href="https://github.com/Xivis/faucy/commits?author=lndgalante" title="Documentation">📖</a> <a href="#projectManagement-lndgalante" title="Project Management">📆</a></td>
+    <td align="center"><a href="https://www.behance.net/emiliabagliani"><img src="https://media-exp1.licdn.com/dms/image/C4E03AQHGpJwQYpFQHQ/profile-displayphoto-shrink_400_400/0?e=1594857600&v=beta&t=ILsXvhGSqV-6U9E0kJQhy7MMmPtf9Yg2-GlbWPqsPMw" width="100px;" alt=""/><br /><sub><b>Emilia Bagliani</b></sub></a><br /><a href="#design-emiliabagliani" title="Design">🎨</a> <a href="#a11y-emiliabagliani" title="Accessibility">️️️️♿️</a></td>
+    <td align="center"><a href="https://github.com/alavarello"><img src="https://avatars2.githubusercontent.com/u/19600590?v=4" width="100px;" alt=""/><br /><sub><b>Agustin Lavarello</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=alavarello" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/frandelgado"><img src="https://avatars2.githubusercontent.com/u/28745941?v=4" width="100px;" alt=""/><br /><sub><b>Francisco Delgado</b></sub></a><br /><a href="https://github.com/Xivis/faucy/commits?author=frandelgado" title="Code">💻</a><a href="#projectManagement-frandelgado" title="Project Management">📆</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
