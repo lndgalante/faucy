@@ -1,10 +1,9 @@
 const ms = require('ms');
 const unit = require('ethjs-unit');
-const capitalize = require('lodash.capitalize');
 const { Luminator } = require('@tictactrip/luminator');
 
 // Utils
-const { createSuccessMessage } = require('../../utils/strings');
+const { createSuccessMessage, createGreylistMessage } = require('../../utils/strings');
 
 // Constants
 const { ROPSTEN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
@@ -27,15 +26,11 @@ async function getRopstenEth({ address }) {
     };
   } catch (error) {
     const { status, text } = error;
-    const { message, duration } = JSON.parse(text);
+    const { duration } = JSON.parse(text);
 
     return {
       statusCode: status,
-      body: {
-        message: `${capitalize(message)}. Your greylisted duration is for ${ms(
-          duration,
-        )}. In the meanwhile you can use it with another account.`,
-      },
+      body: { message: createGreylistMessage(ms(duration)) },
     };
   }
 }

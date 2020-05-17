@@ -120,7 +120,7 @@ export const Form = () => {
           status: 'pending',
           icon: 'external-link',
           message: 'Mining transaction',
-          extraMessage: 'Display information on Etherscan',
+          extraMessage: 'Display transaction status on Etherscan',
         },
         id,
       );
@@ -137,7 +137,7 @@ export const Form = () => {
             status: 'resolved',
             icon: 'external-link',
             message: 'Mined transaction',
-            extraMessage: 'Display information on Etherscan',
+            extraMessage: 'Display transaction status on Etherscan',
           },
           id,
         );
@@ -166,7 +166,7 @@ export const Form = () => {
             status: 'resolved',
             icon: 'external-link',
             message: 'Mined transaction',
-            extraMessage: 'Display information on Etherscan',
+            extraMessage: 'Display transaction status on Etherscan',
           },
           id,
         );
