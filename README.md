@@ -44,7 +44,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 | ------- | ------- | ------ | ------ |
 | Ropsten | 👍      | ✅     | 1      |
 | Kovan   | 👍      | ✅     | 0.1    |
-| Rinkeby | 👍      | ✅     | 0.001  |
+| Rinkeby | 👍      | ✅     | 0.2    |
 | Goerli  | 👍      | ✅     | 0.05   |
 
 ## Development
