@@ -2,7 +2,7 @@
 
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
-<img src="https://i.ibb.co/0YmgWrZ/Captura-de-Pantalla-2020-05-07-a-la-s-13-04-59.png">
+<img src="https://i.ibb.co/931dDDT/faucy.png">
 
 ---
 
@@ -44,7 +44,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 | ------- | ------- | ------ | ------ |
 | Ropsten | 👍      | ✅     | 1      |
 | Kovan   | 👍      | ✅     | 0.1    |
-| Rinkeby | 👍      | 🔴     | 0.001  |
+| Rinkeby | 👍      | ✅     | 0.001  |
 | Goerli  | 👍      | ✅     | 0.05   |
 
 ## Development
