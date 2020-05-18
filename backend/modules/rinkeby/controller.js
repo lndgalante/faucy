@@ -1,15 +1,21 @@
+const DelayedResponse = require('http-delayed-response');
+
 // Resolver
 const { getRinkebyEth } = require('./resolver');
 
 // Controller
-const rinkebyController = async (req, res) => {
+const rinkebyController = async (req, res, next) => {
   const { address } = req.body;
 
+  const delayed = new DelayedResponse(req, res, next);
+  delayed.on('done', (data) => res.end(JSON.stringify(data)));
+
   try {
-    const { statusCode, body } = await getRinkebyEth({ address });
-    return res.status(statusCode).send({ body });
+    delayed.start();
+    const data = await getRinkebyEth({ address });
+    delayed.end(null, data);
   } catch (error) {
-    return res.status(500).send({ error });
+    delayed.end(error, { statusCode: 500, body: { error } });
   }
 };
 
