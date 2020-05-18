@@ -126,7 +126,8 @@ export const Form = () => {
       );
 
       // FIXME: Temporal fix for Kovan since it gets solved really quickly
-      if (userNetwork === 'kovan' || userNetwork === 'goerli') {
+      const solvedNetworks = ['kovan', 'rinkeby', 'goerli'];
+      if (solvedNetworks.includes(userNetwork)) {
         await delay(1000);
 
         playSuccessSound({});
