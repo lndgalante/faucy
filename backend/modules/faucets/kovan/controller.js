@@ -1,5 +1,5 @@
 // Resolver
-const { getKovanEth } = require('./resolver');
+const { getKovanEth } = require('./service');
 
 // Controller
 const kovanController = async (req, res) => {

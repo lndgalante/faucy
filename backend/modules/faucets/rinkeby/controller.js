@@ -1,10 +1,10 @@
 const DelayedResponse = require('http-delayed-response');
 
 // Resolver
-const { getGoerliEth } = require('./resolver');
+const { getRinkebyEth } = require('./service');
 
 // Controller
-const goerliController = async (req, res, next) => {
+const rinkebyController = async (req, res, next) => {
   const { address } = req.body;
 
   const delayed = new DelayedResponse(req, res, next);
@@ -12,11 +12,11 @@ const goerliController = async (req, res, next) => {
 
   try {
     delayed.start();
-    const data = await getGoerliEth({ address });
+    const data = await getRinkebyEth({ address });
     delayed.end(null, data);
   } catch (error) {
     delayed.end(error, { statusCode: 500, body: { error } });
   }
 };
 
-module.exports = { goerliController };
+module.exports = { rinkebyController };

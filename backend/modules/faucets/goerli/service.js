@@ -1,8 +1,8 @@
 // Utils
-const { wretch } = require('../../utils/fetch');
-const { NETWORKS } = require('../../utils/networks');
-const { getBrowser } = require('../../utils/puppeteer');
-const { createSuccessMessage } = require('../../utils/strings');
+const { wretch } = require('../../../utils/fetch');
+const { NETWORKS } = require('../../../utils/networks');
+const { getBrowser } = require('../../../utils/puppeteer');
+const { createSuccessMessage } = require('../../../utils/strings');
 
 // Constants - Environment variables
 const { GOERLI_FAUCET_URL } = process.env;
