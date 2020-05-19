@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaTelegramPlane } from 'react-icons/fa';
 import { Box, Text, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
 
 // components
@@ -33,23 +33,26 @@ export const Nav = () => {
       px="37px"
       py="20px"
     >
-      <Box alignItems="flex-end" d="flex">
+      <Box alignItems="center" d="flex">
         <Text as="h1" fontSize="2xl" fontWeight={500}>
           Faucy
         </Text>
 
         <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
-          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="12px" mb={2} mx={2} width="12px" />
+          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="12px" ml={2} mt={2} width="12px" />
         </Tooltip>
       </Box>
 
       <Grid gap={3} gridAutoFlow={'column'}>
         <Feedback />
+        <Link isExternal alignItems="center" d="flex" href={'https://t.me/faucy'}>
+          <IconButton aria-label="Telegram Channel" fontSize={'lg'} icon={FaTelegramPlane} variant="outline" />
+        </Link>
         <Link isExternal alignItems="center" d="flex" href={'https://github.com/xivis/faucy'}>
           <IconButton aria-label="GitHub Repository" fontSize={'lg'} icon={FaGithub} variant="outline" />
         </Link>
         <IconButton
-          aria-label="GitHub Repository"
+          aria-label="Change color mode"
           fontSize="lg"
           icon={colorMode === 'light' ? 'moon' : 'sun'}
           variant="outline"
