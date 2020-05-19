@@ -1,7 +1,7 @@
 // Utils
-const { NETWORKS } = require('../../utils/networks');
-const { getBrowser } = require('../../utils/puppeteer');
-const { txHashRegex, createSuccessMessage, createGreylistMessage } = require('../../utils/strings');
+const { NETWORKS } = require('../../../utils/networks');
+const { getBrowser } = require('../../../utils/puppeteer');
+const { txHashRegex, createSuccessMessage, createGreylistMessage } = require('../../../utils/strings');
 
 // Constants - Environment variables
 const { RINKEBY_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;

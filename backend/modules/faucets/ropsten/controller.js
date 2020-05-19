@@ -1,5 +1,5 @@
 // Resolver
-const { getRopstenEth } = require('./resolver');
+const { getRopstenEth } = require('./service');
 
 // Controller
 const ropstenController = async (req, res) => {

@@ -9,9 +9,6 @@ const compress = require('compression');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
 
-// Custom Middlewares
-const { userAddress } = require('../middlewares/address');
-
 // Constants
 const { SENTRY_DSN = '' } = process.env;
 
@@ -35,9 +32,6 @@ function setupExpressApp() {
 
   // Rate limit
   app.use(rateLimit({ windowMs: ms('15m'), max: 100 }));
-
-  // Custom Middlewares
-  app.use(userAddress);
 
   return app;
 }

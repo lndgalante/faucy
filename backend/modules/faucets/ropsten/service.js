@@ -3,7 +3,7 @@ const unit = require('ethjs-unit');
 const { Luminator } = require('@tictactrip/luminator');
 
 // Utils
-const { createSuccessMessage, createGreylistMessage } = require('../../utils/strings');
+const { createSuccessMessage, createGreylistMessage } = require('../../../utils/strings');
 
 // Constants
 const { ROPSTEN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
