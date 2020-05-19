@@ -6,7 +6,7 @@ const { GATSBY_FAUCY_API_URL } = process.env;
 // Helpers
 const faucyApi = wretch().url(GATSBY_FAUCY_API_URL);
 
-const getEthFromNetwork = (network) => (address) => faucyApi.url(`/${network}`).post({ address }).json();
+const getEthFromNetwork = (network) => (address) => faucyApi.url(`/faucet/${network}`).post({ address }).json();
 
 export const services = {
   kovan: getEthFromNetwork('kovan'),
@@ -17,4 +17,4 @@ export const services = {
 
 export const getNetworkService = (networkName) => services[networkName];
 
-export const getHealthStatus = () => faucyApi.url(`/health`).get().json();
+export const getHealthStatus = () => faucyApi.url(`/health/check`).get().json();
