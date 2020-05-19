@@ -1,10 +1,6 @@
 const { isAddress } = require('ethereum-address');
 
 function userAddress(req, res, next) {
-  if (req.method !== 'POST') {
-    return next();
-  }
-
   const { address } = req.body;
 
   if (!address) {
