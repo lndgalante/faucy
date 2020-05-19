@@ -36,16 +36,16 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 - 🌚 Dark Mode Support
 - ⚡️ 100/100 Lighthouse score
 - 📦 Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
-- ☁️ Reliability in mind, having a secondary service per faucet
+- ☁️ Reliability in mind, having a secondary service per faucet as redundancy
 
 ## Supported Networks
 
-| Network | Support | Status | Ethers |
-| ------- | ------- | ------ | ------ |
-| Ropsten | 👍      | ✅     | 1      |
-| Kovan   | 👍      | ✅     | 0.1    |
-| Rinkeby | 👍      | ✅     | 0.2    |
-| Goerli  | 👍      | ✅     | 0.05   |
+| Network | Support | Status | Ethers | Redundancy Status | Redundancy Ethers |
+| ------- | ------- | ------ | ------ | ----------------- | ----------------- |
+| Ropsten | 👍      | ✅     | 1      | 🚧                | 0                 |
+| Kovan   | 👍      | ✅     | 0.1    | 🚧                | 0                 |
+| Rinkeby | 👍      | ✅     | 0.2    | 🚧                | 0                 |
+| Goerli  | 👍      | ✅     | 0.05   | 🚧                | 0                 |
 
 ## Development
 
