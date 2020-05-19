@@ -9,6 +9,9 @@
 <div align="center">
   <img src="https://img.shields.io/github/issues/xivis/faucy?style=for-the-badge">
   <img src="https://img.shields.io/github/issues-pr/xivis/faucy?style=for-the-badge">
+  <a href="https://t.me/faucy">
+    <img src="https://img.shields.io/badge/Telegram-Faucy-blue?style=for-the-badge&logo=telegram&message=Telegram&color=blue" alt="Chat on Telegram">
+  </a>
 </div>
 
 ## Introduction
