@@ -1,0 +1,13 @@
+{
+  "forms": {
+    "feedbackForm": {
+      "name": "Contact Form",
+      "allowExtraFields": false,
+      "fields": {
+        "emotion": { "type": "text", "required": false },
+        "feedback": { "type": "text", "required": true }
+      },
+      "actions": [{ "type": "email", "to": "faucybot@gmail.com" }]
+    }
+  }
+}

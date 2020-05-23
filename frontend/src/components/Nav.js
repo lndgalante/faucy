@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FaGithub } from 'react-icons/fa';
-import { Box, Text, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
+import { FaGithub, FaComment, FaTelegramPlane } from 'react-icons/fa';
+import { Box, Button, Text, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
 
 // components
 import { Feedback } from './Feedback';
@@ -10,6 +10,7 @@ import { getHealthStatus } from '../utils/services';
 
 export const Nav = () => {
   // React hooks
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [healthStatus, setHealthStatus] = useState({ message: 'Loading health status', color: 'gray.400' });
 
   // Chakra hooks
@@ -33,23 +34,40 @@ export const Nav = () => {
       px="37px"
       py="20px"
     >
-      <Box alignItems="flex-end" d="flex">
+      <Box alignItems="center" d="flex">
         <Text as="h1" fontSize="2xl" fontWeight={500}>
           Faucy
         </Text>
 
         <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
-          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="12px" mb={2} mx={2} width="12px" />
+          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="12px" ml={2} mt={2} width="12px" />
         </Tooltip>
       </Box>
 
       <Grid gap={3} gridAutoFlow={'column'}>
-        <Feedback />
+        <Box position="relative">
+          <Button
+            _focus={{ boxShadow: 'none' }}
+            fontSize="sm"
+            fontWeight={400}
+            variant="ghost"
+            onClick={() => setIsFeedbackOpen(true)}
+          >
+            Feedback <Box as={FaComment} d="inline" ml={2} size="14px" />
+          </Button>
+          {isFeedbackOpen && <Feedback setIsFeedbackOpen={setIsFeedbackOpen} />}
+        </Box>
+
+        <Link isExternal alignItems="center" d="flex" href={'https://t.me/faucy'}>
+          <IconButton aria-label="Telegram Channel" fontSize={'lg'} icon={FaTelegramPlane} variant="outline" />
+        </Link>
+
         <Link isExternal alignItems="center" d="flex" href={'https://github.com/xivis/faucy'}>
           <IconButton aria-label="GitHub Repository" fontSize={'lg'} icon={FaGithub} variant="outline" />
         </Link>
+
         <IconButton
-          aria-label="GitHub Repository"
+          aria-label="Change color mode"
           fontSize="lg"
           icon={colorMode === 'light' ? 'moon' : 'sun'}
           variant="outline"

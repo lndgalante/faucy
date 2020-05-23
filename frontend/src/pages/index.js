@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/core';
+import { StaticKitProvider } from '@statickit/react';
 
 // Styles
 import '../assets/styles/global.css';
@@ -12,7 +13,9 @@ import { Footer } from '../components/Footer';
 const HomePage = () => {
   return (
     <Box minHeight="100vh" w="100%">
-      <Nav />
+      <StaticKitProvider site="be233dcfc478">
+        <Nav />
+      </StaticKitProvider>
 
       <Box m="0 auto" maxWidth="612px" pt={32} width="100%">
         <Box alignItems="baseline" d="flex" mb={8}>

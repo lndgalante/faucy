@@ -15,3 +15,7 @@
 .card:hover .card-overlay {
   opacity: 0.8;
 }
+
+div[type='radio'] {
+  display: none !important;
+}
