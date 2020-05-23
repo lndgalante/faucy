@@ -90,19 +90,18 @@ export const Form = () => {
       networkId: getNetworkId(userNetwork),
     });
 
-    updateRequests(
-      {
-        timestamp,
-        userAddress,
-        userNetwork,
-        status: 'pending',
-        icon: 'info-outline',
-        amount: faucetNetwork.amount,
-        message: 'Requesting ethers',
-        extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification`,
-      },
-      id,
-    );
+    const initialData = {
+      timestamp,
+      userAddress,
+      userNetwork,
+      status: 'pending',
+      icon: 'info-outline',
+      amount: faucetNetwork.amount,
+      message: 'Requesting ethers',
+      extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification`,
+    };
+
+    updateRequests(initialData, id);
 
     const pendingRequests = Object.entries(requests)
       .map(([, request]) => request.status)
@@ -116,6 +115,7 @@ export const Form = () => {
       const link = faucetNetwork.createEtherscanLink(body.txHash);
       updateRequests(
         {
+          ...initialData,
           link,
           status: 'pending',
           icon: 'external-link',
@@ -135,6 +135,7 @@ export const Form = () => {
 
         return updateRequests(
           {
+            ...initialData,
             status: 'resolved',
             icon: 'external-link',
             message: 'Mined transaction',
@@ -150,6 +151,7 @@ export const Form = () => {
         playErrorSound({});
         updateRequests(
           {
+            ...initialData,
             status: 'rejected',
             icon: 'external-link',
             message: 'Transaction error',
@@ -164,6 +166,7 @@ export const Form = () => {
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
         updateRequests(
           {
+            ...initialData,
             status: 'resolved',
             icon: 'external-link',
             message: 'Mined transaction',
@@ -177,7 +180,10 @@ export const Form = () => {
       const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later`;
 
       playErrorSound({});
-      updateRequests({ message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' }, id);
+      updateRequests(
+        { ...initialData, message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' },
+        id,
+      );
     } finally {
       setIsFormEnabled(true);
     }
