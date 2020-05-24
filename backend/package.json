@@ -38,7 +38,6 @@
   },
   "scripts": {
     "start": "node local.js",
-    "dev": "nodemon local.js",
-    "aws:install": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install --production"
+    "dev": "nodemon local.js"
   }
 }
