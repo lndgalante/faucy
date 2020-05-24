@@ -43,12 +43,21 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 
 ## Supported Networks
 
-| Network | Support | Status | Ethers | Redundancy Status | Redundancy Ethers |
-| ------- | ------- | ------ | ------ | ----------------- | ----------------- |
-| Ropsten | 👍      | ✅     | 1      | 🚧                | 0                 |
-| Kovan   | 👍      | ✅     | 0.1    | 🚧                | 0                 |
-| Rinkeby | 👍      | ✅     | 0.2    | 🚧                | 0                 |
-| Goerli  | 👍      | ✅     | 0.05   | 🚧                | 0                 |
+| Network | Status | Ethers |
+| ------- | ------ | ------ |
+| Ropsten | ✅     | 1      |
+| Kovan   | ✅     | 0.1    |
+| Rinkeby | ✅     | 0.2    |
+| Goerli  | ✅     | 0.05   |
+
+## Redundacy Networks
+
+| Network | Status | Ethers |
+| ------- | ------ | ------ |
+| Ropsten | 🚧     | 0      |
+| Kovan   | 🚧     | 0      |
+| Rinkeby | 🚧     | 0      |
+| Goerli  | 🚧     | 0      |
 
 ## Development
 
