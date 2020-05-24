@@ -4,6 +4,7 @@ import { useColorMode } from '@chakra-ui/core';
 export function Coins(props) {
   // Chakra hooks
   const { colorMode } = useColorMode();
+
   const color = colorMode === 'light' ? 'rgb(26, 32, 44)' : 'rgba(255, 255, 255, 0.92)';
 
   return (
