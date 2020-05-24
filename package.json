@@ -15,5 +15,20 @@
     "install:frontend:deps": "cd frontend && npm install",
     "install:all:deps": "run-p install:backend:deps install:frontend:deps",
     "dev:all": "run-p dev:backend dev:frontend"
+  },
+  "dependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
