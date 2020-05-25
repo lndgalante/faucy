@@ -9,6 +9,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@statickit/react": "^2.1.1",
+    "beautiful-react-hooks": "^0.25.2",
     "bnc-notify": "^1.2.1",
     "dotenv": "^8.2.0",
     "emotion-theming": "^10.0.27",
@@ -35,7 +36,6 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
     "react-icons": "^3.10.0",
-    "react-use": "^15.1.0",
     "use-onclickoutside": "^0.3.1",
     "use-sound": "^1.0.2",
     "wretch": "^1.7.2"
