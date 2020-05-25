@@ -40,7 +40,15 @@ export const Nav = () => {
         </Text>
 
         <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
-          <Box backgroundColor={healthStatus.color} borderRadius="50%" height="12px" ml={2} mt={2} width="12px" />
+          <Box
+            borderColor={healthStatus.color}
+            borderRadius="50%"
+            borderWidth={'2px'}
+            height="12px"
+            ml={2}
+            mt={2}
+            width="12px"
+          />
         </Tooltip>
       </Box>
 
