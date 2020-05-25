@@ -38,8 +38,9 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 - 🦮 Accessibility First
 - 🌚 Dark Mode Support
 - ⚡️ 100/100 Lighthouse score
-- 📦 Distributed over fast and secure IPFS (using [Fleek](https://fleek.co))
-- ☁️ Reliability in mind, having a secondary service per faucet as redundancy
+- ☁️ Reliability in mind, with a redundancy faucet per testnet
+- 📦 Distributed over fast, performant and secure IPFS (using [Fleek](https://fleek.co))
+- 📊 Analytics which prioritizes experience, performance and privacy (using [Matomo](https://www.gatsbyjs.org/packages/gatsby-plugin-matomo/))
 
 ## Supported Networks
 
@@ -50,7 +51,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 | Rinkeby | ✅     | 0.2    |
 | Goerli  | ✅     | 0.05   |
 
-## Redundacy Networks
+## Redundancy Networks
 
 | Network | Status | Ethers |
 | ------- | ------ | ------ |
