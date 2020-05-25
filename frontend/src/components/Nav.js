@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaGithub, FaComment, FaTelegramPlane } from 'react-icons/fa';
 import { Box, Button, Text, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
+import { AnimatePresence } from 'framer-motion';
 
 // components
 import { Feedback } from './Feedback';
+import { AnimatedBox } from './AnimatedBox';
 
 // utils
 import { getHealthStatus } from '../utils/services';
@@ -63,7 +65,13 @@ export const Nav = () => {
           >
             Feedback <Box as={FaComment} d="inline" ml={2} size="14px" />
           </Button>
-          {isFeedbackOpen && <Feedback setIsFeedbackOpen={setIsFeedbackOpen} />}
+          <AnimatePresence>
+            {isFeedbackOpen && (
+              <AnimatedBox>
+                <Feedback setIsFeedbackOpen={setIsFeedbackOpen} />
+              </AnimatedBox>
+            )}
+          </AnimatePresence>
         </Box>
 
         <Link isExternal alignItems="center" d="flex" href={'https://t.me/faucy'}>

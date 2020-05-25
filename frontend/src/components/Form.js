@@ -15,6 +15,7 @@ import {
   FormErrorMessage,
   useColorMode,
 } from '@chakra-ui/core';
+import { AnimatePresence } from 'framer-motion';
 
 import isEmpty from 'lodash.isempty';
 import upperFirst from 'lodash.upperfirst';
@@ -25,6 +26,9 @@ import { useFormik } from 'formik';
 
 import Notify from 'bnc-notify';
 import makeBlockie from 'ethereum-blockies-base64';
+
+// Components
+import { AnimatedBox } from './AnimatedBox';
 
 // UI Components
 import { SEO } from '../ui/components/Seo';
@@ -220,10 +224,7 @@ export const Form = () => {
 
   // Trigger message if there are pending requests
   useEffect(() => {
-    const pendingRequests = getLatestRequests(requests).some(
-      ([_, request]) => request.status === 'pending' && !request.txHash,
-    );
-
+    const pendingRequests = getLatestRequests(requests).some(([_, request]) => request.status === 'pending');
     if (!pendingRequests) return;
 
     const onBeforeUnload = (event) => {
@@ -278,7 +279,7 @@ export const Form = () => {
         );
       });
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box>
@@ -397,117 +398,124 @@ export const Form = () => {
               </Button>
             </Box>
 
-            <Box>
+            <AnimatePresence>
               {getLatestRequests(requests).map(([id, values]) => {
                 return (
-                  <PseudoBox
-                    key={id}
-                    bg={colorMode === 'light' ? 'white' : 'rgba(255, 255, 255, 0.1)'}
-                    borderRadius={'md'}
-                    boxShadow="md"
-                    className="card"
-                    cursor={values.link ? 'pointer' : 'auto'}
-                    d="flex"
-                    justifyContent="space-between"
-                    mb={4}
-                    position={'relative'}
-                    px={6}
-                    py={4}
-                    transition="all .2s ease"
-                    {...(values.link ? { onClick: () => window.open(values.link) } : {})}
-                  >
-                    <Box
-                      alignItems="center"
-                      bg={colorMode === 'light' ? 'white' : '#3d434c'}
-                      borderRadius="md"
-                      className="card-overlay"
-                      display="flex"
-                      height="100%"
-                      justifyContent="center"
-                      left="0"
-                      position="absolute"
-                      top="0"
-                      width="100%"
+                  <AnimatedBox key={id}>
+                    <PseudoBox
+                      bg={colorMode === 'light' ? 'white' : 'rgba(255, 255, 255, 0.1)'}
+                      borderRadius={'md'}
+                      boxShadow="md"
+                      className="card"
+                      cursor={values.link ? 'pointer' : 'auto'}
+                      d="flex"
+                      justifyContent="space-between"
+                      mb={4}
+                      position={'relative'}
+                      px={6}
+                      py={4}
+                      transition="all .2s ease"
+                      {...(values.link ? { onClick: () => window.open(values.link) } : {})}
                     >
-                      <Text>{values.extraMessage}</Text>
-                      <Icon ml={2} name={values.icon} />
-                    </Box>
-                    <Box
-                      borderRightColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
-                      borderRightStyle={'solid'}
-                      borderRightWidth={'1px'}
-                      pr={6}
-                    >
-                      <Text
-                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                        fontSize="xs"
-                        mb={1}
-                        textTransform="uppercase"
+                      <Box
+                        alignItems="center"
+                        bg={colorMode === 'light' ? 'white' : '#3d434c'}
+                        borderRadius="md"
+                        className="card-overlay"
+                        display="flex"
+                        height="100%"
+                        justifyContent="center"
+                        left="0"
+                        position="absolute"
+                        top="0"
+                        width="100%"
                       >
-                        Address
-                      </Text>
-                      <Box d="flex">
-                        <Image alt="Blockie" mr={3} rounded="full" size="22px" src={makeBlockie(values.userAddress)} />
-                        <Text>{shortAddress(values.userAddress)}</Text>
+                        <Text>{values.extraMessage}</Text>
+                        <Icon ml={2} name={values.icon} />
                       </Box>
-                    </Box>
-
-                    <Box>
-                      <Text
-                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                        fontSize="xs"
-                        mb={1}
-                        textTransform="uppercase"
+                      <Box
+                        borderRightColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
+                        borderRightStyle={'solid'}
+                        borderRightWidth={'1px'}
+                        pr={6}
                       >
-                        Network
-                      </Text>
-                      <Box>
-                        <Text>{upperFirst(values.userNetwork)}</Text>
-                      </Box>
-                    </Box>
-
-                    <Box width={'166px'}>
-                      <Text
-                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                        fontSize="xs"
-                        mb={1}
-                        textTransform="uppercase"
-                      >
-                        Status
-                      </Text>
-                      <Box>
-                        <Badge fontSize={'sm'} variantColor={getVariant(values.status)}>
-                          {values.message}
-                        </Badge>
-                      </Box>
-                    </Box>
-
-                    <Box textAlign="right" width="80px">
-                      <Text
-                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                        fontSize="xs"
-                        mb={1}
-                        textTransform="uppercase"
-                      >
-                        Amount
-                      </Text>
-                      <Box alignItems="center" d="flex" justifyContent="flex-end">
-                        <Text fontSize="lg" fontWeight={600}>
-                          {values.amount}
+                        <Text
+                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                          fontSize="xs"
+                          mb={1}
+                          textTransform="uppercase"
+                        >
+                          Address
                         </Text>
-                        <Box
-                          as={Coins}
-                          color={colorMode === 'light' ? 'gray.700' : 'gray.200'}
-                          d="inline"
-                          ml={2}
-                          size="18px"
-                        />
+                        <Box d="flex">
+                          <Image
+                            alt="Blockie"
+                            mr={3}
+                            rounded="full"
+                            size="22px"
+                            src={makeBlockie(values.userAddress)}
+                          />
+                          <Text>{shortAddress(values.userAddress)}</Text>
+                        </Box>
                       </Box>
-                    </Box>
-                  </PseudoBox>
+
+                      <Box>
+                        <Text
+                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                          fontSize="xs"
+                          mb={1}
+                          textTransform="uppercase"
+                        >
+                          Network
+                        </Text>
+                        <Box>
+                          <Text>{upperFirst(values.userNetwork)}</Text>
+                        </Box>
+                      </Box>
+
+                      <Box width={'166px'}>
+                        <Text
+                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                          fontSize="xs"
+                          mb={1}
+                          textTransform="uppercase"
+                        >
+                          Status
+                        </Text>
+                        <Box>
+                          <Badge fontSize={'sm'} variantColor={getVariant(values.status)}>
+                            {values.message}
+                          </Badge>
+                        </Box>
+                      </Box>
+
+                      <Box textAlign="right" width="80px">
+                        <Text
+                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                          fontSize="xs"
+                          mb={1}
+                          textTransform="uppercase"
+                        >
+                          Amount
+                        </Text>
+                        <Box alignItems="center" d="flex" justifyContent="flex-end">
+                          <Text fontSize="lg" fontWeight={600}>
+                            {values.amount}
+                          </Text>
+                          <Box
+                            as={Coins}
+                            color={colorMode === 'light' ? 'gray.700' : 'gray.200'}
+                            d="inline"
+                            ml={2}
+                            size="18px"
+                          />
+                        </Box>
+                      </Box>
+                    </PseudoBox>
+                  </AnimatedBox>
                 );
               })}
-            </Box>
+            </AnimatePresence>
           </Box>
         )}
       </Box>

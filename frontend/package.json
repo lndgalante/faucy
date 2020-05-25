@@ -17,6 +17,7 @@
     "ethereum-blockies-base64": "^1.0.2",
     "ethers": "^4.0.47",
     "formik": "^2.1.4",
+    "framer-motion": "^1.11.0",
     "gatsby": "^2.22.9",
     "gatsby-plugin-chakra-ui": "^0.1.4",
     "gatsby-plugin-google-fonts": "^1.0.1",
