@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   Box,
   Icon,
@@ -21,7 +21,7 @@ import { nanoid } from 'nanoid';
 import Notify from 'bnc-notify';
 import { useFormik } from 'formik';
 import capitalize from 'lodash.capitalize';
-import { useLocalStorage } from 'react-use';
+import { useLocalStorage } from 'beautiful-react-hooks';
 import makeBlockie from 'ethereum-blockies-base64';
 
 // UI Components
@@ -90,18 +90,19 @@ export const Form = () => {
       networkId: getNetworkId(userNetwork),
     });
 
-    const initialData = {
-      timestamp,
-      userAddress,
-      userNetwork,
-      status: 'pending',
-      icon: 'info-outline',
-      amount: faucetNetwork.amount,
-      message: 'Requesting ethers',
-      extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification`,
-    };
-
-    updateRequests(initialData, id);
+    updateRequests(
+      {
+        timestamp,
+        userAddress,
+        userNetwork,
+        status: 'pending',
+        icon: 'info-outline',
+        amount: faucetNetwork.amount,
+        message: 'Requesting ethers',
+        extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification`,
+      },
+      id,
+    );
 
     const pendingRequests = Object.entries(requests)
       .map(([, request]) => request.status)
@@ -115,9 +116,9 @@ export const Form = () => {
       const link = faucetNetwork.createEtherscanLink(body.txHash);
       updateRequests(
         {
-          ...initialData,
           link,
           status: 'pending',
+          txHash: body.txHash,
           icon: 'external-link',
           message: 'Mining transaction',
           extraMessage: 'Display transaction status on Etherscan',
@@ -135,7 +136,6 @@ export const Form = () => {
 
         return updateRequests(
           {
-            ...initialData,
             status: 'resolved',
             icon: 'external-link',
             message: 'Mined transaction',
@@ -151,7 +151,6 @@ export const Form = () => {
         playErrorSound({});
         updateRequests(
           {
-            ...initialData,
             status: 'rejected',
             icon: 'external-link',
             message: 'Transaction error',
@@ -159,6 +158,7 @@ export const Form = () => {
           },
           id,
         );
+        notify.unsubscribe(requests[id]?.txHash);
       });
 
       emitter.on('txConfirmed', () => {
@@ -166,7 +166,6 @@ export const Form = () => {
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
         updateRequests(
           {
-            ...initialData,
             status: 'resolved',
             icon: 'external-link',
             message: 'Mined transaction',
@@ -174,16 +173,14 @@ export const Form = () => {
           },
           id,
         );
+        notify.unsubscribe(requests[id]?.txHash);
       });
     } catch (error) {
       const { body } = JSON.parse(error.message);
       const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later`;
 
       playErrorSound({});
-      updateRequests(
-        { ...initialData, message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' },
-        id,
-      );
+      updateRequests({ message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' }, id);
     } finally {
       setIsFormEnabled(true);
     }
@@ -210,6 +207,76 @@ export const Form = () => {
 
   // Faucet hooks
   const faucetNetwork = useFaucetNetwork(values.userNetwork);
+
+  // Get Latest 3 Requests
+  const getLatestRequests = (requests) => {
+    return Object.entries(requests)
+      .sort((a, b) => b[1]?.timestamp - a[1]?.timestamp)
+      .slice(0, 3);
+  };
+
+  // Remove all notify events if user exists page
+  useEffect(() => {
+    const onBeforeUnload = () => {
+      getLatestRequests(requests).forEach(([_, { userNetwork, txHash }]) => {
+        const notify = Notify({
+          darkMode: colorMode === 'dark',
+          dappId: GATSBY_BLOCKNATIVE_API_KEY,
+          networkId: getNetworkId(userNetwork),
+        });
+
+        notify.unsubscribe(txHash);
+      });
+    };
+
+    window.addEventListener('beforeunload', onBeforeUnload);
+    return () => window.removeEventListener('beforeunload', onBeforeUnload);
+  }, []);
+
+  // Add notify events on mounted page for pending transactions with txHash
+  useEffect(() => {
+    const pendingRequests = getLatestRequests(requests).filter(
+      ([_, request]) => request.status === 'pending' && typeof request.txHash !== 'undefined',
+    );
+
+    if (!pendingRequests.length) return;
+
+    pendingRequests.forEach(([id, { userNetwork, txHash }]) => {
+      const notify = Notify({
+        darkMode: colorMode === 'dark',
+        dappId: GATSBY_BLOCKNATIVE_API_KEY,
+        networkId: getNetworkId(userNetwork),
+      });
+
+      const { emitter } = notify.hash(txHash);
+
+      emitter.on('txFailed', () => {
+        playErrorSound({});
+        updateRequests(
+          {
+            status: 'rejected',
+            icon: 'external-link',
+            message: 'Transaction error',
+            extraMessage: 'Transaction has failed',
+          },
+          id,
+        );
+      });
+
+      emitter.on('txConfirmed', () => {
+        playSuccessSound({});
+        updateRequests(
+          {
+            status: 'resolved',
+            icon: 'external-link',
+            message: 'Mined transaction',
+            extraMessage: 'Display transaction status on Etherscan',
+          },
+          id,
+        );
+      });
+    });
+  }, []);
 
   return (
     <Box>
@@ -329,124 +396,115 @@ export const Form = () => {
             </Box>
 
             <Box>
-              {Object.entries(requests)
-                .sort((a, b) => b[1]?.timestamp - a[1]?.timestamp)
-                .slice(0, 3)
-                .map(([id, values]) => {
-                  return (
-                    <PseudoBox
-                      key={id}
-                      bg={colorMode === 'light' ? 'white' : 'rgba(255, 255, 255, 0.1)'}
-                      borderRadius={'md'}
-                      boxShadow="md"
-                      className="card"
-                      cursor={values.link ? 'pointer' : 'auto'}
-                      d="flex"
-                      justifyContent="space-between"
-                      mb={4}
-                      position={'relative'}
-                      px={6}
-                      py={4}
-                      transition="all .2s ease"
-                      {...(values.link ? { onClick: () => window.open(values.link) } : {})}
+              {getLatestRequests(requests).map(([id, values]) => {
+                return (
+                  <PseudoBox
+                    key={id}
+                    bg={colorMode === 'light' ? 'white' : 'rgba(255, 255, 255, 0.1)'}
+                    borderRadius={'md'}
+                    boxShadow="md"
+                    className="card"
+                    cursor={values.link ? 'pointer' : 'auto'}
+                    d="flex"
+                    justifyContent="space-between"
+                    mb={4}
+                    position={'relative'}
+                    px={6}
+                    py={4}
+                    transition="all .2s ease"
+                    {...(values.link ? { onClick: () => window.open(values.link) } : {})}
+                  >
+                    <Box
+                      alignItems="center"
+                      bg={colorMode === 'light' ? 'white' : '#3d434c'}
+                      borderRadius="md"
+                      className="card-overlay"
+                      display="flex"
+                      height="100%"
+                      justifyContent="center"
+                      left="0"
+                      position="absolute"
+                      top="0"
+                      width="100%"
                     >
-                      <Box
-                        alignItems="center"
-                        bg={colorMode === 'light' ? 'white' : '#3d434c'}
-                        borderRadius="md"
-                        className="card-overlay"
-                        display="flex"
-                        height="100%"
-                        justifyContent="center"
-                        left="0"
-                        position="absolute"
-                        top="0"
-                        width="100%"
+                      <Text>{values.extraMessage}</Text>
+                      <Icon ml={2} name={values.icon} />
+                    </Box>
+                    <Box
+                      borderRightColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
+                      borderRightStyle={'solid'}
+                      borderRightWidth={'1px'}
+                      pr={6}
+                    >
+                      <Text
+                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                        fontSize="xs"
+                        mb={1}
+                        textTransform="uppercase"
                       >
-                        <Text>{values.extraMessage}</Text>
-                        <Icon ml={2} name={values.icon} />
+                        Address
+                      </Text>
+                      <Box d="flex">
+                        <Image alt="Blockie" mr={3} rounded="full" size="22px" src={makeBlockie(values.userAddress)} />
+                        <Text>{shortAddress(values.userAddress)}</Text>
                       </Box>
-                      <Box
-                        borderRightColor={colorMode === 'light' ? 'gray.200' : 'gray.400'}
-                        borderRightStyle={'solid'}
-                        borderRightWidth={'1px'}
-                        pr={6}
-                      >
-                        <Text
-                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                          fontSize="xs"
-                          mb={1}
-                          textTransform="uppercase"
-                        >
-                          Address
-                        </Text>
-                        <Box d="flex">
-                          <Image
-                            alt="Blockie"
-                            mr={3}
-                            rounded="full"
-                            size="22px"
-                            src={makeBlockie(values.userAddress)}
-                          />
-                          <Text>{shortAddress(values.userAddress)}</Text>
-                        </Box>
-                      </Box>
+                    </Box>
 
+                    <Box>
+                      <Text
+                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                        fontSize="xs"
+                        mb={1}
+                        textTransform="uppercase"
+                      >
+                        Network
+                      </Text>
                       <Box>
-                        <Text
-                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                          fontSize="xs"
-                          mb={1}
-                          textTransform="uppercase"
-                        >
-                          Network
-                        </Text>
-                        <Box>
-                          <Text>{upperFirst(values.userNetwork)}</Text>
-                        </Box>
+                        <Text>{upperFirst(values.userNetwork)}</Text>
                       </Box>
+                    </Box>
 
-                      <Box width={'166px'}>
-                        <Text
-                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                          fontSize="xs"
-                          mb={1}
-                          textTransform="uppercase"
-                        >
-                          Status
-                        </Text>
-                        <Box>
-                          <Badge fontSize={'sm'} variantColor={getVariant(values.status)}>
-                            {values.message}
-                          </Badge>
-                        </Box>
+                    <Box width={'166px'}>
+                      <Text
+                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                        fontSize="xs"
+                        mb={1}
+                        textTransform="uppercase"
+                      >
+                        Status
+                      </Text>
+                      <Box>
+                        <Badge fontSize={'sm'} variantColor={getVariant(values.status)}>
+                          {values.message}
+                        </Badge>
                       </Box>
+                    </Box>
 
-                      <Box textAlign="right" width="80px">
-                        <Text
-                          color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
-                          fontSize="xs"
-                          mb={1}
-                          textTransform="uppercase"
-                        >
-                          Amount
+                    <Box textAlign="right" width="80px">
+                      <Text
+                        color={colorMode === 'light' ? 'gray.500' : 'gray.200'}
+                        fontSize="xs"
+                        mb={1}
+                        textTransform="uppercase"
+                      >
+                        Amount
+                      </Text>
+                      <Box alignItems="center" d="flex" justifyContent="flex-end">
+                        <Text fontSize="lg" fontWeight={600}>
+                          {values.amount}
                         </Text>
-                        <Box alignItems="center" d="flex" justifyContent="flex-end">
-                          <Text fontSize="lg" fontWeight={600}>
-                            {values.amount}
-                          </Text>
-                          <Box
-                            as={Coins}
-                            color={colorMode === 'light' ? 'gray.700' : 'gray.200'}
-                            d="inline"
-                            ml={2}
-                            size="18px"
-                          />
-                        </Box>
+                        <Box
+                          as={Coins}
+                          color={colorMode === 'light' ? 'gray.700' : 'gray.200'}
+                          d="inline"
+                          ml={2}
+                          size="18px"
+                        />
                       </Box>
-                    </PseudoBox>
-                  );
-                })}
+                    </Box>
+                  </PseudoBox>
+                );
+              })}
             </Box>
           </Box>
         )}
