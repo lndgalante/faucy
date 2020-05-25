@@ -23,8 +23,8 @@ module.exports = {
       resolve: `gatsby-plugin-matomo`,
       options: {
         siteId: `1`,
-        siteUrl: `https://faucy.dev/`,
-        matomoUrl: `https://faucydev.matomo.cloud/`,
+        siteUrl: `https://faucy.dev`,
+        matomoUrl: `https://faucydev.matomo.cloud`,
       },
     },
 
