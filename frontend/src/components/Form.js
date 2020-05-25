@@ -214,7 +214,7 @@ export const Form = () => {
   return (
     <Box>
       <form onSubmit={handleSubmit}>
-        <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : ''}`} />
+        <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : 'Choose your network'}`} />
 
         <Box maxWidth={['auto', 'auto', '466px']} mb={6}>
           <FormLabel mb={1}>First, choose your network:</FormLabel>
