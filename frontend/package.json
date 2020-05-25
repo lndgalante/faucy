@@ -20,6 +20,7 @@
     "gatsby-plugin-chakra-ui": "^0.1.4",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-manifest": "^2.4.9",
+    "gatsby-plugin-matomo": "^0.8.3",
     "gatsby-plugin-offline": "^3.2.7",
     "gatsby-plugin-react-helmet": "^3.3.2",
     "gatsby-plugin-sentry": "^1.0.1",

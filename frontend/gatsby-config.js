@@ -17,6 +17,18 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-chakra-ui`,
     `gatsby-plugin-react-helmet`,
+
+    // Matomo Analytics
+    {
+      resolve: `gatsby-plugin-matomo`,
+      options: {
+        siteId: `1`,
+        siteUrl: `https://faucy.dev/`,
+        matomoUrl: `https://faucydev.matomo.cloud/`,
+      },
+    },
+
+    // Sentry Error Logs
     {
       resolve: `gatsby-plugin-sentry`,
       options: {
@@ -24,6 +36,8 @@ module.exports = {
         environment: NODE_ENV,
       },
     },
+
+    // Filesystem
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -31,6 +45,8 @@ module.exports = {
         path: `${__dirname}/src/assets`,
       },
     },
+
+    // PWA Manifest
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -43,6 +59,8 @@ module.exports = {
         icon: `src/assets/images/favicon.png`,
       },
     },
+
+    // Google Fonts
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: { fonts: [`Inter\:400,500,600`], display: 'swap' },
