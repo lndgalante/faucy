@@ -215,24 +215,6 @@ export const Form = () => {
       .slice(0, 3);
   };
 
-  // Remove all notify events if user exists page
-  useEffect(() => {
-    const onBeforeUnload = () => {
-      getLatestRequests(requests).forEach(([_, { userNetwork, txHash }]) => {
-        const notify = Notify({
-          darkMode: colorMode === 'dark',
-          dappId: GATSBY_BLOCKNATIVE_API_KEY,
-          networkId: getNetworkId(userNetwork),
-        });
-
-        notify.unsubscribe(txHash);
-      });
-    };
-
-    window.addEventListener('beforeunload', onBeforeUnload);
-    return () => window.removeEventListener('beforeunload', onBeforeUnload);
-  }, []);
-
   // Add notify events on mounted page for pending transactions with txHash
   useEffect(() => {
     const pendingRequests = getLatestRequests(requests).filter(
