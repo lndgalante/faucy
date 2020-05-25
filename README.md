@@ -37,7 +37,6 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 
 - 🦮 Accessibility First
 - 🌚 Dark Mode Support
-- ⚡️ 100/100 Lighthouse score
 - ☁️ Reliability in mind, with a redundancy faucet per testnet
 - 📦 Distributed over fast, performant and secure IPFS (using [Fleek](https://fleek.co))
 - 📊 Analytics which prioritizes experience, performance and privacy (using [Matomo](https://www.gatsbyjs.org/packages/gatsby-plugin-matomo/))
