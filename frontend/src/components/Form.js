@@ -15,13 +15,16 @@ import {
   FormErrorMessage,
   useColorMode,
 } from '@chakra-ui/core';
+
 import isEmpty from 'lodash.isempty';
 import upperFirst from 'lodash.upperfirst';
-import { nanoid } from 'nanoid';
-import Notify from 'bnc-notify';
-import { useFormik } from 'formik';
 import capitalize from 'lodash.capitalize';
+
+import { nanoid } from 'nanoid';
+import { useFormik } from 'formik';
 import { useLocalStorage } from 'beautiful-react-hooks';
+
+import Notify from 'bnc-notify';
 import makeBlockie from 'ethereum-blockies-base64';
 
 // UI Components
@@ -215,6 +218,23 @@ export const Form = () => {
       .slice(0, 3);
   };
 
+  // Trigger message if there are pending requests
+  useEffect(() => {
+    const pendingRequests = getLatestRequests(requests).some(
+      ([_, request]) => request.status === 'pending' && !request.txHash,
+    );
+
+    if (!pendingRequests) return;
+
+    const onBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', onBeforeUnload);
+    return () => window.removeEventListener('beforeunload', onBeforeUnload);
+  }, [requests]);
+
   // Add notify events on mounted page for pending transactions with txHash
   useEffect(() => {
     const pendingRequests = getLatestRequests(requests).filter(
@@ -262,9 +282,9 @@ export const Form = () => {
 
   return (
     <Box>
-      <form onSubmit={handleSubmit}>
-        <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : 'Choose your network'}`} />
+      <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : 'Choose your network'}`} />
 
+      <form onSubmit={handleSubmit}>
         <Box maxWidth={['auto', 'auto', '466px']} mb={6}>
           <FormLabel mb={1}>First, choose your network:</FormLabel>
 
@@ -343,7 +363,7 @@ export const Form = () => {
       </form>
 
       {/* Results */}
-      <Box mb={32} mt={32}>
+      <Box mb={24} mt={32}>
         <Box
           borderBottomColor={colorMode === 'light' ? 'grey.600' : 'grey.200'}
           borderBottomStyle={'solid'}
