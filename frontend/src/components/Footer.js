@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Link, useColorMode } from '@chakra-ui/core';
-import { FaHeart } from 'react-icons/fa';
+import { Box, Link, Text, useColorMode } from '@chakra-ui/core';
+import { FaGripLinesVertical } from 'react-icons/fa';
 
 export const Footer = () => {
   // Chakra hooks
@@ -17,8 +17,10 @@ export const Footer = () => {
       py={6}
       width="100%"
     >
+      <Text fontSize={'sm'}>Alpha Version</Text>
+      <Box as={FaGripLinesVertical} d="inline" mx={2} size="14px" />
       <Link isExternal alignItems="center" d="flex" fontSize={'sm'} href={'https://www.xivis.com'}>
-        Made by Xivis <Box as={FaHeart} d="inline" ml={2} size="14px" />
+        Made by Xivis
       </Link>
     </Box>
   );
