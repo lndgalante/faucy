@@ -22,7 +22,6 @@ import capitalize from 'lodash.capitalize';
 
 import { nanoid } from 'nanoid';
 import { useFormik } from 'formik';
-import { useLocalStorage } from 'beautiful-react-hooks';
 
 import Notify from 'bnc-notify';
 import makeBlockie from 'ethereum-blockies-base64';
@@ -42,6 +41,7 @@ import { useToast } from '../hooks/useToast';
 import { useSounds } from '../hooks/useSounds';
 import { useUserNetwork } from '../hooks/useUserNetwork';
 import { useUserAddress } from '../hooks/useUserAddress';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useWeb3Provider } from '../hooks/useWeb3Provider';
 import { useFaucetNetwork } from '../hooks/useFaucetNetwork';
 import { useAnimatedCoins } from '../hooks/useAnimatedCoins';

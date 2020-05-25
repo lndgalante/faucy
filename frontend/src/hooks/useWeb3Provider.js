@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { ethers } from 'ethers';
 
-const isDOMavailable = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+// Utils
+import { isDOMavailable } from '../utils/dom';
 
 const useWeb3Provider = () => {
   const web3Provider = useMemo(
