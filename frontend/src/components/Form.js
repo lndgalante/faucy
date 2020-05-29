@@ -37,8 +37,8 @@ import { Radio } from '../ui/components/Radio';
 
 // Utils
 import { validateAddress } from '../utils/validators';
-import { getNetworkService } from '../utils/services';
-import { NETWORKS, getNetworkId } from '../utils/constants';
+import { getNetworkService, getNetworkStatus } from '../utils/services';
+import { NETWORKS, getNetworkId, NETWORK_STATUS } from '../utils/constants';
 
 // Hooks
 import { useToast } from '../hooks/useToast';
@@ -67,6 +67,36 @@ const getVariant = (status) => {
 export const Form = () => {
   // React hooks
   const [isFormEnabled, setIsFormEnabled] = useState(true);
+  const [kovanStatus, setKovanStatus] = useState(NETWORK_STATUS.loading);
+  const [rinkbeyStatus, setRinkbeyStatus] = useState(NETWORK_STATUS.loading);
+  const [goerliStatus, setGoerliStatus] = useState(NETWORK_STATUS.loading);
+  const [ropstenStatus, setRopstenStatus] = useState(NETWORK_STATUS.loading);
+
+  useEffect(() => {
+    getNetworkStatus('kovan')
+      .then((status) => {
+        setKovanStatus(status);
+      })
+      .catch(() => setKovanStatus(NETWORK_STATUS.down));
+
+    getNetworkStatus('goerli')
+      .then((status) => {
+        setGoerliStatus(status);
+      })
+      .catch(() => setGoerliStatus(NETWORK_STATUS.down));
+
+    getNetworkStatus('rinkeby')
+      .then((status) => {
+        setRinkbeyStatus(status);
+      })
+      .catch(() => setRinkbeyStatus(NETWORK_STATUS.down));
+
+    getNetworkStatus('ropsten')
+      .then((status) => {
+        setRopstenStatus(status);
+      })
+      .catch(() => setRopstenStatus(NETWORK_STATUS.down));
+  }, []);
 
   // Storage hooks
   const [requests, setRequests] = useLocalStorage('requests', {});
@@ -84,6 +114,21 @@ export const Form = () => {
   // Methods
   const updateRequests = (data, id = '') => {
     return setRequests((prevRequests) => ({ ...prevRequests, [id]: { ...(prevRequests[id] || {}), ...data } }));
+  };
+
+  const getStatus = (network) => {
+    switch (network) {
+      case 'kovan':
+        return kovanStatus;
+      case 'rinkeby':
+        return rinkbeyStatus;
+      case 'goerli':
+        return goerliStatus;
+      case 'ropsten':
+        return ropstenStatus;
+      default:
+        return NETWORK_STATUS.down;
+    }
   };
 
   // Get ethers from network
@@ -310,6 +355,7 @@ export const Form = () => {
                 fontWeight={500}
                 isDisabled={disabled}
                 letterSpacing={0.4}
+                status={getStatus(value)}
                 textTransform="uppercase"
                 value={value}
                 willChange="transform"

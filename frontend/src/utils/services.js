@@ -1,4 +1,5 @@
 import wretch from 'wretch';
+import { NETWORK_STATUS } from '../utils/constants';
 
 // Constants
 const { GATSBY_FAUCY_API_URL } = process.env;
@@ -18,3 +19,9 @@ export const services = {
 export const getNetworkService = (networkName) => services[networkName];
 
 export const getHealthStatus = () => faucyApi.url(`/health/check`).get().json();
+
+export const getNetworkStatus = async (network) => {
+  const response = await faucyApi.url(`/health/${network}`).get().json();
+  const status = response['statusCode'];
+  return status === 200 ? NETWORK_STATUS.up : NETWORK_STATUS.down;
+};

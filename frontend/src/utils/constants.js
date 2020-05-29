@@ -49,5 +49,11 @@ export const NETWORK_NAMES = {
   kovan: 42,
 };
 
+export const NETWORK_STATUS = {
+  down: 'Down',
+  up: 'Up',
+  loading: 'Loading',
+};
+
 export const getNetworkName = (networkId) => NETWORK_IDS[networkId];
 export const getNetworkId = (networkName) => NETWORK_NAMES[networkName] || NETWORK_NAMES.main;
