@@ -90,8 +90,6 @@ export const Form = () => {
     return setRequests((prevRequests) => ({ ...prevRequests, [id]: { ...(prevRequests[id] || {}), ...data } }));
   };
 
-  count({ path: `demo`, event: true });
-
   // Get ethers from network
   const getEthers = async ({ userAddress, userNetwork }) => {
     const id = nanoid(10);
