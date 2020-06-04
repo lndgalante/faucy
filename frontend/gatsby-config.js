@@ -18,14 +18,10 @@ module.exports = {
     `gatsby-plugin-chakra-ui`,
     `gatsby-plugin-react-helmet`,
 
-    // Matomo Analytics
+    // GoatCounter Analytics
     {
-      resolve: `gatsby-plugin-matomo`,
-      options: {
-        siteId: `1`,
-        siteUrl: `https://faucy.dev`,
-        matomoUrl: `https://faucydev.matomo.cloud`,
-      },
+      resolve: `gatsby-plugin-goatcounter`,
+      options: { code: `https://faucy.goatcounter.com` },
     },
 
     // Sentry Error Logs

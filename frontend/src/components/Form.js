@@ -16,6 +16,7 @@ import {
   useColorMode,
 } from '@chakra-ui/core';
 import { AnimatePresence } from 'framer-motion';
+import { useGoatCounter } from 'gatsby-plugin-goatcounter';
 
 import isEmpty from 'lodash.isempty';
 import upperFirst from 'lodash.upperfirst';
@@ -68,6 +69,9 @@ export const Form = () => {
   // React hooks
   const [isFormEnabled, setIsFormEnabled] = useState(true);
 
+  // Analytics hooks
+  const count = useGoatCounter();
+
   // Storage hooks
   const [requests, setRequests] = useLocalStorage('requests', {});
 
@@ -85,6 +89,8 @@ export const Form = () => {
   const updateRequests = (data, id = '') => {
     return setRequests((prevRequests) => ({ ...prevRequests, [id]: { ...(prevRequests[id] || {}), ...data } }));
   };
+
+  count({ path: `demo`, event: true });
 
   // Get ethers from network
   const getEthers = async ({ userAddress, userNetwork }) => {
@@ -139,6 +145,7 @@ export const Form = () => {
         await delay(1000);
 
         playSuccessSound({});
+        count({ path: `request-${userNetwork}-success`, event: true });
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers`);
 
         return updateRequests(
@@ -170,7 +177,9 @@ export const Form = () => {
 
       emitter.on('txConfirmed', () => {
         playSuccessSound({});
+        count({ path: `request-${userNetwork}-success`, event: true });
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
+
         updateRequests(
           {
             status: 'resolved',
@@ -183,6 +192,8 @@ export const Form = () => {
         notify.unsubscribe(requests[id]?.txHash);
       });
     } catch (error) {
+      count({ path: `request-${userNetwork}-failed`, event: true });
+
       const { body } = JSON.parse(error.message);
       const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later`;
 
