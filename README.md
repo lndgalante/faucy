@@ -37,9 +37,9 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 
 - 🦮 Accessibility First
 - 🌚 Dark Mode Support
-- ☁️ Reliability in mind, with a redundancy faucet per testnet
+- ☁️ Reliable, with a redundancy faucet per testnet
+- 📊 GDPR complaint analytics (using [GoatCounter](https://www.gatsbyjs.org/packages/gatsby-plugin-matomo/))
 - 📦 Distributed over fast, performant and secure IPFS (using [Fleek](https://fleek.co))
-- 📊 Analytics which prioritizes experience, performance and privacy (using [Matomo](https://www.gatsbyjs.org/packages/gatsby-plugin-matomo/))
 
 ## Supported Networks
 
