@@ -21,7 +21,7 @@ module.exports = {
     // GoatCounter Analytics
     {
       resolve: `gatsby-plugin-goatcounter`,
-      options: { code: `https://faucy.goatcounter.com` },
+      options: { code: `https://faucy.goatcounter.com/count` },
     },
 
     // Sentry Error Logs
