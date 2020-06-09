@@ -173,7 +173,6 @@ export const Form = () => {
           },
           id,
         );
-        notify.unsubscribe(requests[id]?.txHash || '');
       });
 
       emitter.on('txConfirmed', () => {
@@ -190,7 +189,6 @@ export const Form = () => {
           },
           id,
         );
-        notify.unsubscribe(requests[id]?.txHash || '');
       });
     } catch (error) {
       count({ path: `request-${userNetwork}-failed`, event: true });
@@ -216,7 +214,7 @@ export const Form = () => {
   const handleUserAddressChange = useCallback((value) => setFieldValue('userAddress', value), [setFieldValue]);
   const handleUserNetworkChange = useCallback((value) => setFieldValue('userNetwork', value), [setFieldValue]);
 
-  // Handlers - React - Form
+  // Handlers - React - Clear
   const handleClearLocalStorage = () => setRequests({});
 
   // Web3 hooks
@@ -383,6 +381,20 @@ export const Form = () => {
           borderBottomWidth={'1px'}
         />
 
+        <Modal
+          body={<Text>This action will remove all your requests history</Text>}
+          footer={
+            <Fragment>
+              <Button variantColor="teal" onClick={handleClearLocalStorage}>
+                Confirm
+              </Button>
+            </Fragment>
+          }
+          handleClose={onClose}
+          isOpen={isOpen}
+          title="Clear history"
+        />
+
         {isEmpty(requests) && (
           <Box mt={10} textAlign="center">
             <Text as="span" color={colorMode === 'light' ? 'gray.500' : 'gray.300'}>
@@ -408,19 +420,6 @@ export const Form = () => {
               >
                 Clear
               </Button>
-              <Modal
-                body={<Text>This action will remove all your requests history</Text>}
-                footer={
-                  <Fragment>
-                    <Button variantColor="teal" onClick={handleClearLocalStorage}>
-                      Confirm
-                    </Button>
-                  </Fragment>
-                }
-                handleClose={onClose}
-                isOpen={isOpen}
-                title="Clear history"
-              />
             </Box>
 
             <AnimatePresence>
