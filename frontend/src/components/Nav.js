@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaGithub, FaComment, FaTelegramPlane } from 'react-icons/fa';
-import { Box, Button, Text, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
+import { Box, Button, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
 import { AnimatePresence } from 'framer-motion';
+
+// ui components
+import { DarkLogo } from '../ui/components/DarkLogo';
+import { LightLogo } from '../ui/components/LightLogo';
 
 // components
 import { Feedback } from './Feedback';
@@ -37,9 +41,7 @@ export const Nav = () => {
       py="20px"
     >
       <Box alignItems="center" d="flex">
-        <Text as="h1" fontSize="2xl" fontWeight={500}>
-          Faucy
-        </Text>
+        {colorMode === 'light' ? <LightLogo /> : <DarkLogo />}
 
         <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
           <Box
@@ -48,7 +50,7 @@ export const Nav = () => {
             borderWidth={'2px'}
             height="12px"
             ml={2}
-            mt={2}
+            mt={1}
             width="12px"
           />
         </Tooltip>
