@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, Fragment } from 'react';
 import {
   Box,
   Icon,
@@ -14,6 +14,7 @@ import {
   RadioButtonGroup,
   FormErrorMessage,
   useColorMode,
+  useDisclosure,
 } from '@chakra-ui/core';
 import { AnimatePresence } from 'framer-motion';
 import { useGoatCounter } from 'gatsby-plugin-goatcounter';
@@ -35,6 +36,7 @@ import { AnimatedBox } from './AnimatedBox';
 import { SEO } from '../ui/components/Seo';
 import { Coins } from '../ui/components/Coins';
 import { Radio } from '../ui/components/Radio';
+import { Modal } from '../ui/components/Modal';
 
 // Utils
 import { validateAddress } from '../utils/validators';
@@ -81,6 +83,7 @@ export const Form = () => {
   // Chakra hooks
   const { colorMode } = useColorMode();
   const { displaySuccessMessage } = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // Animation hooks
   const { buttonContainerRef, animationContainerRef } = useAnimatedCoins(colorMode);
@@ -401,10 +404,23 @@ export const Form = () => {
                 color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
                 fontWeight={400}
                 variant="ghost"
-                onClick={handleClearLocalStorage}
+                onClick={onOpen}
               >
                 Clear
               </Button>
+              <Modal
+                body={<Text>This action will remove all your requests history</Text>}
+                footer={
+                  <Fragment>
+                    <Button variantColor="teal" onClick={handleClearLocalStorage}>
+                      Confirm
+                    </Button>
+                  </Fragment>
+                }
+                handleClose={onClose}
+                isOpen={isOpen}
+                title="Clear history"
+              />
             </Box>
 
             <AnimatePresence>
