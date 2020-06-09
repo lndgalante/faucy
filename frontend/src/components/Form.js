@@ -215,7 +215,10 @@ export const Form = () => {
   const handleUserNetworkChange = useCallback((value) => setFieldValue('userNetwork', value), [setFieldValue]);
 
   // Handlers - React - Clear
-  const handleClearLocalStorage = () => setRequests({});
+  const handleClearLocalStorage = () => {
+    setRequests({});
+    onClose();
+  };
 
   // Web3 hooks
   const web3Provider = useWeb3Provider();
