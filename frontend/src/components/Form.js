@@ -170,7 +170,7 @@ export const Form = () => {
           },
           id,
         );
-        notify.unsubscribe(requests[id]?.txHash);
+        notify.unsubscribe(requests[id]?.txHash || '');
       });
 
       emitter.on('txConfirmed', () => {
@@ -187,7 +187,7 @@ export const Form = () => {
           },
           id,
         );
-        notify.unsubscribe(requests[id]?.txHash);
+        notify.unsubscribe(requests[id]?.txHash || '');
       });
     } catch (error) {
       count({ path: `request-${userNetwork}-failed`, event: true });
