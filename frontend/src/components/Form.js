@@ -300,7 +300,7 @@ export const Form = () => {
 
       <form onSubmit={handleSubmit}>
         <Box maxWidth={['auto', 'auto', '466px']} mb={6}>
-          <FormLabel mb={1}>First, choose your network:</FormLabel>
+          <FormLabel mb={1}>Choose your network</FormLabel>
 
           <RadioButtonGroup
             isInline
@@ -336,7 +336,7 @@ export const Form = () => {
         <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 466px) auto']}>
           <FormControl isDisabled={!faucetNetwork} isInvalid={errors.userAddress && touched.userAddress}>
             <FormLabel htmlFor="userAddress" mb={1}>
-              Now, insert your address:
+              Insert your address
             </FormLabel>
 
             <Input
@@ -356,7 +356,7 @@ export const Form = () => {
           </FormControl>
 
           <FormControl isDisabled={!faucetNetwork || !values.userAddress} mt={[2, 2, 0]}>
-            <FormLabel mb={1}>Ready?</FormLabel>
+            <FormLabel mb={1}>Claim</FormLabel>
 
             <Button
               ref={buttonContainerRef}
