@@ -25,8 +25,6 @@ import capitalize from 'lodash.capitalize';
 
 import { nanoid } from 'nanoid';
 import { useFormik } from 'formik';
-
-import Notify from 'bnc-notify';
 import makeBlockie from 'ethereum-blockies-base64';
 
 // Components
@@ -41,11 +39,11 @@ import { Modal } from '../ui/components/Modal';
 // Utils
 import { validateAddress } from '../utils/validators';
 import { getNetworkService } from '../utils/services';
-import { NETWORKS, getNetworkId } from '../utils/constants';
 
 // Hooks
 import { useToast } from '../hooks/useToast';
 import { useSounds } from '../hooks/useSounds';
+import { useNotify } from '../hooks/useNotify';
 import { useUserNetwork } from '../hooks/useUserNetwork';
 import { useUserAddress } from '../hooks/useUserAddress';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -54,7 +52,7 @@ import { useFaucetNetwork } from '../hooks/useFaucetNetwork';
 import { useAnimatedCoins } from '../hooks/useAnimatedCoins';
 
 // Constants
-const { GATSBY_BLOCKNATIVE_API_KEY } = process.env;
+import { NETWORKS } from '../utils/constants';
 
 // Helpers
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -88,6 +86,9 @@ export const Form = () => {
   // Animation hooks
   const { buttonContainerRef, animationContainerRef } = useAnimatedCoins(colorMode);
 
+  // Notify hooks
+  const Notify = useNotify();
+
   // Methods
   const updateRequests = (data, id = '') => {
     return setRequests((prevRequests) => ({ ...prevRequests, [id]: { ...(prevRequests[id] || {}), ...data } }));
@@ -97,12 +98,7 @@ export const Form = () => {
   const getEthers = async ({ userAddress, userNetwork }) => {
     const id = nanoid(10);
     const timestamp = +new Date();
-
-    const notify = Notify({
-      darkMode: colorMode === 'dark',
-      dappId: GATSBY_BLOCKNATIVE_API_KEY,
-      networkId: getNetworkId(userNetwork),
-    });
+    const notify = Notify[userNetwork];
 
     updateRequests(
       {
@@ -258,12 +254,7 @@ export const Form = () => {
     if (!pendingRequests.length) return;
 
     pendingRequests.forEach(([id, { userNetwork, txHash }]) => {
-      const notify = Notify({
-        darkMode: colorMode === 'dark',
-        dappId: GATSBY_BLOCKNATIVE_API_KEY,
-        networkId: getNetworkId(userNetwork),
-      });
-
+      const notify = Notify[userNetwork];
       const { emitter } = notify.hash(txHash);
 
       emitter.on('txFailed', () => {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 // Constants
 import { NETWORKS } from '../utils/constants';
 
-const useFaucetNetwork = (network) => {
+export const useFaucetNetwork = (network) => {
   const [faucetNetwork, setFaucetNetwork] = useState(null);
 
   useEffect(() => {
@@ -15,5 +15,3 @@ const useFaucetNetwork = (network) => {
 
   return faucetNetwork;
 };
-
-export { useFaucetNetwork };

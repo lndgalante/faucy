@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useUserAddress = (web3Provider, setUserAddress) => {
+export const useUserAddress = (web3Provider, setUserAddress) => {
   useEffect(() => {
     if (!web3Provider) return;
 
@@ -13,5 +13,3 @@ const useUserAddress = (web3Provider, setUserAddress) => {
     web3Provider.provider.on('accountsChanged', updateAddress);
   }, [web3Provider, setUserAddress]);
 };
-
-export { useUserAddress };

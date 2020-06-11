@@ -4,7 +4,7 @@ import { ethers } from 'ethers';
 // Utils
 import { isDOMavailable } from '../utils/dom';
 
-const useWeb3Provider = () => {
+export const useWeb3Provider = () => {
   const web3Provider = useMemo(
     () =>
       isDOMavailable && (window?.ethereum || window?.web3)
@@ -21,5 +21,3 @@ const useWeb3Provider = () => {
 
   return web3Provider;
 };
-
-export { useWeb3Provider };

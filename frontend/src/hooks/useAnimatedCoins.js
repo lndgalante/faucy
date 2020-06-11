@@ -5,7 +5,7 @@ import lottie from 'lottie-web';
 import blackCoins from '../assets/lottie/coins-black.json';
 import whiteCoins from '../assets/lottie/coins-white.json';
 
-const useAnimatedCoins = (colorMode) => {
+export const useAnimatedCoins = (colorMode) => {
   const buttonContainerRef = useRef(null);
   const animationContainerRef = useRef(null);
 
@@ -46,5 +46,3 @@ const useAnimatedCoins = (colorMode) => {
 
   return { buttonContainerRef, animationContainerRef };
 };
-
-export { useAnimatedCoins };
