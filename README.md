@@ -40,6 +40,7 @@ We've got you covered! Now with [Faucy](https://faucy.dev/) you can easily get e
 - ☁️ Reliable, with a redundancy faucet per testnet
 - 📊 GDPR complaint analytics (using [GoatCounter](https://www.gatsbyjs.org/packages/gatsby-plugin-matomo/))
 - 📦 Distributed over fast, performant and secure IPFS (using [Fleek](https://fleek.co))
+- 🔗 Available with ENS domain at [faucy.eth](https://faucy.eth.link)
 
 ## Supported Networks
 
