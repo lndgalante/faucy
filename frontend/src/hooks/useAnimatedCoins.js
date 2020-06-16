@@ -28,7 +28,7 @@ export const useAnimatedCoins = (colorMode) => {
     buttonContainerElement.addEventListener('mouseleave', playBackard);
 
     const color = colorMode === 'light' ? 'rgb(26, 32, 44)' : 'rgba(255, 255, 255, 0.92)';
-    const coin = document.querySelector('.lottie-container svg');
+    const coin = document.querySelector('.lottie-container-coins svg');
     if (coin) {
       const svgPaths = [...coin.querySelectorAll('path')];
       svgPaths.forEach((path) => {

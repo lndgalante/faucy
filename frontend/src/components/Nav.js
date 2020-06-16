@@ -3,10 +3,6 @@ import { FaGithub, FaComment, FaTelegramPlane } from 'react-icons/fa';
 import { Box, Button, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
 import { AnimatePresence } from 'framer-motion';
 
-// ui components
-import { DarkLogo } from '../ui/components/DarkLogo';
-import { LightLogo } from '../ui/components/LightLogo';
-
 // components
 import { Feedback } from './Feedback';
 import { AnimatedBox } from './AnimatedBox';
@@ -14,7 +10,7 @@ import { AnimatedBox } from './AnimatedBox';
 // utils
 import { getHealthStatus } from '../utils/services';
 
-export const Nav = () => {
+export const Nav = ({ boxRef, animationRef }) => {
   // React hooks
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [healthStatus, setHealthStatus] = useState({ message: 'Loading health status', color: 'gray.400' });
@@ -41,7 +37,9 @@ export const Nav = () => {
       py="20px"
     >
       <Box alignItems="center" d="flex">
-        {colorMode === 'light' ? <LightLogo /> : <DarkLogo />}
+        <Box ref={boxRef} width="100px">
+          <Box ref={animationRef} />
+        </Box>
 
         <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
           <Box

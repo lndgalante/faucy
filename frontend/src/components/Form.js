@@ -65,7 +65,7 @@ const getVariant = (status) => {
   if (status === 'resolved') return 'green';
 };
 
-export const Form = () => {
+export const Form = ({ logoAnimation }) => {
   // React hooks
   const [isFormEnabled, setIsFormEnabled] = useState(true);
 
@@ -173,6 +173,8 @@ export const Form = () => {
 
       emitter.on('txConfirmed', () => {
         playSuccessSound({});
+        if (logoAnimation) logoAnimation.play(0);
+
         count({ path: `request-${userNetwork}-success`, event: true });
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
 
@@ -358,7 +360,14 @@ export const Form = () => {
               variantColor="gray"
               width="100%"
             >
-              <Box ref={animationContainerRef} className="lottie-container" d="inline" ml={-2} mr={2} width="26px" />
+              <Box
+                ref={animationContainerRef}
+                className="lottie-container-coins"
+                d="inline"
+                ml={-2}
+                mr={2}
+                width="26px"
+              />
               <Text fontSize={'sm'} fontWeight={500} letterSpacing={0.4} textTransform="uppercase">
                 Submit
               </Text>
