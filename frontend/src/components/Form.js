@@ -142,6 +142,8 @@ export const Form = ({ logoAnimation }) => {
         await delay(1000);
 
         playSuccessSound({});
+        if (logoAnimation) logoAnimation.goToAndPlay(0);
+
         count({ path: `request-${userNetwork}-success`, event: true });
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers`);
 
@@ -173,7 +175,7 @@ export const Form = ({ logoAnimation }) => {
 
       emitter.on('txConfirmed', () => {
         playSuccessSound({});
-        if (logoAnimation) logoAnimation.play(0);
+        if (logoAnimation) logoAnimation.goToAndPlay(0);
 
         count({ path: `request-${userNetwork}-success`, event: true });
         displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
@@ -274,6 +276,8 @@ export const Form = ({ logoAnimation }) => {
 
       emitter.on('txConfirmed', () => {
         playSuccessSound({});
+        if (logoAnimation) logoAnimation.goToAndPlay(0);
+
         updateRequests(
           {
             status: 'resolved',
@@ -285,7 +289,7 @@ export const Form = ({ logoAnimation }) => {
         );
       });
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [logoAnimation]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box>
