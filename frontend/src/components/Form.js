@@ -13,6 +13,7 @@ import {
   FormControl,
   RadioButtonGroup,
   FormErrorMessage,
+  FormHelperText,
   useColorMode,
   useDisclosure,
 } from '@chakra-ui/core';
@@ -291,7 +292,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
       <SEO title={`${values.userNetwork ? capitalize(values.userNetwork) : 'Choose your network'}`} />
 
       <form onSubmit={handleSubmit}>
-        <Box maxWidth={['auto', 'auto', '466px']} mb={6}>
+        <Box maxWidth={['auto', 'auto', '448px']} mb={6}>
           <FormLabel mb={1}>Choose your network</FormLabel>
 
           <RadioButtonGroup
@@ -325,7 +326,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
           </RadioButtonGroup>
         </Box>
 
-        <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 466px) auto']}>
+        <Grid columnGap={6} mt={3} templateColumns={['auto', 'auto', 'minmax(auto, 466px) 140px']}>
           <FormControl isDisabled={!faucetNetwork} isInvalid={errors.userAddress && touched.userAddress}>
             <FormLabel htmlFor="userAddress" mb={1}>
               Insert your address
@@ -343,7 +344,21 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
             />
 
             <Box alignItems="center" d="flex" height="26px">
-              <FormErrorMessage>{touched.userAddress && errors.userAddress}</FormErrorMessage>
+              {touched.userAddress && errors.userAddress ? (
+                <FormErrorMessage>{touched.userAddress && errors.userAddress}</FormErrorMessage>
+              ) : (
+                <FormHelperText fontSize={12}>
+                  You can do one request per address. Use another one if you need more{' '}
+                  <Image
+                    alt="Winking Face"
+                    d="inline-block"
+                    mb={'0.5px'}
+                    size="14px"
+                    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/72/twitter/248/winking-face_1f609.png"
+                    title="Winking Face"
+                  />
+                </FormHelperText>
+              )}
             </Box>
           </FormControl>
 
@@ -371,6 +386,10 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
                 Submit
               </Text>
             </Button>
+
+            <Box alignItems="center" d="flex" height="26px">
+              {faucetNetwork && <FormHelperText fontSize={12}>Receive {faucetNetwork.amount} ethers</FormHelperText>}
+            </Box>
           </FormControl>
         </Grid>
       </form>
