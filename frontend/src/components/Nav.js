@@ -80,7 +80,7 @@ export const Nav = ({ boxRef, animationRef, web3Provider, emitter }) => {
 
       <Stack isInline>
         <Tooltip aria-label="Sync your network and address" label="Sync your network and address" placement="bottom">
-          <Button fontSize="sm" fontWeight={400} isDisabled={isProviderEnabled} mr={2} onClick={enableProvider}>
+          <Button fontSize="sm" fontWeight={400} mr={2} onClick={enableProvider}>
             {isProviderEnabled ? 'Connected to wallet' : 'Connect to wallet'}
           </Button>
         </Tooltip>
