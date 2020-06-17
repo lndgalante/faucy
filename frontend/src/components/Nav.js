@@ -5,14 +5,13 @@ import {
   Box,
   Button,
   IconButton,
-  Grid,
   Tooltip,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  useColorMode,
   Stack,
+  useColorMode,
 } from '@chakra-ui/core';
 import { AnimatePresence } from 'framer-motion';
 
@@ -79,10 +78,12 @@ export const Nav = ({ boxRef, animationRef, web3Provider, emitter }) => {
         </Tooltip>
       </Box>
 
-      <Grid gap={3} gridAutoFlow={'column'}>
-        <Button fontSize="sm" fontWeight={400} isDisabled={isProviderEnabled} onClick={enableProvider}>
-          {isProviderEnabled ? 'Connected to wallet' : 'Connect to wallet'}
-        </Button>
+      <Stack isInline>
+        <Tooltip aria-label="Sync your network and address" label="Sync your network and address" placement="bottom">
+          <Button fontSize="sm" fontWeight={400} isDisabled={isProviderEnabled} mr={2} onClick={enableProvider}>
+            {isProviderEnabled ? 'Connected to wallet' : 'Connect to wallet'}
+          </Button>
+        </Tooltip>
         <Menu>
           <MenuButton as={Button}>
             <Box as={BsThreeDots} fontSize={'lg'} />
@@ -98,7 +99,7 @@ export const Nav = ({ boxRef, animationRef, web3Provider, emitter }) => {
             </MenuItem>
           </MenuList>
         </Menu>
-      </Grid>
+      </Stack>
 
       <Stack isInline bottom={4} position="absolute" right={4}>
         <Box position="relative">
