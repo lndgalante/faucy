@@ -83,6 +83,7 @@ export const Feedback = ({ setIsFeedbackOpen }) => {
       ref={ref}
       bg={colorMode === 'light' ? 'white' : '#3d434c'}
       borderRadius="md"
+      bottom={'0'}
       boxShadow="xl"
       d={'block'}
       pb={1}
@@ -90,7 +91,6 @@ export const Feedback = ({ setIsFeedbackOpen }) => {
       pt={2}
       px={2}
       right={'0'}
-      top={'0'}
       width="339px"
     >
       <Box position="relative">
@@ -125,7 +125,7 @@ export const Feedback = ({ setIsFeedbackOpen }) => {
               size="sm"
             />
           </FormControl>
-          <Box alignItems="center" d="flex" px={1} py={3}>
+          <Box alignItems="flex-end" d="flex" px={1} py={3}>
             <EmojiPalette colorMode={colorMode} />
             <Button isLoading={state.submitting === true} size="sm" type="submit">
               Send

@@ -15,6 +15,7 @@ const notifyGenerator = (networkId) => {
 export const useNotify = () => {
   if (!isDOMavailable) return null;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const notifyNetworks = useMemo(
     () => ({
       ropsten: notifyGenerator(NETWORK_NAMES.ropsten),

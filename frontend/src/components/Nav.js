@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { FaGithub, FaComment, FaTelegramPlane } from 'react-icons/fa';
-import { Box, Button, Link, IconButton, Grid, Tooltip, useColorMode } from '@chakra-ui/core';
+import { BsThreeDots } from 'react-icons/bs';
+import {
+  Box,
+  Button,
+  IconButton,
+  Grid,
+  Tooltip,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  useColorMode,
+  Stack,
+} from '@chakra-ui/core';
 import { AnimatePresence } from 'framer-motion';
 
 // components
@@ -10,14 +23,26 @@ import { AnimatedBox } from './AnimatedBox';
 // utils
 import { getHealthStatus } from '../utils/services';
 
-export const Nav = ({ boxRef, animationRef }) => {
+// hooks
+import { useEnableProvider } from '../hooks/useEnableProvider';
+
+export const Nav = ({ boxRef, animationRef, web3Provider, emitter }) => {
   // React hooks
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [isProviderEnabled, setProviderEnabled] = useState(null);
   const [healthStatus, setHealthStatus] = useState({ message: 'Loading health status', color: 'gray.400' });
 
   // Chakra hooks
   const { colorMode, toggleColorMode } = useColorMode();
 
+  // Custom hooks
+  const enableProvider = useEnableProvider(web3Provider, (data) => {
+    if (!data) return;
+    setProviderEnabled(data);
+    emitter.emit('updateAddress', data);
+  });
+
+  // Effects
   useEffect(() => {
     getHealthStatus()
       .then(() => setHealthStatus({ message: 'Up and running', color: 'green.400' }))
@@ -55,12 +80,33 @@ export const Nav = ({ boxRef, animationRef }) => {
       </Box>
 
       <Grid gap={3} gridAutoFlow={'column'}>
+        <Button fontSize="sm" fontWeight={400} isDisabled={isProviderEnabled} onClick={enableProvider}>
+          {isProviderEnabled ? 'Connected to wallet' : 'Connect to wallet'}
+        </Button>
+        <Menu>
+          <MenuButton as={Button}>
+            <Box as={BsThreeDots} fontSize={'lg'} />
+          </MenuButton>
+          <MenuList minWidth="114px">
+            <MenuItem onClick={() => window.open('https://t.me/faucy')}>
+              <Box as={FaTelegramPlane} fontSize={'lg'} mr={2} />
+              Telegram
+            </MenuItem>
+            <MenuItem onClick={() => window.open('https://github.com/xivis/faucy')}>
+              <Box as={FaGithub} fontSize={'lg'} mr={2} />
+              GitHub
+            </MenuItem>
+          </MenuList>
+        </Menu>
+      </Grid>
+
+      <Stack isInline bottom={4} position="absolute" right={4}>
         <Box position="relative">
           <Button
             _focus={{ boxShadow: 'none' }}
             fontSize="sm"
             fontWeight={400}
-            variant="ghost"
+            variant="outline"
             onClick={() => setIsFeedbackOpen(true)}
           >
             Feedback <Box as={FaComment} d="inline" ml={2} size="14px" />
@@ -74,14 +120,6 @@ export const Nav = ({ boxRef, animationRef }) => {
           </AnimatePresence>
         </Box>
 
-        <Link isExternal alignItems="center" d="flex" href={'https://t.me/faucy'}>
-          <IconButton aria-label="Telegram Channel" fontSize={'lg'} icon={FaTelegramPlane} variant="outline" />
-        </Link>
-
-        <Link isExternal alignItems="center" d="flex" href={'https://github.com/xivis/faucy'}>
-          <IconButton aria-label="GitHub Repository" fontSize={'lg'} icon={FaGithub} variant="outline" />
-        </Link>
-
         <IconButton
           aria-label="Change color mode"
           fontSize="lg"
@@ -89,7 +127,7 @@ export const Nav = ({ boxRef, animationRef }) => {
           variant="outline"
           onClick={toggleColorMode}
         />
-      </Grid>
+      </Stack>
     </Box>
   );
 };

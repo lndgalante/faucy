@@ -47,7 +47,6 @@ import { useNotify } from '../hooks/useNotify';
 import { useUserNetwork } from '../hooks/useUserNetwork';
 import { useUserAddress } from '../hooks/useUserAddress';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { useWeb3Provider } from '../hooks/useWeb3Provider';
 import { useFaucetNetwork } from '../hooks/useFaucetNetwork';
 import { useAnimatedCoins } from '../hooks/useAnimatedCoins';
 
@@ -65,7 +64,7 @@ const getVariant = (status) => {
   if (status === 'resolved') return 'green';
 };
 
-export const Form = ({ logoAnimation }) => {
+export const Form = ({ logoAnimation, web3Provider, emitter }) => {
   // React hooks
   const [isFormEnabled, setIsFormEnabled] = useState(true);
 
@@ -215,14 +214,10 @@ export const Form = ({ logoAnimation }) => {
   const handleUserNetworkChange = useCallback((value) => setFieldValue('userNetwork', value), [setFieldValue]);
 
   // Handlers - React - Clear
-  const handleClearLocalStorage = () => {
-    setRequests({});
-    onClose();
-  };
+  const handleClearLocalStorage = () => setRequests({}) || onClose();
 
   // Web3 hooks
-  const web3Provider = useWeb3Provider();
-  useUserAddress(web3Provider, handleUserAddressChange);
+  useUserAddress(web3Provider, handleUserAddressChange, emitter);
   useUserNetwork(web3Provider, handleUserNetworkChange);
 
   // Faucet hooks

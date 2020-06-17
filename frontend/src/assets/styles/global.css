@@ -19,3 +19,7 @@
 div[type='radio'] {
   display: none !important;
 }
+
+div[role='radiogroup'] > div {
+  margin-bottom: 0;
+}
