@@ -33,6 +33,7 @@ import { AnimatedBox } from './AnimatedBox';
 
 // UI Components
 import { SEO } from '../ui/components/Seo';
+import { Wink } from '../ui/components/Wink';
 import { Coins } from '../ui/components/Coins';
 import { Radio } from '../ui/components/Radio';
 import { Modal } from '../ui/components/Modal';
@@ -348,15 +349,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
                 <FormErrorMessage>{touched.userAddress && errors.userAddress}</FormErrorMessage>
               ) : (
                 <FormHelperText fontSize={12}>
-                  You can do one request per address. Use another one if you need more{' '}
-                  <Image
-                    alt="Winking Face"
-                    d="inline-block"
-                    mb={'0.5px'}
-                    size="14px"
-                    src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/72/twitter/248/winking-face_1f609.png"
-                    title="Winking Face"
-                  />
+                  You can do one request per address. Use another one if you need more <Wink />
                 </FormHelperText>
               )}
             </Box>
