@@ -37,11 +37,6 @@ const HomePage = () => {
         />
       </StaticKitProvider>
       <Box m="0 auto" maxWidth="612px" pt={32} width="100%">
-        <Box alignItems="baseline" d="flex" mb={8}>
-          <Text as="h2" fontSize="4xl" fontWeight={600}>
-            Welcome to Faucy!
-          </Text>
-        </Box>
         <Form emitter={emitter} logoAnimation={logoAnimation} web3Provider={web3Provider} />
       </Box>
       <Footer />
