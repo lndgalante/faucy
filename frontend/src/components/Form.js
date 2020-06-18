@@ -424,7 +424,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
           <Box>
             <Box alignItems="center" d="flex" justifyContent="space-between" mb={3} mt={2}>
               <Text as="span" color={colorMode === 'light' ? 'gray.600' : 'gray.200'} fontWeight={500}>
-                Your last 3 requests
+                Requests
               </Text>
               <Button
                 color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
