@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Box, Text, useColorMode } from '@chakra-ui/core';
+import React, { useMemo, useEffect } from 'react';
+import { Box, useColorMode } from '@chakra-ui/core';
 import { StaticKitProvider } from '@statickit/react';
 import mitt from 'mitt';
 
@@ -25,6 +25,15 @@ const HomePage = () => {
 
   // Constants
   const emitter = useMemo(() => mitt(), []);
+
+  // Effects
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (logoAnimation) logoAnimation.goToAndPlay(0);
+    }, 1000);
+
+    return () => clearTimeout(id);
+  }, [logoAnimation]);
 
   return (
     <Box minHeight="100vh" w="100%">
