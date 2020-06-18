@@ -339,7 +339,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
               isInvalid={Boolean(errors.userAddress && touched.userAddress)}
               maxLength={42}
               name="userAddress"
-              placeholder="0x0000000000000000000000000000000000000000"
+              placeholder={'0x...'}
               value={values.userAddress}
               onChange={handleChange}
             />
