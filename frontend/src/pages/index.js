@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { Box, useColorMode } from '@chakra-ui/core';
 import { StaticKitProvider } from '@statickit/react';
 import mitt from 'mitt';
@@ -14,6 +14,7 @@ import { Footer } from '../components/Footer';
 // hooks
 import { useWeb3Provider } from '../hooks/useWeb3Provider';
 import { useAnimatedLogo } from '../hooks/useAnimatedLogo';
+import { useAnimateLogoAtStart } from '../hooks/useAnimateLogoAtStart';
 
 const HomePage = () => {
   // Chakra hooks
@@ -22,18 +23,10 @@ const HomePage = () => {
   // Custom hooks
   const web3Provider = useWeb3Provider();
   const { boxContainerRef, animationContainerRef, logoAnimation } = useAnimatedLogo(colorMode);
+  useAnimateLogoAtStart(logoAnimation);
 
   // Constants
   const emitter = useMemo(() => mitt(), []);
-
-  // Effects
-  useEffect(() => {
-    const id = setTimeout(() => {
-      if (logoAnimation) logoAnimation.goToAndPlay(0);
-    }, 1000);
-
-    return () => clearTimeout(id);
-  }, [logoAnimation]);
 
   return (
     <Box minHeight="100vh" w="100%">
