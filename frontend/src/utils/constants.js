@@ -25,7 +25,7 @@ export const NETWORKS = [
   },
   {
     value: 'goerli',
-    label: 'Goerli',
+    label: 'Göerli',
     disabled: false,
     amount: '0.05',
     serviceDuration: '2 minutes',
