@@ -22,7 +22,7 @@ export function useToast() {
   const displaySuccessMessage = (message) => {
     return toast({
       position: 'top',
-      duration: 7000,
+      duration: 8000,
       status: 'success',
       description: message,
     });
@@ -32,7 +32,7 @@ export function useToast() {
     return toast({
       status: 'error',
       position: 'top',
-      duration: 7000,
+      duration: 8000,
       description: message,
     });
   };
