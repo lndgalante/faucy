@@ -1,7 +1,7 @@
 // Utils
 const { NETWORKS } = require('../../../utils/networks');
 const { getBrowser } = require('../../../utils/puppeteer');
-const { txHashRegex, getKovanHours, createSuccessMessage, createGreylistMessage } = require('../../../utils/strings');
+const { getTxHash, getKovanHours, createSuccessMessage, createGreylistMessage } = require('../../../utils/strings');
 
 // Constants - Environment variables
 const { KOVAN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
@@ -51,8 +51,8 @@ async function getKovanEth({ address }) {
   // Close browser
   browser.close();
 
-  // Get txHash
-  const [txHash] = anchorLink.match(txHashRegex) || [];
+  // Get transaction hash
+  const txHash = getTxHash(anchorLink);
 
   // Get status code
   const [statusCode] = description.match(/\d+/g) || [];
