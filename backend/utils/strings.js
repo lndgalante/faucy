@@ -8,7 +8,7 @@ const getTxHash = (string) => {
 const getKovanHours = (rawMessage) =>
   rawMessage.replace(/\d+\.\d+/g, (seconds) => `|${convert(seconds).hours}|`).split('|')[1];
 
-const createSuccessMessage = (eth) => `You will receive ${eth} ethers into your account`;
+const createSuccessMessage = (eth) => `You will receive ${eth} ETH into your account`;
 
 const createGreylistMessage = (duration) => `Your address is greylisted for ${duration}`;
 

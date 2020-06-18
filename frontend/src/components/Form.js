@@ -109,7 +109,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
         status: 'pending',
         icon: 'info-outline',
         amount: faucetNetwork.amount,
-        message: 'Requesting ethers',
+        message: 'Requesting ETH',
         extraMessage: `This will take less than ${faucetNetwork.serviceDuration}`,
       },
       id,
@@ -146,13 +146,13 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
         if (logoAnimation) logoAnimation.goToAndPlay(0);
 
         count({ path: `request-${userNetwork}-success`, event: true });
-        displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers`);
+        displaySuccessMessage(`You have received ${faucetNetwork.amount} ETH`);
 
         return updateRequests(
           {
             status: 'resolved',
             icon: 'external-link',
-            message: 'Mined transaction',
+            message: 'ETH sent',
             extraMessage: 'Display transaction status on Etherscan',
           },
           id,
@@ -179,13 +179,13 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
         if (logoAnimation) logoAnimation.goToAndPlay(0);
 
         count({ path: `request-${userNetwork}-success`, event: true });
-        displaySuccessMessage(`You have received ${faucetNetwork.amount} ethers.`);
+        displaySuccessMessage(`You have received ${faucetNetwork.amount} ETH`);
 
         updateRequests(
           {
             status: 'resolved',
             icon: 'external-link',
-            message: 'Mined transaction',
+            message: 'ETH sent',
             extraMessage: 'Display transaction status on Etherscan',
           },
           id,
@@ -279,7 +279,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
           {
             status: 'resolved',
             icon: 'external-link',
-            message: 'Mined transaction',
+            message: 'ETH sent',
             extraMessage: 'Display transaction status on Etherscan',
           },
           id,
@@ -381,7 +381,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
             </Button>
 
             <Box alignItems="center" d="flex" height="26px">
-              {faucetNetwork && <FormHelperText fontSize={12}>Receive {faucetNetwork.amount} ethers</FormHelperText>}
+              {faucetNetwork && <FormHelperText fontSize={12}>Receive {faucetNetwork.amount} ETH</FormHelperText>}
             </Box>
           </FormControl>
         </Grid>
