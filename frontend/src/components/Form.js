@@ -110,7 +110,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
         icon: 'info-outline',
         amount: faucetNetwork.amount,
         message: 'Requesting ethers',
-        extraMessage: `This may take about ${faucetNetwork.serviceDuration} so we'll trigger a sound notification`,
+        extraMessage: `This will take less than ${faucetNetwork.serviceDuration}`,
       },
       id,
     );
