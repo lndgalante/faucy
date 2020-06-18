@@ -2,7 +2,7 @@
 
 <p align="center">⛏ Get ethers from any testnet easily!</p>
 
-<img src="https://i.ibb.co/b3wBZHY/faucy.png">
+<img src="https://i.ibb.co/6wzmw4m/faucy.png">
 
 ---
 
