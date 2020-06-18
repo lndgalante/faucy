@@ -152,7 +152,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
           {
             status: 'resolved',
             icon: 'external-link',
-            message: 'ETH sent',
+            message: 'Mined transaction',
             extraMessage: 'Display transaction status on Etherscan',
           },
           id,
@@ -185,7 +185,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
           {
             status: 'resolved',
             icon: 'external-link',
-            message: 'ETH sent',
+            message: 'Mined transaction',
             extraMessage: 'Display transaction status on Etherscan',
           },
           id,
@@ -279,7 +279,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
           {
             status: 'resolved',
             icon: 'external-link',
-            message: 'ETH sent',
+            message: 'Mined transaction',
             extraMessage: 'Display transaction status on Etherscan',
           },
           id,
