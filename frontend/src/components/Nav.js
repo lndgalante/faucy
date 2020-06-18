@@ -29,7 +29,11 @@ export const Nav = ({ boxRef, animationRef, web3Provider, emitter }) => {
   // React hooks
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isProviderEnabled, setProviderEnabled] = useState(null);
-  const [healthStatus, setHealthStatus] = useState({ message: 'Loading health status', color: 'gray.400' });
+  const [healthStatus, setHealthStatus] = useState({
+    message: 'Loading health status',
+    color: 'gray.400',
+    bg: 'rgba(160, 174, 192, 0.2)',
+  });
 
   // Chakra hooks
   const { colorMode, toggleColorMode } = useColorMode();
@@ -44,8 +48,8 @@ export const Nav = ({ boxRef, animationRef, web3Provider, emitter }) => {
   // Effects
   useEffect(() => {
     getHealthStatus()
-      .then(() => setHealthStatus({ message: 'Up and running', color: 'green.400' }))
-      .catch(() => setHealthStatus({ message: 'Down and fixing', color: 'red.400' }));
+      .then(() => setHealthStatus({ message: 'Up and running', color: 'green.400', bg: 'rgba(72, 187, 120, 0.2)' }))
+      .catch(() => setHealthStatus({ message: 'Down and fixing', color: 'red.400', bg: 'rgba(245, 101, 101, 0.2)' }));
   }, []);
 
   return (
@@ -67,12 +71,15 @@ export const Nav = ({ boxRef, animationRef, web3Provider, emitter }) => {
 
         <Tooltip aria-label={healthStatus.message} label={healthStatus.message} placement="bottom">
           <Box
+            backgroundColor={healthStatus.bg}
             borderColor={healthStatus.color}
             borderRadius="50%"
             borderWidth={'2px'}
+            boxShadow={`inset 0 0 0 .2rem ${healthStatus.color}`}
             height="12px"
             ml={2}
             mt={1}
+            opacity={0.9}
             width="12px"
           />
         </Tooltip>
