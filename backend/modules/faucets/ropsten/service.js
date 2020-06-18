@@ -1,10 +1,9 @@
 // Utils
-const { NETWORKS } = require('../../../utils/networks');
 const { getBrowser } = require('../../../utils/puppeteer');
 const { getTxHash, createSuccessMessage, createGreylistMessage } = require('../../../utils/strings');
 
 // Constants
-const { ROPSTEN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
+const { ROPSTEN_FAUCET_URL } = process.env;
 
 async function getRopstenEth({ address }) {
   // Constants - DOM Selectors
@@ -13,11 +12,8 @@ async function getRopstenEth({ address }) {
   const RESPONSE_MESSAGE_SELECTOR = 'div#faucet-result';
 
   // Launch a new browser
-  const browser = await getBrowser(NETWORKS.ropsten);
+  const browser = await getBrowser();
   const page = await browser.newPage();
-
-  // Authenticate proxy
-  await page.authenticate({ username: PROXY_USERNAME, password: PROXY_PASSWORD });
 
   // Go to Faucet url
   await page.goto(ROPSTEN_FAUCET_URL);
@@ -43,7 +39,7 @@ async function getRopstenEth({ address }) {
   const hasError = statusMessage.includes('limit');
 
   if (hasError) {
-    const greylistPeriod = statusMessage.split('- ')[1].split('seconds');
+    const greylistPeriod = statusMessage.split('- ')[1].split('left ')[0].trimEnd();
 
     return {
       statusCode: 403,

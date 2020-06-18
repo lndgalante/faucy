@@ -13,7 +13,7 @@ const isProductionEnvironment = NODE_ENV === 'production';
 puppeteer.use(RecaptchaPlugin({ provider: { id: '2captcha', token: TWO_CAPTCHA_API_TOKEN }, visualFeedback: true }));
 
 function getBrowser(networkName) {
-  const networksNeedingProxies = [NETWORKS.ropsten, NETWORKS.kovan, NETWORKS.rinkeby];
+  const networksNeedingProxies = [NETWORKS.kovan, NETWORKS.rinkeby];
   const proxyServer = networksNeedingProxies.includes(networkName) ? PROXY_SERVER_URL : undefined;
 
   const browserlessQuery = queryString.stringify({ token: BROWSERLESS_API_TOKEN, '--proxy-server': proxyServer });
