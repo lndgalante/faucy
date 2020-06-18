@@ -6,6 +6,7 @@ export const NETWORKS = [
     amount: '1',
     serviceDuration: '30 seconds',
     createEtherscanLink: (txHash) => `https://ropsten.etherscan.io/tx/${txHash}`,
+    disclaimer: 'You have only 1 minute limit period per request ',
   },
   {
     value: 'kovan',
@@ -14,6 +15,7 @@ export const NETWORKS = [
     amount: '0.1',
     serviceDuration: '1 minute',
     createEtherscanLink: (txHash) => `https://kovan.etherscan.io/tx/${txHash}`,
+    disclaimer: 'You can do one request per address. Use another one if you need more ',
   },
   {
     value: 'rinkeby',
@@ -22,6 +24,7 @@ export const NETWORKS = [
     amount: '0.2',
     serviceDuration: '2 minutes',
     createEtherscanLink: (txHash) => `https://rinkeby.etherscan.io/tx/${txHash}`,
+    disclaimer: 'You can do one request per address. Use another one if you need more ',
   },
   {
     value: 'goerli',
@@ -30,6 +33,7 @@ export const NETWORKS = [
     amount: '0.05',
     serviceDuration: '2 minutes',
     createEtherscanLink: (txHash) => `https://goerli.etherscan.io/tx/${txHash}`,
+    disclaimer: 'You can do one request per address. Use another one if you need more ',
   },
 ];
 

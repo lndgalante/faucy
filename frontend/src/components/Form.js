@@ -348,9 +348,9 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
               {touched.userAddress && errors.userAddress ? (
                 <FormErrorMessage>{touched.userAddress && errors.userAddress}</FormErrorMessage>
               ) : (
-                faucetNetwork.value !== 'ropsten' && (
+                faucetNetwork && (
                   <FormHelperText fontSize={12}>
-                    You can do one request per address. Use another one if you need more <Wink />
+                    {faucetNetwork.disclaimer} <Wink />
                   </FormHelperText>
                 )
               )}
