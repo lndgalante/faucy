@@ -8,9 +8,9 @@ const { ROPSTEN_FAUCET_URL, PROXY_USERNAME, PROXY_PASSWORD } = process.env;
 
 async function getRopstenEth({ address }) {
   // Constants - DOM Selectors
-  const INPUT_ADDRESS_SELECTOR = 'input';
-  const BUTTON_SEND_SELECTOR = 'button';
-  const RESPONSE_MESSAGE_SELECTOR = '.message-body';
+  const BUTTON_SEND_SELECTOR = 'button#receive';
+  const INPUT_ADDRESS_SELECTOR = 'input#faucet-address';
+  const RESPONSE_MESSAGE_SELECTOR = 'div#faucet-result';
 
   // Launch a new browser
   const browser = await getBrowser(NETWORKS.ropsten);
@@ -30,7 +30,7 @@ async function getRopstenEth({ address }) {
   await page.click(BUTTON_SEND_SELECTOR);
 
   // Get status message
-  await page.waitForSelector(RESPONSE_MESSAGE_SELECTOR);
+  await page.waitForSelector(RESPONSE_MESSAGE_SELECTOR, { visible: true });
   const statusMessage = await page.evaluate(
     (selector) => document.querySelector(selector).textContent,
     RESPONSE_MESSAGE_SELECTOR,
@@ -40,10 +40,10 @@ async function getRopstenEth({ address }) {
   await browser.close();
 
   // Check for errors in status message
-  const hasError = statusMessage.includes('greylist');
+  const hasError = statusMessage.includes('limit');
 
   if (hasError) {
-    const greylistPeriod = statusMessage.split('another ')[1].replace('.', '');
+    const greylistPeriod = statusMessage.split('- ')[1].split('seconds');
 
     return {
       statusCode: 403,
