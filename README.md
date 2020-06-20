@@ -1,6 +1,6 @@
-<h1 align="center">Faucy</h1>
+<h1 align="center">Faucy 🚰</h1>
 
-<p align="center">⛏ Get ethers from any testnet easily!</p>
+<p align="center">Get ETH from any testnet easily</p>
 
 <img src="https://i.ibb.co/6wzmw4m/faucy.png">
 
