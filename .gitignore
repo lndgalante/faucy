@@ -1,5 +1,6 @@
 # Environment variables
 .env
+.env.build
 
 # OS files
 .DS_Store
@@ -10,3 +11,6 @@ node_modules
 # Lock files
 yarn.lock
 package-lock.json
+
+# Vercel
+.now

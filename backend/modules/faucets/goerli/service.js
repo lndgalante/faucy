@@ -26,10 +26,10 @@ async function getGoerliEth({ address }) {
   const { success } = await wretch(GOERLI_FAUCET_URL)
     .post({ receiver: address, 'g-recaptcha-response': recaptchaSolution })
     .json();
-  const { code: statusCode, title, message: extraMessage, txHash } = success;
+  const { title, message: extraMessage, txHash } = success;
 
   return {
-    statusCode,
+    statusCode: 200,
     body: { title, txHash, extraMessage, message: createSuccessMessage('0.05') },
   };
 }

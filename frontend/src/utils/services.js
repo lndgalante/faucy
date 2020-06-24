@@ -1,10 +1,10 @@
 import wretch from 'wretch';
 
 // Constants
-const { GATSBY_FAUCY_API_URL } = process.env;
+const { GATSBY_FAUCY_API_URL_HTTPS } = process.env;
 
 // Helpers
-const faucyApi = wretch().url(GATSBY_FAUCY_API_URL);
+const faucyApi = wretch().url(GATSBY_FAUCY_API_URL_HTTPS);
 
 const getEthFromNetwork = (network) => (address) => faucyApi.url(`/faucet/${network}`).post({ address }).json();
 
