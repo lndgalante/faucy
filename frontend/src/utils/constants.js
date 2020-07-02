@@ -15,7 +15,7 @@ export const NETWORKS = [
     amount: '0.1',
     serviceDuration: '1 minute',
     createEtherscanLink: (txHash) => `https://kovan.etherscan.io/tx/${txHash}`,
-    disclaimer: 'You can do one request per address. Use another one if you need more ',
+    disclaimer: 'You have only 1 minute limit period per request ',
   },
   {
     value: 'rinkeby',

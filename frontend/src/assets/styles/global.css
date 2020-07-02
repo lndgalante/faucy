@@ -1,9 +1,9 @@
 [class^='bn-notify'] {
-  opacity: 0 !important;
+  display: none !important;
 }
 
 [class^='bn-notify'] * {
-  opacity: 0 !important;
+  display: none !important;
 }
 
 .card-overlay {

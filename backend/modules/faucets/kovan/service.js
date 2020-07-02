@@ -62,7 +62,7 @@ async function getKovanEth({ address }) {
     const message = createSuccessMessage('0.1');
 
     return {
-      statusCode,
+      statusCode: 200,
       body: { description, message, txHash },
     };
   }
