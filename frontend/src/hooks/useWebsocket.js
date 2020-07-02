@@ -8,7 +8,9 @@ export const useWebSocket = () => {
 
   useEffect(() => {
     const ws = new WebSocket(GATSBY_FAUCY_API_URL_WSS);
+
     ws.onopen = () => setWebSocket(ws);
+    ws.onclose = () => ws.close();
 
     return () => ws.close();
   }, []);
