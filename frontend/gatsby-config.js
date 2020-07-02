@@ -12,7 +12,9 @@ module.exports = {
     author: `@xivis`,
     description: `Get ethers from any testnet easily`,
   },
+  pathPrefix: `__GATSBY_IPFS_PATH_PREFIX__`,
   plugins: [
+    `gatsby-plugin-ipfs`,
     `gatsby-plugin-eslint`,
     `gatsby-plugin-offline`,
     `gatsby-plugin-chakra-ui`,
