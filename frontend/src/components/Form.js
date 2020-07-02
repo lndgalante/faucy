@@ -40,7 +40,6 @@ import { Modal } from '../ui/components/Modal';
 
 // Utils
 import { validateAddress } from '../utils/validators';
-import { getNetworkService } from '../utils/services';
 
 // Hooks
 import { useToast } from '../hooks/useToast';
