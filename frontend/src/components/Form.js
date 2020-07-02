@@ -40,12 +40,12 @@ import { Modal } from '../ui/components/Modal';
 
 // Utils
 import { validateAddress } from '../utils/validators';
+import { getNetworkService } from '../utils/services';
 
 // Hooks
 import { useToast } from '../hooks/useToast';
 import { useSounds } from '../hooks/useSounds';
 import { useNotify } from '../hooks/useNotify';
-import { useWebSocket } from '../hooks/useWebSocket';
 import { useUserNetwork } from '../hooks/useUserNetwork';
 import { useUserAddress } from '../hooks/useUserAddress';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -79,9 +79,6 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
   // Sound hooks
   const { playErrorSound, playSuccessSound } = useSounds();
 
-  // WebSocket hooks
-  const { webSocket } = useWebSocket();
-
   // Chakra hooks
   const { colorMode } = useColorMode();
   const { displaySuccessMessage } = useToast();
@@ -102,8 +99,7 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
   const getEthers = async ({ userAddress, userNetwork }) => {
     const id = nanoid(10);
     const timestamp = +new Date();
-
-    webSocket.send(JSON.stringify({ id, userNetwork, userAddress }));
+    const notify = Notify[userNetwork];
 
     updateRequests(
       {
@@ -123,6 +119,89 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
       .map(([, request]) => request.status)
       .filter((status) => status === 'pending');
     if (pendingRequests.length + 1 >= 3) setIsFormEnabled(false);
+
+    try {
+      const networkService = getNetworkService(userNetwork);
+      const { body } = await networkService(userAddress);
+
+      const link = faucetNetwork.createEtherscanLink(body.txHash);
+      updateRequests(
+        {
+          link,
+          status: 'pending',
+          txHash: body.txHash,
+          icon: 'external-link',
+          message: 'Mining transaction',
+          extraMessage: 'Display transaction status on Etherscan',
+        },
+        id,
+      );
+
+      // Delay for fast solved networks
+      const solvedNetworks = ['kovan', 'rinkeby', 'goerli'];
+      if (solvedNetworks.includes(userNetwork)) {
+        await delay(1000);
+
+        playSuccessSound({});
+        if (logoAnimation) logoAnimation.goToAndPlay(0);
+
+        count({ path: `request-${userNetwork}-success`, event: true });
+        displaySuccessMessage(`You have received ${faucetNetwork.amount} ETH`);
+
+        return updateRequests(
+          {
+            status: 'resolved',
+            icon: 'external-link',
+            message: 'Mined transaction',
+            extraMessage: 'Display transaction status on Etherscan',
+          },
+          id,
+        );
+      }
+
+      const { emitter } = notify.hash(body.txHash);
+
+      emitter.on('txFailed', () => {
+        playErrorSound({});
+        updateRequests(
+          {
+            status: 'rejected',
+            icon: 'external-link',
+            message: 'Transaction error',
+            extraMessage: 'Transaction has failed',
+          },
+          id,
+        );
+      });
+
+      emitter.on('txConfirmed', () => {
+        playSuccessSound({});
+        if (logoAnimation) logoAnimation.goToAndPlay(0);
+
+        count({ path: `request-${userNetwork}-success`, event: true });
+        displaySuccessMessage(`You have received ${faucetNetwork.amount} ETH`);
+
+        updateRequests(
+          {
+            status: 'resolved',
+            icon: 'external-link',
+            message: 'Mined transaction',
+            extraMessage: 'Display transaction status on Etherscan',
+          },
+          id,
+        );
+      });
+    } catch (error) {
+      count({ path: `request-${userNetwork}-failed`, event: true });
+
+      const { body } = JSON.parse(error.message);
+      const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later`;
+
+      playErrorSound({});
+      updateRequests({ message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' }, id);
+    } finally {
+      setIsFormEnabled(true);
+    }
   };
 
   // Formik hooks
@@ -208,108 +287,6 @@ export const Form = ({ logoAnimation, web3Provider, emitter }) => {
       });
     });
   }, [logoAnimation]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Listen to incoming websockets
-  useEffect(() => {
-    if (!webSocket) return;
-
-    webSocket.onmessage = async (event) => {
-      const { id, userNetwork, body, statusCode, error } = JSON.parse(event.data);
-
-      try {
-        if (statusCode !== 200) throw new Error();
-        if (typeof error !== 'undefined') throw error;
-
-        const notify = Notify[userNetwork];
-        const link = faucetNetwork.createEtherscanLink(body.txHash);
-
-        updateRequests(
-          {
-            link,
-            status: 'pending',
-            txHash: body.txHash,
-            icon: 'external-link',
-            message: 'Mining transaction',
-            extraMessage: 'Display transaction status on Etherscan',
-          },
-          id,
-        );
-
-        // FIXME: Temporal fix for Kovan since it gets solved really quickly
-        const solvedNetworks = ['kovan', 'rinkeby', 'goerli'];
-        if (solvedNetworks.includes(userNetwork)) {
-          await delay(1000);
-
-          playSuccessSound({});
-          if (logoAnimation) logoAnimation.goToAndPlay(0);
-
-          count({ path: `request-${userNetwork}-success`, event: true });
-          displaySuccessMessage(`You have received ${faucetNetwork.amount} ETH`);
-
-          return updateRequests(
-            {
-              status: 'resolved',
-              icon: 'external-link',
-              message: 'Mined transaction',
-              extraMessage: 'Display transaction status on Etherscan',
-            },
-            id,
-          );
-        }
-
-        const { emitter } = notify.hash(body.txHash);
-
-        emitter.on('txFailed', () => {
-          playErrorSound({});
-          updateRequests(
-            {
-              status: 'rejected',
-              icon: 'external-link',
-              message: 'Transaction error',
-              extraMessage: 'Transaction has failed',
-            },
-            id,
-          );
-        });
-
-        emitter.on('txConfirmed', () => {
-          playSuccessSound({});
-          if (logoAnimation) logoAnimation.goToAndPlay(0);
-
-          count({ path: `request-${userNetwork}-success`, event: true });
-          displaySuccessMessage(`You have received ${faucetNetwork.amount} ETH`);
-
-          updateRequests(
-            {
-              status: 'resolved',
-              icon: 'external-link',
-              message: 'Mined transaction',
-              extraMessage: 'Display transaction status on Etherscan',
-            },
-            id,
-          );
-        });
-      } catch (error) {
-        count({ path: `request-${userNetwork}-failed`, event: true });
-        const extraMessage = body ? body.message : `Ups! Something went wrong, please try again later`;
-
-        playErrorSound({});
-        updateRequests({ message: 'Requesting error', status: 'rejected', extraMessage, icon: 'warning-2' }, id);
-      } finally {
-        setIsFormEnabled(true);
-      }
-    };
-  }, [
-    webSocket,
-    Notify,
-    count,
-    displaySuccessMessage,
-    logoAnimation,
-    playErrorSound,
-    playSuccessSound,
-    updateRequests,
-    faucetNetwork,
-  ]);
 
   return (
     <Box>
