@@ -71,7 +71,7 @@ async function requestEthers(network) {
     console.log('requestEthers -> response', response);
 
     // tx details
-    const amountToSend = 0.2;
+    const amountToSend = 0.15;
     const details = {
       nonce,
       gas: 21000,
